@@ -1,0 +1,17 @@
+.cont1 {
+    height: 100vh;
+    background-image: url('../../components/img/fondo.jpg'); 
+    background-color: #002854; /* Color de fondo azul con transparencia */
+    background-blend-mode: multiply; /* Mezcla el color de fondo con la imagen */
+    background-size: cover;
+    background-position: center;
+    margin-top: -60px;
+    }
+    .login-c1{
+        background-color: #ffffff;
+      padding: 100px; /* Añadir relleno para separar el contenido del borde */
+      border-radius: 10px; /* Añadir bordes redondeados */
+      width: 400px; /* Ancho fijo */
+        margin-left: 1200px;
+        
+    }
