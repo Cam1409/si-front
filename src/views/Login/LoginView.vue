@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-        <v-container class="cont1">
+  <v-container class="general">
+        <v-container class="cont1-login">
           <v-col class="login-c1">
             <p>
               HOLA ESTAMOS VIVOS ESTA CORRIENDO EL FRONTED NOOOO
@@ -12,7 +12,10 @@
             ></v-text-field>
           </v-col>
         </v-container>
+        
   </v-container>
+  <v-container class="raya-blanca"> </v-container>
+  <v-container class="raya-roja"></v-container>
 </template>
 
 <script>
