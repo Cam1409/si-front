@@ -2,20 +2,34 @@
   <v-container class="general">
         <v-container class="cont1-login">
           <v-col class="login-c1">
-            <p>
-              HOLA ESTAMOS VIVOS ESTA CORRIENDO EL FRONTED NOOOO
-            </p>
+            <v-container class="logo"></v-container>
             <v-text-field
               label="Usuario"
-              prepend-icon="$vuetify"
+              prepend-icon="mdi mdi-account-tie mdi-48px"
               variant="outlined"
             ></v-text-field>
+            <v-text-field
+              label="Contraseña"
+              prepend-icon="mdi mdi-lock mdi-36px"
+              variant="outlined"
+              type="password"
+            ></v-text-field>
           </v-col>
+          <v-btn variant="text" class="btn-contra">
+            ¿Olvido su contraseña?
+          </v-btn>
+          <v-btn variant="tonal" class="btn-inicio">
+            Iniciar Sesión
+          </v-btn>
         </v-container>
         
   </v-container>
   <v-container class="raya-blanca"> </v-container>
-  <v-container class="raya-roja"></v-container>
+  <v-container class="raya-roja">
+    <v-container class="pie">      
+    <p> © UCV - Docentes 2024 </p>
+    </v-container>
+  </v-container>
 </template>
 
 <script>
