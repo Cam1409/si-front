@@ -16,7 +16,7 @@
             ></v-text-field>
           </v-col>
           <v-btn variant="text" class="btn-contra">
-            ¿Olvido su contraseña?
+            ¿Olvidaste tu contraseña?
           </v-btn>
           <v-btn variant="tonal" class="btn-inicio">
             Iniciar Sesión
