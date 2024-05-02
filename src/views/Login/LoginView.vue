@@ -16,9 +16,9 @@
             ></v-text-field>
           </v-col>
           <v-btn variant="text" class="btn-contra">
-            ¿Olvido su contraseña?
+            ¿Olvidaste tu contraseña?
           </v-btn>
-          <v-btn variant="tonal" class="btn-inicio">
+          <v-btn variant="tonal" class="btn-inicio" type="submit">
             Iniciar Sesión
           </v-btn>
         </v-container>
@@ -33,15 +33,11 @@
   <v-container class="raya-blanca"> </v-container>
   <v-container class="raya-roja"></v-container>
 </template>
-
 <script>
-import { defineComponent } from 'vue';
+export default {
+  name: 'LoginView', 
 
-export default defineComponent({
-  name: 'LoginView',
-});
-
+};
 
 </script>
-
 <style src='../../views/Login/login.css'></style>
