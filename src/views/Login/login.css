@@ -1,6 +1,6 @@
 .general{
   font-family: system-ui;
-  background-image: url(''); 
+  background-image: url('../../components/img/fondo.jpg'); 
   background-color: #002854; /* Color de fondo azul con transparencia */
   background-blend-mode: multiply;
   max-width: 100%;
@@ -23,7 +23,7 @@
 }
 
 .logo{
-  background-image: url('');
+  background-image: url('../../components/img/UCVlogo.png');
   background-size: cover;
   height: 60px;
   margin-top: 40px;
@@ -43,10 +43,11 @@
 }
 
 .btn-contra{
-  text-transform: none; 
-  font-weight: bold;
-  color: #080935; 
+  text-transform: lowercase;
   text-decoration: underline;
+  left: 100px;
+}
+
 .btn-contra:hover,
 .btn-contra:active {
   color: rgb(52, 184, 245); /* Cambia este color al que desees */
@@ -69,6 +70,7 @@
   
 }
 
+/*grosor del boton*/
 .v-btn.v-btn--density-default {
   height: calc(var(--v-btn-height) + 10px);
 }

@@ -3,7 +3,6 @@
         <v-container class="cont1-login">
           <v-col class="login-c1">
             <v-container class="logo"></v-container>
-            <v-container class="logo"></v-container>
             <v-text-field
               label="Usuario"
               prepend-icon="mdi mdi-account-tie mdi-48px"
