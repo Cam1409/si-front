@@ -46,11 +46,7 @@
   text-transform: none; 
   font-weight: bold;
   color: #080935; 
-  font-size: 14px;
   text-decoration: underline;
-  left: 100px;
-}
-
 .btn-contra:hover,
 .btn-contra:active {
   color: rgb(52, 184, 245); /* Cambia este color al que desees */

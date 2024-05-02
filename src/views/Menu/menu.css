@@ -1,0 +1,78 @@
+    .m-general{
+        font-family: system-ui;
+        background-image: url('../../components/img/fondo.jpg'); 
+        background-color: #002854; /* Color de fondo azul con transparencia */
+        background-blend-mode: multiply;
+        max-width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
+
+    .contenedor{
+        display: flex;
+        margin-top: 60px;
+        height: 710px;
+    }
+
+    .cont-logo{
+        height: 100px;
+    }
+
+    .logo{
+        background-image: url('../../components/img/UCVlogo.png');
+        background-size: cover;
+        margin-top: 40px;
+        max-width: 350px;
+        height: 50px;
+    }
+
+    .mdi {
+        color: rgb(12, 12, 73); 
+        font-size: 200px;
+        left: 132px;;
+        margin-top: 30px;
+        }
+
+    .usuario{
+        margin-top: 20px;
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        color: #002854;
+    }
+
+    .cont-infoper{
+        background-color: #ffffff;
+        width: 700px;
+        border-radius: 20px;
+    }
+
+    .cont-secciones{
+        background-color: rgb(255, 255, 255);
+        margin-left: 40px;
+        border-radius: 20px;
+    }
+
+    .m-raya-blanca{
+        border-top: 3px solid #ffffff;
+        margin-top: -70px;
+        max-width: 100%
+    }
+    
+    .m-raya-roja{
+        border-top: 45px solid #c41212;
+        margin-top: -10px;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .pie{
+    font-family: system-ui;
+    color: rgb(255, 255, 255);
+    margin-top: -35px;
+    padding: 0;
+    display: flex; /* Utilizamos flexbox para centrar */
+    justify-content: center; /* Centramos horizontalmente */
+    align-items: center; /* Centramos verticalmente */
+    height: 100%;
+    }
