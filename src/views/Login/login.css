@@ -7,7 +7,6 @@
   height: 100%;
   background-size: cover;
 }
-
 .cont1-login {
   background-color: #ffffff;
   border-radius: 20px;
@@ -21,42 +20,37 @@
   left: 0;
   margin: auto;
 }
-
 .logo{
   background-image: url('../../components/img/UCVlogo.png');
   background-size: cover;
   height: 60px;
   margin-top: 40px;
 }
-
 .login-c1 {
   max-width: 410px;
   margin: 0 auto;
 }
-
 .v-text-field {
   margin-top: 50px;
 }
-
 .v-text-field + .v-text-field {
   margin-top: 20px; /* espacio entre cada text-field */
 }
-
 .btn-contra{
-  text-transform: lowercase;
+  text-transform: none; 
+  font-weight: bold;
+  color: #080935; 
+  font-size: 14px;
   text-decoration: underline;
   left: 100px;
 }
-
 .btn-contra:hover,
 .btn-contra:active {
   color: rgb(52, 184, 245); /* Cambia este color al que desees */
 }
-
 .btn-contra:first-letter {
   text-transform: uppercase; 
 }
-
 .btn-inicio{
   background-color: #DD0919;
   color: white;
@@ -69,12 +63,10 @@
   margin-top: 20px;
   
 }
-
 /*grosor del boton*/
 .v-btn.v-btn--density-default {
   height: calc(var(--v-btn-height) + 10px);
 }
-
 
 
 .raya-blanca{
@@ -82,14 +74,12 @@
   margin-top: -70px;
   max-width: 100%
 }
-
 .raya-roja{
   border-top: 45px solid #DD0919;
   margin-top: -10px;
   max-width: 100%;
   padding: 0;
 }
-
 .pie{
   font-family: system-ui;
   color: rgb(255, 255, 255);

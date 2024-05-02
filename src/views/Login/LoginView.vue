@@ -33,15 +33,11 @@
   <v-container class="raya-blanca"> </v-container>
   <v-container class="raya-roja"></v-container>
 </template>
-
 <script>
-import { defineComponent } from 'vue';
+export default {
+  name: 'LoginView', 
 
-export default defineComponent({
-  name: 'LoginView',
-});
-
+};
 
 </script>
-
 <style src='../../views/Login/login.css'></style>
