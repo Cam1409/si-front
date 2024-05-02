@@ -1,0 +1,322 @@
+.general{
+    background-image: url('../../components/img/fondo.jpg'); 
+    background-color: #002854;
+    background-blend-mode: multiply;
+    max-width: 100%;
+    height: 100%;
+    background-size: cover;
+    }
+
+.raya-blanca{
+    border-top: 3px solid #ffffff;
+    margin-top: -70px;
+    max-width: 100%
+}
+
+.raya-roja{
+    border-top: 45px solid #DD0919;
+    margin-top: -10px;
+    max-width: 100%;
+    padding: 0;
+}
+
+.pie{
+    font-family: system-ui;
+    color: rgb(255, 255, 255);
+    margin-top: -35px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-family: system-ui;
+}
+
+.contenedor{
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 10px;
+    height: 91%;
+}
+
+.t-1{
+    color: #DD0919;
+    font-size: 20px;
+    font-family: system-ui;
+    font-weight: 550;
+}
+
+.t-2{
+    color: #002854;
+    font-size: 20px;
+    font-family: system-ui;
+    font-weight: 550;
+    width: 50%;
+    align-content: center;
+}
+
+.parte-1{
+    padding: 0;
+    height: 50px;
+    display: flex;
+}
+
+.logo{
+    background-image: url('../../components/img/UCVlogo.jpeg'); 
+    background-size: cover;
+    max-width: 300px;
+}
+
+.docente{
+    text-align: right;
+    margin-top: -11px;
+    color: #002854;
+    font-size: 25px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icono{
+    size: 15px;
+    margin-right: 10px;
+}
+
+.d-1{
+    color: #002854;
+    font-size: 20px;
+    font-family: system-ui;
+    font-weight: 550;
+}
+
+.parte-2{
+    width: 99%;
+    border-bottom: 1px solid #002854;
+}
+
+.parte-3{
+    width: 99%;
+    border-bottom: 1px solid #002854;
+    display: flex;
+    padding: 8px 15px;
+}
+
+.btn-1{
+    background-color: #002854;
+    color: white;
+    border-radius: 10px;
+    width: 270px;
+    font-family: system-ui;
+    font-weight: 550;
+    font-size: 20px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.btn-1:hover, .btn-1:active{
+    background-color: #335b8a;
+}
+
+.btn-2{
+    background-color: #DD0919;
+    color: white;
+    border-radius: 10px;
+    width: 200px;
+    font-family: system-ui;
+    font-weight: 550;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.btn-3{
+    background-color: #DD0919;
+    color: white;
+    border-radius: 10px;
+    width: 60px;
+    font-family: system-ui;
+    font-weight: 550;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.btn-2:hover, .btn-2:active{
+    background-color: #f23e58;
+}
+
+.cont-btn{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+}
+
+.parte-4{
+    margin-top: 10px;
+    height: 570px;
+    max-width: 99%;
+}
+
+.contenido-desplazable {
+    max-height: calc(100vh - 200px);
+    padding-right: 10px;
+    overflow-y: scroll;
+}
+
+.contenido-desplazable::-webkit-scrollbar {
+    width: 10px;
+}
+
+.contenido-desplazable::-webkit-scrollbar-thumb {
+    background-color: #002854;
+    border-radius: 5px;
+}
+
+.contenido-desplazable::-webkit-scrollbar-thumb:hover {
+    background-color: #335175;
+}
+
+.parte-5{
+    display: flex;
+    padding: 5px;
+    margin-top: -16px;
+}
+
+.p-1{
+    padding: 0px 16px;
+    margin-top: -10px;
+    width: 45%;
+    margin-right: 0px;
+}
+
+.p-2{
+    padding: 0px 16px;
+    margin-top: -10px;
+    width: 42%;
+    margin-left: 0px;
+    display: flex;
+}
+
+.p-3{
+    padding: 0px 16px;
+    margin-top: 0px;
+    width: 90%;
+    margin-left: 0px;
+}
+
+.p-4{
+    padding: 0px 16px;
+    margin-top: 30px;
+    width: 20%;
+    margin-left: -40px;
+}
+
+.texto-1{
+    border: 1px solid #002854;
+    border-radius: 15px;
+    padding: 8px 12px;
+    margin-top: 5px;
+    width: 100%;
+    font-size: 18px;
+    font-family: system-ui;
+}
+
+.sobreponer{
+    position: relative;
+}
+
+.iconobusq{
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-39%);
+    color: #002854;
+}
+
+.selec-1{
+    border: 1px solid #ABABAB;
+    color: #002854;
+    border-radius: 15px;
+    padding: 8px 32px 8px 12px;
+    margin-top: 5px;
+    width: calc(100% - 20px);
+    font-size: 18px;
+    font-family: system-ui;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23002854'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 35px;
+    cursor: pointer;
+}
+
+.selec-1:hover{
+    border: 1px solid #002854;
+}
+
+.tabla-estudiantes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.tabla-estudiantes td {
+    border: 1px solid #002854;
+    padding: 8px;
+}
+
+.tabla{
+    font-family: system-ui;
+    font-weight: 550;
+    max-width: 100%;
+    padding: 0;
+    padding-right: 25px;
+    margin-top: 5px;
+}
+
+.c1{
+    width: 50px;
+    text-align: center;
+    color: #002854;
+}
+
+.c2{
+    width: 200px;
+    text-align: center;
+    color: #002854;
+}
+
+.c3{
+    width: 100px;
+    text-align: center;
+    color: #f23e58;
+}
+
+.c4{
+    color: #002854;
+}
+
+.v-card-text {
+    padding: 0;
+}
+
+.v-field.v-field--prepended {
+    border-radius: 15px;
+}
+
+.v-field {
+    --v-field-input-padding-top:4px;
+    --v-field-input-padding-bottom: 4px;
+    padding: 4px;
+}
+
+.v-input--density-default .v-field--variant-outlined, .v-input--density-default .v-field--single-line, .v-input--density-default .v-field--no-label {
+    --v-field-padding-bottom: 5px;
+    margin-top: 5px;
+}
+
+.v-field__input {
+    min-height:37px;
+}
+
+.v-field__prepend-inner > .v-icon, .v-field__append-inner > .v-icon, .v-field__clearable > .v-icon {
+    margin-left: 8px;
+}

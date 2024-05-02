@@ -30,6 +30,8 @@
     <p> © UCV - Docentes 2024 </p>
     </v-container>
   </v-container>
+  <v-container class="raya-blanca"> </v-container>
+  <v-container class="raya-roja"></v-container>
 </template>
 
 <script>
