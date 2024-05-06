@@ -34,22 +34,23 @@
   <v-container class="raya-roja"></v-container>
 </template>
 <script>
-  export default {
-    name: 'LoginView', 
-    data(){
-      return{
-        usuarios: [],
-      }
-    },
-    created(){
-      this.obtenerUsuario();
-    },
-    methods:{
-      obtenerUsuario(){
-        this.$axios.get("http://localhost:3000/distrito").then((res)=>{this.usuarios=res.data;}).catch((error)=>e);
-        //console.log(this.usuarios);
-      }
+export default {
+  name: 'LoginView', 
+  data(){
+    return{
+      usuarios: [],
     }
-  };
+  },
+  created(){
+    this.obtenerUsuario();
+  },
+  methods:{
+    obtenerUsuario(){
+      this.$axios.get("http://localhost:3000/distrito").then((res)=>{this.usuarios=res.data; console.log(this.usuarios);}).catch((error)=>e);
+    }
+  }
+};
+
+
 </script>
 <style src='../../views/Login/login.css'></style>
