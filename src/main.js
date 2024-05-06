@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+/*import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -11,4 +11,22 @@ createApp(App)
   .use(router)
   .use(store)
   .use(vuetify)
-  .mount('#app')
+  .mount('#app')*/
+  
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import vuetify from './plugins/vuetify';
+import { loadFonts } from './plugins/webfontloader';
+import axios from './plugins/axios';
+
+loadFonts();
+
+const app = createApp(App);
+app.config.globalProperties.$axios = axios; // Configura Axios globalmente
+
+app.use(router)
+   .use(store)
+   .use(vuetify)
+   .mount('#app');
