@@ -90,3 +90,18 @@
   align-items: center; /* Centramos verticalmente */
   height: 100%;
 }
+
+.prueba{
+  display: flex; 
+  justify-content: center;
+}
+
+.btnclose{
+  background-color: #033076; 
+  color: #ffffff;
+}
+
+.mx-auto{
+  color: white;
+  justify-content: center;
+}
