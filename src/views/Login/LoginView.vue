@@ -46,7 +46,7 @@
     },
     methods:{
       obtenerUsuario(){
-        this.axios.get("http://localhost:3000/distrito").then((res)=>{this.usuarios=res.data;}).catch((error)=>e);
+        this.$axios.get("http://localhost:3000/distrito").then((res)=>{this.usuarios=res.data;}).catch((error)=>e);
         //console.log(this.usuarios);
       }
     }
