@@ -46,11 +46,11 @@ export default {
   },
   methods:{
     obtenerUsuario(){
-      this.$.axios.get("http://localhost:3000/distrito").then((res)=>{this.usuarios=res.data;}).catch((error)=>e);
-      //console.log(this.usuarios);
+      this.$axios.get("http://localhost:3000/distrito").then((res)=>{this.usuarios=res.data; console.log(this.usuarios);}).catch((error)=>e);
     }
   }
 };
+
 
 </script>
 <style src='../../views/Login/login.css'></style>
