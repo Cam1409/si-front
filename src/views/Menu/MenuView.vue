@@ -6,7 +6,11 @@
           <v-container class="logo"></v-container>
         </v-container>
         <v-icon class="mdi mdi-account-circle icon1"></v-icon>
-        <p class="usuario">Freddy Pachas</p>
+        <v-container>
+          <p class="usuario" id="usuario"></p>
+          <p class="usuario"></p>
+        </v-container>
+        
           <v-btn variant="tonal" class="btn-cerrar">
             Cerrar Sesión
           </v-btn>  
@@ -117,10 +121,34 @@
   </v-container>
 </template>
 <script>
-import { defineComponent } from 'vue';
-export default defineComponent({
+export default {
   name: 'MenuView',
-});
+
+  data(){
+    return{
+      profesor: [],
+      codigoD: "",
+      
+
+    }
+  },
+  created(){
+    this.cargarDatos();
+  },
+  methods:{
+    cargarDatos(){
+        this.capturarCodigoD();
+        this.llenarDatosD();
+    },
+    capturarCodigoD(){
+        this.codigoD = localStorage.getItem("codigoD");
+        this.$axios.get("/profesor/"+this.codigoD).then((res)=>{this.profesor=res.data;}).catch((error)=>e);
+    },
+    llenarDatosD(){
+    }
+  }
+};
+
 
 </script>
 <style src='../../views/Menu/menu.css'></style>
