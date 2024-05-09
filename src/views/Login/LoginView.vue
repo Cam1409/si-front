@@ -75,7 +75,7 @@ export default {
   },
   methods:{
     obtenerUsuario(){
-      this.$axios.get("http://localhost:3000/usuario").then((res)=>{this.usuarios=res.data; console.log(this.usuarios);}).catch((error)=>e);
+      this.$axios.get("/usuario").then((res)=>{this.usuarios=res.data;}).catch((error)=>e);
     },
     async iniciarSesion() {
   if (this.username === "" || this.password === "") {
@@ -85,12 +85,14 @@ export default {
     return; // Salir temprano si falta información
   }
     try {
-    const response = await this.$axios.post("http://localhost:3000/usuario/validar", {
+    const response = await this.$axios.post("/usuario/validar", {
       username: this.username,
       password: this.password,
     });
     if (response.data.message === 'Autenticación exitosa') {
       this.$router.push("/menu");
+      const usuaruioE=this.usuarios.find(usuario => usuario.username === this.username && usuario.password === this.password);
+      localStorage.setItem('codigoD', usuaruioE.codigoD);
     }
   } catch (error) {
     if (error.response && error.response.status === 401) {
@@ -106,7 +108,6 @@ cerrar() {
       this.username = '';
       this.password = '';
       this.dialogError = false;
-      
     }
 
 	},
