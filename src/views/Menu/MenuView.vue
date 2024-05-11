@@ -22,7 +22,7 @@
         <v-container class="contenido-desplazable all">
     <v-row>
       <v-col v-for="(asignatura, index) in asignaturas" :key="index" cols="4">
-        <v-card>
+        <v-card class="cursor-pointer" @click="irMenuSeccion(asignatura.idCurso)">
           <v-img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHpyrO3FloqBLlYGdb85qyVwh22IqdlVLQmqfCrHITHReEa6NFoDhLXaSXC8ZwkFH2Z6c&usqp=CAU" height="200"></v-img>
           <v-card-text>{{ asignatura.idCurso }}</v-card-text>
           <v-card-title>{{ asignatura.NombreCurso }}</v-card-title>
@@ -83,6 +83,10 @@ export default {
     },
     capturarAsignaturas(){
       this.$axios.get("/curso/by-codigoD/"+this.codigoD).then((res)=>{this.asignaturas=res.data;console.log(this.asignaturas)}).catch((error)=>e);
+    },
+    irMenuSeccion(idCurso){
+      this.$router.push("/menuSecciones");
+      localStorage.setItem('idCurso',idCurso);
     },
 
   }

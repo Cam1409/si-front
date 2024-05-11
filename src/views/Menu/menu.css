@@ -1,5 +1,5 @@
     
-  .m-general{
+.m-general{
     font-family: system-ui;
     background-image: url('../../components/img/fondo.jpg'); 
     background-color: #002854; /* Color de fondo azul con transparencia */
@@ -73,6 +73,7 @@
     max-height: calc(100vh - 200px);
     padding-right: 10px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .contenido-desplazable::-webkit-scrollbar {
