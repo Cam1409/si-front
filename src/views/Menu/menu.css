@@ -1,5 +1,5 @@
     
-  .m-general{
+    .m-general{
     font-family: system-ui;
     background-image: url('../../components/img/fondo.jpg'); 
     background-color: #002854; /* Color de fondo azul con transparencia */
@@ -27,19 +27,76 @@
     color: rgb(12, 12, 73); 
     font-size: 200px;
     left: 132px;;
-    margin-top: 30px;
+    margin-top: 15px;
     }
 .usuario{
-    margin-top: 20px;
+    margin-top: -25px;
     text-align: center;
     font-size: 28px;
+    color: #002854;
+}
+.cont-cod{
+    display: flex;
+    margin-top: -38px;
+    font-size: 16px;
     font-weight: bold;
     color: #002854;
+    margin-left: 160px;
 }
 .cont-infoper{
     background-color: #ffffff;
     width: 700px;
     border-radius: 20px;
+}
+.cont-pag{
+    display: flex;
+    margin-top: -35px;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+.calendario {
+    background-image: url('../../components/img/calendar.png');
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    }
+.gmail {
+    background-image: url('../../components/img/gmail.jpeg');
+    width: 25px;
+    height: 25px;
+    margin-top: 6px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    }
+.doc {
+    background-image: url('../../components/img/logoGoogle-Docs.png');
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    }
+.drive {
+    background-image: url('../../components/img/drive.jpeg');
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    }
+.keep {
+    background-image: url('../../components/img/keep-5121.png');
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    }
+.v-btn--size-default {
+    --v-btn-size: 0.875rem;
+    --v-btn-height: 36px;
+    font-size: var(--v-btn-size);
+    min-width: 0px; 
+    padding: 0px;
 }
 .btn-cerrar{
     background-color: #DD0919;
@@ -58,7 +115,7 @@
 .cont-titulo{
     color: #DD0919;
     font-family: system-ui;
-    font-weight: 550;
+    font-size: 26px;
     border-bottom: 1px solid #002854;
     width: 99%;
 }

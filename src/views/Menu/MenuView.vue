@@ -9,7 +9,55 @@
         <v-container>
           <p class="usuario" id="txtNombreP"></p>
         </v-container>
-        
+        <v-container class="cont-cod">
+          Código:
+          <p class="codigo" id="txtCodigoP"></p>
+        </v-container>
+        <v-container class="cont-pag">
+          <v-col>
+            <v-btn href="https://calendar.google.com/calendar/u/0/r?pli=1"
+            height="30"
+            target="-blank"
+            >            
+            <v-icon class="calendario"></v-icon>
+          </v-btn>
+          </v-col>
+          <v-col>
+            <v-btn href="https://www.google.com/intl/es-419/gmail/about/"
+            height="30"
+            target="-blank"
+            >            
+            <v-icon class="gmail"></v-icon>
+          </v-btn>
+          </v-col>
+          <v-col>
+            <v-btn href="https://docs.google.com/document/u/0/?tgif=d"
+            height="30"
+            target="-blank"
+            >            
+            <v-icon class="doc"></v-icon>
+          </v-btn>
+          </v-col>
+          <v-col>
+            <v-btn href="https://drive.google.com/drive/my-drive?hl=es"
+            height="30"
+            target="-blank"
+            >            
+            <v-icon class="drive"></v-icon>
+          </v-btn>
+          </v-col>
+          <v-col>
+            <v-btn href="https://keep.google.com/u/0/"
+            height="30"
+            target="-blank"
+            >            
+            <v-icon class="keep"></v-icon>
+          </v-btn>
+          </v-col>
+        </v-container>
+        <v-container>
+          
+        </v-container>
           <v-btn variant="tonal" class="btn-cerrar">
             Cerrar Sesión
           </v-btn>  
@@ -17,7 +65,7 @@
 
       <v-container class="cont-asignatura">
         <v-container class="cont-titulo">
-          <h1>Asignaturas</h1>
+          <p>Asignaturas</p>
         </v-container>
         <v-container class="contenido-desplazable all">
     <v-row>
@@ -79,6 +127,10 @@ export default {
       var nombre = document.getElementById('txtNombreP');
       if (nombre) {
         nombre.innerText = this.profesor.nombresD +" "+this.profesor.apellidosD;
+      }
+      var  codigo = document.getElementById('txtCodigoP');
+      if (codigo){
+        codigo.innerText = this.profesor.codigoD;
       }
     },
     capturarAsignaturas(){
