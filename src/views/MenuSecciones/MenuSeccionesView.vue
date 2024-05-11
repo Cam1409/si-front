@@ -7,104 +7,153 @@
                 <v-container class="logo"></v-container>
                 </v-container>
                 <v-icon class="mdi mdi-account-circle icono1"></v-icon>
-                <p class="usuario">Freddy Pachas</p>
-                <v-btn variant="tonal" class="btn-cerrar">
-                    Cerrar Sesión
-                </v-btn>  
+                <p class="usuario" id="txtNombreP"></p>
+                <v-container class="cont-ce">
+                    <btn class="btn-cerrar">
+                        <v-icon left>mdi mdi-logout</v-icon>
+                        Cerrar Sesión
+                    </btn>
+                </v-container>
             </v-container>
 
             <v-container class="cont-asignatura">
                 <v-container class="cont-titulo">
-                <h1>Secciones</h1>
+                    <p class="t-1">Secciones</p>
                 </v-container>
                 <v-container class="cont-subtitulo">
-                <h1>Sistemas Inteligentes</h1>
-                <v-btn variant="tonal" class="btn-regresar">
-                    Regresar
-                </v-btn>  
+                    <v-container class="A">
+                        <p class="t-2" id="txtCurso"></p>
+                    </v-container>
+                    <v-container class="B">
+                        <btn class="btn-regresar">
+                            <v-icon left>mdi mdi-home</v-icon>
+                            Regresar
+                        </btn>
+                    </v-container> 
                 </v-container>
                 <v-container class="contenido-desplazable all">
-                    <v-container class="fila1">
-                        <v-container class="asig1">
-                            <v-container class="cont-icon">
-                                <v-btn class="icon" icon="mdi mdi-book-open" variant="text">
-                                </v-btn>
-                            </v-container>
-                            <v-container class="name">                
-                            <p>A1T1</p>
-                            </v-container>
-                        </v-container>
-                        <v-container class="asig2">
-                            <v-container class="cont-icon">
-                                <v-btn class="icon" icon="mdi mdi-book-open" variant="text">
-                                </v-btn>
-                            </v-container>
-                            <v-container class="name">                
-                            <p>A1P1</p>
-                            </v-container>
-                        </v-container>        
-                    </v-container>
-                    <v-container class="fila2">
-                        <v-container class="asig3">
-                            <v-container class="cont-icon">
-                                <v-btn class="icon" icon="mdi mdi-book-open" variant="text">
-                                </v-btn>
-                            </v-container>
-                            <v-container class="name">                
-                            <p>A2T2</p>
-                            </v-container>
-                        </v-container>
-                        <v-container class="asig4">
-                            <v-container class="cont-icon">
-                                <v-btn class="icon" icon="mdi mdi-book-open" variant="text">
-                                </v-btn>
-                            </v-container>
-                            <v-container class="name">                
-                            <p>A2T2</p>
-                            </v-container>
-                        </v-container>
-                    </v-container>
-                    <v-container class="fila3">
-                        <v-container class="asig5">
-                            <v-container class="cont-icon">
-                                <v-btn class="icon" icon="mdi mdi-book-open" variant="text">
-                                </v-btn>
-                            </v-container>
-                            <v-container class="name">                
-                            <p>A3T3</p>
-                            </v-container>
-                        </v-container>
-                        <v-container class="asig6">
-                            <v-container class="cont-icon">
-                                <v-btn class="icon" icon="mdi mdi-book-open" variant="text">
-                                </v-btn>
-                            </v-container>
-                            <v-container class="name">                
-                            <p>A3P3</p>
-                            </v-container>
-                        </v-container>
-                    </v-container>
-                    <v-container class="fila4">
-                        <v-container class="asig7">
-                            <v-container class="cont-icon">
-                                <v-btn class="icon" icon="mdi mdi-book-open" variant="text">
-                                </v-btn>
-                            </v-container>
-                            <v-container class="name">                
-                            <p>A4T4</p>
-                            </v-container>
-                        </v-container>
-                        <v-container class="asig8">
-                            <v-container class="cont-icon">
-                                <v-btn class="icon" icon="mdi mdi-book-open" variant="text">
-                                </v-btn>
-                            </v-container>
-                            <v-container class="name">                
-                            <p>A4P4</p>
-                            </v-container>
-                        </v-container>
-                    </v-container>
+                    <v-row>
+                        <v-col v-for="(aula, index) in aulas" :key="index" cols="2">
+                            <v-card class="cursor-pointer lista" @click="irListaEstudiante()">
+                            <v-card-text class="card1">Pabellón {{aula.idPabellon}}</v-card-text>
+                            <v-card-title class="card2">{{aula.aula}}</v-card-title>
+                            <v-card-text class="card3">Abierto | Modalidad: {{aula.descripcionM}}</v-card-text>
+                            <v-divider thick></v-divider> 
+                            <v-card-text class="card4">
+                                <v-card-text class="card5">
+                                    <v-container class="textlista">
+                                        Turno {{aula.descripcionTurno}} | {{ profesor.nombresD + " "+ profesor.apellidosD }}
+                                    </v-container>
+                                    <v-container class="btnlista">
+                                        <btn class="btn-entrar">
+                                            <v-icon left>mdi-account-arrow-right</v-icon>Ver
+                                        </btn>
+                                    </v-container>
+                                </v-card-text>
+                            </v-card-text>
+                            </v-card>
 
+
+
+                            <v-card class="cursor-pointer lista" @click="irListaEstudiante()">
+                            <v-card-text class="card1">Pabellón {{aula.idPabellon}}</v-card-text>
+                            <v-card-title class="card2">{{aula.aula}}</v-card-title>
+                            <v-card-text class="card3">Abierto | Modalidad: {{aula.descripcionM}}</v-card-text>
+                            <v-divider thick></v-divider> 
+                            <v-card-text class="card4">
+                                <v-card-text class="card5">
+                                    <v-container class="textlista">
+                                        Turno {{aula.descripcionTurno}} | {{ profesor.nombresD + " "+ profesor.apellidosD }}
+                                    </v-container>
+                                    <v-container class="btnlista">
+                                        <btn class="btn-entrar">
+                                            <v-icon left>mdi-account-arrow-right</v-icon>Ver
+                                        </btn>
+                                    </v-container>
+                                </v-card-text>
+                            </v-card-text>
+                            </v-card>
+
+                            <v-card class="cursor-pointer lista" @click="irListaEstudiante()">
+                            <v-card-text class="card1">Pabellón {{aula.idPabellon}}</v-card-text>
+                            <v-card-title class="card2">{{aula.aula}}</v-card-title>
+                            <v-card-text class="card3">Abierto | Modalidad: {{aula.descripcionM}}</v-card-text>
+                            <v-divider thick></v-divider> 
+                            <v-card-text class="card4">
+                                <v-card-text class="card5">
+                                    <v-container class="textlista">
+                                        Turno {{aula.descripcionTurno}} | {{ profesor.nombresD + " "+ profesor.apellidosD }}
+                                    </v-container>
+                                    <v-container class="btnlista">
+                                        <btn class="btn-entrar">
+                                            <v-icon left>mdi-account-arrow-right</v-icon>Ver
+                                        </btn>
+                                    </v-container>
+                                </v-card-text>
+                            </v-card-text>
+                            </v-card>
+
+
+                            <v-card class="cursor-pointer lista" @click="irListaEstudiante()">
+                            <v-card-text class="card1">Pabellón {{aula.idPabellon}}</v-card-text>
+                            <v-card-title class="card2">{{aula.aula}}</v-card-title>
+                            <v-card-text class="card3">Abierto | Modalidad: {{aula.descripcionM}}</v-card-text>
+                            <v-divider thick></v-divider> 
+                            <v-card-text class="card4">
+                                <v-card-text class="card5">
+                                    <v-container class="textlista">
+                                        Turno {{aula.descripcionTurno}} | {{ profesor.nombresD + " "+ profesor.apellidosD }}
+                                    </v-container>
+                                    <v-container class="btnlista">
+                                        <btn class="btn-entrar">
+                                            <v-icon left>mdi-account-arrow-right</v-icon>Ver
+                                        </btn>
+                                    </v-container>
+                                </v-card-text>
+                            </v-card-text>
+                            </v-card>
+
+                            <v-card class="cursor-pointer lista" @click="irListaEstudiante()">
+                            <v-card-text class="card1">Pabellón {{aula.idPabellon}}</v-card-text>
+                            <v-card-title class="card2">{{aula.aula}}</v-card-title>
+                            <v-card-text class="card3">Abierto | Modalidad: {{aula.descripcionM}}</v-card-text>
+                            <v-divider thick></v-divider> 
+                            <v-card-text class="card4">
+                                <v-card-text class="card5">
+                                    <v-container class="textlista">
+                                        Turno {{aula.descripcionTurno}} | {{ profesor.nombresD + " "+ profesor.apellidosD }}
+                                    </v-container>
+                                    <v-container class="btnlista">
+                                        <btn class="btn-entrar">
+                                            <v-icon left>mdi-account-arrow-right</v-icon>Ver
+                                        </btn>
+                                    </v-container>
+                                </v-card-text>
+                            </v-card-text>
+                            </v-card>
+                            
+                            <v-card class="cursor-pointer lista" @click="irListaEstudiante()">
+                            <v-card-text class="card1">Pabellón {{aula.idPabellon}}</v-card-text>
+                            <v-card-title class="card2">{{aula.aula}}</v-card-title>
+                            <v-card-text class="card3">Abierto | Modalidad: {{aula.descripcionM}}</v-card-text>
+                            <v-divider thick></v-divider> 
+                            <v-card-text class="card4">
+                                <v-card-text class="card5">
+                                    <v-container class="textlista">
+                                        Turno {{aula.descripcionTurno}} | {{ profesor.nombresD + " "+ profesor.apellidosD }}
+                                    </v-container>
+                                    <v-container class="btnlista">
+                                        <btn class="btn-entrar">
+                                            <v-icon left>mdi-account-arrow-right</v-icon>Ver
+                                        </btn>
+                                    </v-container>
+                                </v-card-text>
+                            </v-card-text>
+                            </v-card>
+
+
+                        </v-col>
+                    </v-row>
                 </v-container>
             </v-container>
         </v-container>
@@ -119,11 +168,55 @@
         </v-container>
     </template>
     <script>
-    import { defineComponent } from 'vue';
-    
-    export default defineComponent({
+    export default {
         name: 'MenuSeccionView',
-    });
+
+        data(){
+            return{
+            codigoD:"",
+            idCurso:"",
+            aulas:[],
+            curso:"",
+            }
+        },
+        created(){
+            this.cargarDatos();
+            this.capturarAulas();
+        },
+        methods:{
+            cargarDatos(){
+            this.capturarDatos();
+            },
+            capturarDatos(){
+                this.codigoD = localStorage.getItem("codigoD");
+                this.idCurso = localStorage.getItem("idCurso");
+
+                // Capturando datos del docente
+                this.$axios.get("/profesor/"+this.codigoD).then((res)=>{this.profesor=res.data;this.llenarDatosD()}).catch((error)=>e);
+                // Capturando datos de la asignatura
+                this.$axios.get("/curso/by-id/"+this.idCurso).then((res)=>{this.curso=res.data;this.llenarDatosA()}).catch((error)=>e);
+            },
+            llenarDatosD(){
+                //Cargando datos de usuario
+                var nombre = document.getElementById('txtNombreP');
+                if (nombre) {
+                    nombre.innerText = this.profesor.nombresD +" "+this.profesor.apellidosD;
+                }
+            },
+            llenarDatosA(){
+                var asig = document.getElementById('txtCurso');
+                if(asig){
+                    asig.innerText = this.curso.idCurso + " | " + this.curso.NombreCurso + " | Abierto";
+                }
+            },
+            irListaEstudiante(){
+                this.$router.push("/ListaEstudiantes");
+            },
+            capturarAulas(){
+                this.$axios.get("/detallematricula/secciones/"+this.idCurso+"/"+this.codigoD).then((res)=>{this.aulas=res.data;console.log(this.aulas)}).catch((error)=>e);
+            },
+        }
+    };
     
     
     </script>
