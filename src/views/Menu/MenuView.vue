@@ -55,13 +55,30 @@
           </v-btn>
           </v-col>
         </v-container>
-        <v-container>
-          
+
+        <v-container class="dat">
+          <v-container class="dat-sexo">
+            <v-icon class="mdi mdi-gender-male-female icon-s"></v-icon>
+            Sexo:  <p  class="sexo" id="txtgenero"></p>
+          </v-container>
+
+          <v-container class="dat-estado">
+            <v-icon class="mdi mdi-account-heart "></v-icon>
+            Estado civil:  <p  class="estado" id="txtestado"></p>
+          </v-container>
+
+          <v-container class="dat-gmail">
+            <v-icon class="mdi mdi-email-outline "></v-icon>
+            Correo:  <p  class="correo" id="txtgmail"></p>
+          </v-container>
+
         </v-container>
-          <v-btn variant="tonal" class="btn-cerrar">
-            Cerrar Sesión
-          </v-btn>  
-      </v-container>
+        
+
+            <v-btn variant="tonal" class="btn-cerrar">
+              Cerrar Sesión
+            </v-btn>  
+        </v-container>
 
       <v-container class="cont-asignatura">
         <v-container class="cont-titulo">
@@ -128,10 +145,39 @@ export default {
       if (nombre) {
         nombre.innerText = this.profesor.nombresD +" "+this.profesor.apellidosD;
       }
-      var  codigo = document.getElementById('txtCodigoP');
-      if (codigo){
+      var codigo = document.getElementById('txtCodigoP');
+      if(codigo){
         codigo.innerText = this.profesor.codigoD;
       }
+      var genero = document.getElementById('txtgenero');
+      if(genero){
+          if(this.profesor.idGenero === "F"){
+            genero.innerText = "FEMENINO";
+          } else if(this.profesor.idGenero === "M"){
+            genero.innerText = "masculino";
+          } else {
+            genero.innerText = this.profesor.idGenero;
+        }
+      }
+      var estado = document.getElementById('txtestado');
+        if(estado){
+          if(this.profesor.idEstado === "S"){
+            estado.innerText = "soltero";
+          } else if(this.profesor.idEstado === "C"){
+            estado.innerText = "casado";
+          } else if(this.profesor.idEstado === "D"){
+            estado.innerText = "divorsiado";
+          } else if(this.profesor.idEstado === "V"){
+            estado.innerText = "viudo";
+          } else {
+            estado.innerText = this.profesor.idEstado;
+        }
+        }
+        var gmail = document.getElementById('txtgmail');
+        if(gmail){
+          gmail.innerText = this.profesor.correo;
+        }
+      
     },
     capturarAsignaturas(){
       this.$axios.get("/curso/by-codigoD/"+this.codigoD).then((res)=>{this.asignaturas=res.data;console.log(this.asignaturas)}).catch((error)=>e);
@@ -139,7 +185,7 @@ export default {
     irMenuSeccion(idCurso){
       this.$router.push("/menuSecciones");
       localStorage.setItem('idCurso',idCurso);
-    },
+    },
 
   }
 };

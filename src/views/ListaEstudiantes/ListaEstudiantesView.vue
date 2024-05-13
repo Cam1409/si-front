@@ -94,8 +94,9 @@
                         <template v-slot:item="{ item, index }">
                             <tr>
                                 <td class="c1">{{ index + 1 }}</td>
-                                <td class="c4">{{ item.nombre }}</td>
-                                <td class="c2">{{ item.estado }}</td>
+                                <td class="c5">{{ item.idUnidad }}</td>
+                                <td class="c4">{{ item.nombresE + " " + item.apellidosE }}</td>
+                                <td class="c2">{{ item.condicion-nota }}</td>
                                 <td class="c3">
                                 <v-icon class="mdi mdi-list-status"></v-icon>
                                 </td>
@@ -129,45 +130,38 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-export default defineComponent({
+export default {
     name: 'ListaEstudiantes',
     data() {
         return {
             search: '',
+            codigoE:'',
             selectedOption: null,
-            headers: [],
-            estudiantes: [
-                { nombre: 'Alcedo Javier, Carlos Jose', estado: 'Calificado' },
-                { nombre: 'Ocaña Barron, Enori Camila', estado: 'No Calificado'},
-                { nombre: 'García López, María Fernanda', estado: 'Calificado'},
-                { nombre: 'Martínez Rodríguez, Luis Miguel', estado: 'No Calificado'},
-                { nombre: 'Hernández Gómez, Ana Isabel', estado: 'Calificado'},
-                { nombre: 'Pérez Díaz, Juan Manuel', estado: 'No Calificado'},
-                { nombre: 'González Martínez, María José', estado: 'Calificado'},
-                { nombre: 'Sánchez Romero, José Antonio', estado: 'No Calificado'},
-                { nombre: 'Díaz Pérez, Laura Andrea', estado: 'Calificado'},
-                { nombre: 'López González, Carlos Alberto', estado: 'No Calificado'},
-                { nombre: 'Flores Sánchez, Jessica Paola', estado: 'Calificado'},
-                { nombre: 'Ramírez Jiménez, Alejandro José', estado: 'No Calificado'},
-                { nombre: 'Gómez Pérez, Sofía Gabriela', estado: 'Calificado'},
-                { nombre: 'Torres Hernández, Daniel Eduardo', estado: 'No Calificado'},
-                { nombre: 'Rivera Sosa, Andrea Carolina', estado: 'Calificado'},
-                { nombre: 'Méndez Ramírez, Roberto Carlos', estado: 'No Calificado'},
-                { nombre: 'Hernández García, Patricia Elizabeth', estado: 'Calificado'},
-                { nombre: 'Gómez Rodríguez, Miguel Ángel', estado: 'No Calificado'},
-                { nombre: 'Vásquez López, Carolina Andrea', estado: 'Calificado'},
-            ]
+            headers: [], 
+            nombreE:'',
+            apellidosE :'',
+            estudiantes: [],
         };
+    },
+    created(){
+        this.capturarLista();
     },
     methods: {
         selectFirstOption() {
             if (this.$refs.select && this.$refs.select.options.length > 0) {
                 this.selectedOption = this.$refs.select.options[0].value;
             }
-        }
+        },
+
+        capturarLista(){
+            this.codigoD = localStorage.getItem("codigoD");
+            this.idCurso = localStorage.getItem("idCurso");
+            this.aula = localStorage.getItem('aula');
+            this.$axios.get("/matricula/condicion-nota/"+this.codigoD+"/"+this.idCurso+"/"+this.aula+"/"+this.idUnidad).then((res)=>{this.estudiantes=res.data;console.log(this.estudiantes)}).catch((error)=>e);;
+            
+        },
     }
-});
+};
 </script>
 
 <style src='../../views/ListaEstudiantes/listaEstudiantes.css'></style>

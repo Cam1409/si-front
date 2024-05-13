@@ -98,12 +98,28 @@
     min-width: 0px; 
     padding: 0px;
 }
+.dat{
+    margin-top: -30px;
+    font-weight: bold;
+    color:#002854;
+    margin-left: 40px;
+}
+.dat-sexo{
+    display: flex;
+}
+.dat-estado{
+    display: flex;
+    margin-top: -20px;
+}
+.dat-gmail{
+    display: flex;
+    margin-top: -20px;
+}
 .btn-cerrar{
     background-color: #DD0919;
     color: white;
     border-radius: 10px;
     width: 260px;
-    margin-top: 150px;
     margin-left: 100px;
     
     }
