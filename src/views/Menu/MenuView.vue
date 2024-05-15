@@ -198,6 +198,7 @@ export default {
     irMenuSeccion(idCurso){
       this.$router.push("/menuSecciones");
       localStorage.setItem('idCurso',idCurso);
+      localStorage.setItem('nombreDocente',this.profesor.nombresD+' '+this.profesor.apellidosD);
     },
     cerrarSesion(){
       this.$router.push("/");
