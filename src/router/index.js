@@ -32,6 +32,16 @@ const routes = [
     path: '/ExamenDigitalizadoNotas',
     name: 'ExamenDigitalizadoNotasView',
     component: () => import(/* webpackChunkName: "about" */ '../views/ExamenDigitalizadoNotas/ExamenDigitalizadoNotasView.vue')
+  },
+  {
+    path: '/RegistrarDocente',
+    name: 'RegistrarDocenteView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/RegistrarDocenteU/RegistrarDocenteView.vue')
+  },
+  {
+    path: '/Restablecer',
+    name: 'RegistrarContraseñaView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/RestablecerContraseña/Restablecer.vue')
   }
 ]
 

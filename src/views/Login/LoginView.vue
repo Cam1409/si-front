@@ -17,11 +17,14 @@
               type="password"
             ></v-text-field>
           </v-col>
-          <v-btn variant="text" class="btn-contra">
-            ¿Olvidaste tu contraseña?
-          </v-btn>
           <v-btn variant="tonal" class="btn-inicio" type="button" @click="iniciarSesion">
             Iniciar Sesión
+          </v-btn>
+          <v-btn variant="text" class="btn-contraT" @click="registrar">
+            ¿No tienes cuenta? Regístrate
+          </v-btn>
+          <v-btn variant="text" class="btn-contra" @click="restablecer">
+            ¿Olvidaste tu contraseña?
           </v-btn>
         </v-container>
         
@@ -78,36 +81,42 @@ export default {
       this.$axios.get("/usuario").then((res)=>{this.usuarios=res.data;}).catch((error)=>e);
     },
     async iniciarSesion() {
-  if (this.username === "" || this.password === "") {
-    this.mensaje = "Faltan completar datos";
-    this.typemsg = "error";
-    this.dialogError = true;
-    return; // Salir temprano si falta información
-  }
-    try {
-    const response = await this.$axios.post("/usuario/validar", {
-      username: this.username,
-      password: this.password,
-    });
-    if (response.data.message === 'Autenticación exitosa') {
-      this.$router.push("/menu");
-      const usuaruioE=this.usuarios.find(usuario => usuario.username === this.username && usuario.password === this.password);
-      localStorage.setItem('codigoD', usuaruioE.codigoD);
-    }
-  } catch (error) {
-    if (error.response && error.response.status === 401) {
-      this.mensaje = "Credenciales incorrectas, por favor revisar el usuario y contraseña";
-    } else {
-      this.mensaje= "Error desconocido al iniciar sesión";
-    }
-    this.dialogError = true;
-  }
-},
-cerrar() {
+      if (this.username === "" || this.password === "") {
+        this.mensaje = "Faltan completar datos";
+        this.typemsg = "error";
+        this.dialogError = true;
+        return; // Salir temprano si falta información
+      }
+        try {
+        const response = await this.$axios.post("/usuario/validar", {
+          username: this.username,
+          password: this.password,
+        });
+        if (response.data.message === 'Autenticación exitosa') {
+          this.$router.push("/menu");
+          const usuaruioE=this.usuarios.find(usuario => usuario.username === this.username && usuario.password === this.password);
+          localStorage.setItem('codigoD', usuaruioE.codigoD);
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          this.mensaje = "Credenciales incorrectas, por favor revisar el usuario y contraseña";
+        } else {
+          this.mensaje= "Error desconocido al iniciar sesión";
+        }
+        this.dialogError = true;
+      }
+    },
+    cerrar() {
       this.mensaje= " "
       this.username = '';
       this.password = '';
       this.dialogError = false;
+    },
+    restablecer(){
+      this.$router.push("/Restablecer");
+    },
+    registrar(){
+      this.$router.push("/RegistrarDocente")
     }
 
 	},
