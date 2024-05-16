@@ -51,7 +51,7 @@
     font-size: 20px;
     font-family: system-ui;
     font-weight: 550;
-    width: 573px;
+    width: 100%;
     align-content: center;
 }
 
@@ -213,6 +213,7 @@
     margin-top: 0px;
     width: 305px;
     margin-left: 0px;
+    margin-top: -10px;
 }
 
 .generalle .texto-1{
@@ -255,6 +256,11 @@
     border-collapse: collapse;
     margin-top: 10px;
     font-size: 20px;
+}
+
+.generalle .tabla-estudiantes tr > th{
+    background-color: #002854;
+    color: #ffffff;
 }
 
 .generalle .tabla-estudiantes td {
@@ -329,4 +335,12 @@
 
 .generalle .v-field__prepend-inner > .v-icon, .v-field__append-inner > .v-icon, .v-field__clearable > .v-icon {
     margin-left: 8px;
+}
+
+.generalle .busc{
+    padding: 0;
+}
+
+.generalle .v-card--flat {
+    width: 100%;
 }

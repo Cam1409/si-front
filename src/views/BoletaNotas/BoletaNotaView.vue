@@ -23,7 +23,7 @@ import { Axios } from 'axios';
                 <p class="t-2">Sistemas Inteligentes A20</p>
 
                 <v-container class="cont-btn">
-                    <button class="btn-2">
+                    <button class="btn-2" @click="ListaEstudiante()">
                         <v-icon left>mdi mdi-home</v-icon>
                         Regresar
                     </button>
@@ -36,7 +36,7 @@ import { Axios } from 'axios';
                     <v-col>
                         <v-card class="cont-card">
                             <v-card-text class="card1">Estudiante: </v-card-text>
-                            <v-card-title class="card2">{{  }}</v-card-title>
+                            <v-card-title class="card2">{{ e_nombresE }}</v-card-title>
                             <v-divider thick></v-divider> 
                             <v-card-text class="card3">NOTAS  |  SISTEMAS INTELIGENTES A20  |  HEDE101</v-card-text>
                                 <div>
@@ -100,25 +100,15 @@ import { Axios } from 'axios';
                 columnSize: 3,
                 dialogError: false,
                 profesor: {},
-                notas: [
-                        { 
-                        evaluacion: 'Examen Parcial', 
-                        notas: [12,0,20] 
-                        },
-                        { 
-                        evaluacion: 'Investigación Formativa', 
-                        notas: [10, 12,8] 
-                        },
-                        { 
-                        evaluacion: 'Practica Calificada', 
-                        notas: [12,10,14] 
-                        },
-                    ]
+                notas: [],
+                idCurso: '',
+                aula: '',
             };
         },
 
         created() {
             this.cargarDatos();
+            this.capturarAlumnos();
         },
 
         methods: {
@@ -166,7 +156,13 @@ import { Axios } from 'axios';
             },
 
             capturarAlumnos(){
-                this.$axios.get("/matricula/boleta-nota"+this.codigoD+"/"+this.idCurso+"/"+this.aula).then((res)=>{this.aulas=res.data;console.log(this.aulas)}).catch((error)=>e);
+                this.idCurso= localStorage.getItem('idCurso');
+                this.aula= localStorage.getItem('aula');
+                this.$axios.get("/matricula/boleta-nota/"+this.codigoD+"/"+this.idCurso+"/"+this.aula).then((res)=>{this.notas=res.data;console.log(this.notas)}).catch((error)=>e);
+            },
+
+            ListaEstudiante(){
+                this.$router.push("ListaEstudiantes");
             }
         }
     };
