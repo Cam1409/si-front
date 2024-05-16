@@ -1,11 +1,227 @@
 <template>
-    <v-container>
-       
+  <v-container class="restablecerD">
+        <v-container class="cont1-login">
+          <v-col class="login-c1">
+            <v-container class="logo"></v-container>
+            <v-text-field
+              label="Codigo Docente"
+              prepend-icon="mdi mdi-code-not-equal-variant mdi-48px"
+              variant="outlined"
+              v-model="usuario.codigoD"
+            ></v-text-field>
+            <v-text-field
+              label="Usuario"
+              prepend-icon="mdi mdi-account-tie mdi-48px"
+              variant="outlined"
+              v-model="usuario.username"
+            ></v-text-field>
+            <v-text-field
+              label="Contraseña"
+              prepend-icon="mdi mdi-lock mdi-36px"
+              variant="outlined"
+              v-model="usuario.password"
+              type="password"
+            ></v-text-field>
+            <v-text-field
+              label="Confirmar Contraseña"
+              prepend-icon="mdi mdi-lock-check mdi-36px"
+              variant="outlined"
+              v-model="confirmpassword"
+              type="password"
+            ></v-text-field>
+          </v-col>
+          
+        <v-btn variant="tonal" class="btn-ini" type="button" @click="restablecer" prepend-icon="mdi mdi-form-textbox-password mdi-36px icono-btn">
+            Restablecer Contraseña
+        </v-btn>
+        <v-btn variant="tonal" class="btn-final" type="button" @click="volver" prepend-icon="mdi mdi-import mdi-36px icono-btn">
+            Iniciar Sesión
+        </v-btn>
+        </v-container>
+  </v-container>
+  <v-container class="raya-blanca"> </v-container>
+  <v-container class="raya-roja">
+    <v-container class="pie">      
+    <p> © UCV - Docentes 2024 </p>
     </v-container>
+  </v-container>
+  <v-container class="raya-blanca"> </v-container>
+  <v-container class="raya-roja"></v-container>
+     <v-dialog v-model="dialogError" :width="500">
+        <v-card color="#ec4a4a">
+          <v-card-title>
+            <span class="mx-auto">¡Verifique!</span>
+          </v-card-title>
+          <v-card-text>
+            <v-alert
+              v-if="mensaje !== ''"
+              color="white"
+              :type="typemsg"
+              outlined>
+              {{ mensaje }}
+            </v-alert>
+          </v-card-text>
+          <v-card-actions class="prueba">
+            <v-btn class="btncerrar"
+              @click="cerrar">
+              Cerrar
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+     </v-dialog>
+     <v-dialog v-model="dialogValidar" :width="500">
+        <v-card color="#002854">
+          <v-card-title>
+            <span class="mx-auto">Confirmación</span>
+          </v-card-title>
+          <v-card-text>
+            <v-alert
+              v-if="mensaje !== ''"
+              color="white"
+              :type="typemsg"
+              outlined>
+              {{ mensaje }}
+            </v-alert>
+          </v-card-text>
+          <v-card-actions class="prueba">
+            <v-btn class="btnclose1"
+              @click="aceptar">
+              Aceptar
+            </v-btn>
+            <v-btn class="btnclose1"
+              @click="cancelar">
+              Cancelar
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+     </v-dialog>
+     <v-dialog v-model="dialogExit" :width="500">
+        <v-card color="#002854">
+          <v-card-title>
+            <span class="mx-auto">Operación exitosa</span>
+          </v-card-title>
+          <v-card-text>
+            <v-alert
+              v-if="mensaje !== ''"
+              color="white"
+              :type="typemsg"
+              outlined>
+              {{ mensaje }}
+            </v-alert>
+          </v-card-text>
+          <v-card-actions class="prueba">
+            <v-btn class="btncerrar"
+              @click="volver">
+              Aceptar
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+     </v-dialog>
 </template>
 
 <script>
 export default {
   name: 'RegistrarContraseñaView', 
+  data(){
+     return{
+      usuario:{
+        codigoD:'',
+        username:'',
+        password:'',
+      },
+      usuarioencontrado:'',
+      confirmpassword:'',
+      dialogValidar: false,
+      dialogError: false,
+      dialogExit: false,
+      mensaje: '',
+      typemsg: "error",
+     }
+  },
+  created(){
+
+  },
+
+  methods:{
+    volver(){
+      this.dialogExit=false;
+      this.$router.push("/");
+    },
+
+    restablecer(){
+        if (!this.usuario.codigoD || !this.usuario.username || !this.usuario.password || !this.confirmpassword) {
+          this.mensaje = "Todos los campos deben ser completados.";
+          this.dialogError = true;
+          return;
+        }
+
+        // Verificación de que las contraseñas coinciden
+        if (this.usuario.password !== this.confirmpassword) {
+          this.mensaje = "Verifique la contraseña y su confirmación";
+          this.dialogError = true;
+          // Limpiando los campos de contraseña
+          this.usuario.password = '';
+          this.confirmpassword = '';
+          return;
+        }
+
+         //Consultando existencia de usuario por su código
+        this.$axios.get("/usuario/" + this.usuario.codigoD).then((res) => {
+            this.usuarioencontrado = res.data;
+            if(this.usuarioencontrado && this.usuarioencontrado.username) {
+              this.mensaje = "¿Esta seguro que desea cambiar la contraseña de su cuenta?";
+              this.typemsg = "success";
+              this.dialogValidar = true;
+            } else {
+              this.mensaje = "No ha sido encontrada una cuenta asocida, al codigo del docente: ''"+this.usuario.codigoD +"', por favor verifique";
+              this.dialogError = true;
+            }
+          })
+          .catch((error) => {
+            console.error(error);  // Aquí debes manejar el error adecuadamente
+            this.mensaje = "Error al buscar datos del docente";
+            this.dialogError = true;
+          });
+    },
+
+    cerrar() {
+      this.dialogError = false;
+      this.mensaje= " ";
+      this.limpiar();
+    },
+
+    cancelar(){
+      this.dialogValidar = false;
+      this.mensaje= " ";
+      this.limpiar();
+    },
+
+    async aceptar(){
+      this.dialogValidar=false;
+      try {
+        const saveResponse = await this.$axios.patch(`/usuario/${this.usuario.codigoD}`, this.usuario);
+        this.limpiar();
+        this.typemsg="success"
+        this.mensaje = "La actualización ha sido completado con éxito";
+        this.dialogExit = true;
+      } catch (error) {
+        console.error("Error al obtener los usuarios o al modificar el usuario:", error);
+        this.mensaje = "Error durante el registro del usuario.";
+        this.dialogError = true;
+      }
+    },
+
+    limpiar(){
+      this.usuario.codigoD='';
+      this.usuario.username='';
+      this.usuario.password='';
+      this.confirmpassword='';
+    },
+
+
+  }
 }
 </script>
+
+
+<style src='../../views/RestablecerContraseña/Restablecer.css'></style>

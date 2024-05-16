@@ -11,14 +11,14 @@
                         <v-col cols="12" md="6"> <!-- Columna izquierda para pantallas medianas y grandes -->
                         <v-text-field
                             label="Codigo Docente"
-                            prepend-icon="mdi mdi-account-tie mdi-48px"
+                            prepend-icon="mdi mdi-code-not-equal-variant mdi-48px"
                             variant="outlined"
                             @input="handleInput"
                             v-model="usuario.codigoD"
                         ></v-text-field>
                         <v-text-field
                             label="Dni"
-                            prepend-icon="mdi mdi-account-tie mdi-48px"
+                            prepend-icon="mdi mdi-card-account-details mdi-48px"
                             variant="outlined"
                             v-model="dniP"
                         ></v-text-field>
@@ -44,7 +44,7 @@
                 <v-divider></v-divider> 
                 <v-text-field
                                 label="Usuario"
-                                prepend-icon="mdi mdi-account-tie mdi-48px"
+                                prepend-icon="mdi mdi-account-key mdi-48px"
                                 variant="outlined"
                                 v-model="usuario.username"
                 ></v-text-field>
@@ -61,7 +61,7 @@
                         <v-col cols="12" md="6"> <!-- Columna derecha para pantallas medianas y grandes -->
                             <v-text-field
                                 label="Confirmar Contraseña"
-                                prepend-icon="mdi mdi-lock mdi-36px"
+                                prepend-icon="mdi mdi-lock-check mdi-36px"
                                 variant="outlined"
                                 v-model="confirmpassword"
                                 type="password"
@@ -69,10 +69,11 @@
                         </v-col>
                     </v-row>
               </v-container>
-              <v-btn variant="tonal" class="btn-inicioR" type="button" @click="registrar">
+              <v-btn variant="tonal" class="btn-inicioR" type="button" @click="registrar" prepend-icon="mdi mdi-plus mdi-36px icono-btn">
                         Registrar
               </v-btn>
-              <v-btn variant="tonal" class="btn-inicioR" type="button" @click="volver">
+              
+              <v-btn variant="tonal" class="btn-inicioS" type="button" @click="volver" prepend-icon="mdi mdi-cancel mdi-36px icono-btn">
                         Cancelar
               </v-btn>
           </v-container>
@@ -122,7 +123,7 @@
           </v-alert>
         </v-card-text>
         <v-card-actions class="prueba">
-          <v-btn class="btnclose"
+          <v-btn class="btnclose1"
             @click="cerrar">
             Cerrar
           </v-btn>
