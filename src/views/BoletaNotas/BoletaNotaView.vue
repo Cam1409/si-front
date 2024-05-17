@@ -36,7 +36,7 @@ import { Axios } from 'axios';
                     <v-col>
                         <v-card class="cont-card">
                             <v-card-text class="card1">Estudiante: </v-card-text>
-                            <v-card-title class="card2">{{ e_nombresE }}</v-card-title>
+                            <v-card-title class="card2"></v-card-title>
                             <v-divider thick></v-divider> 
                             <v-card-text class="card3">NOTAS  |  SISTEMAS INTELIGENTES A20  |  HEDE101</v-card-text>
                                 <div>
