@@ -1,4 +1,4 @@
-.general{
+.generalsa{
     background-image: url('../../components/img/fondo.jpg'); 
     background-color: #002854;
     background-blend-mode: multiply;
@@ -32,21 +32,21 @@
     font-family: system-ui;
 }
 
-.contenedor{
+.generalsa .contenedor{
     background-color: white;
     border-radius: 15px;
     margin-top: 10px;
     height: 91%;
 }
 
-.t-1{
+.generalsa .t-1{
     color: #DD0919;
     font-size: 20px;
     font-family: system-ui;
     font-weight: 550;
 }
 
-.t-2{
+.generalsa .t-2{
     color: #002854;
     font-size: 20px;
     font-family: system-ui;
@@ -55,7 +55,7 @@
     align-content: center;
 }
 
-.t-3{
+.generalsa .t-3{
     color: #DD0919;
     font-size: 20px;
     font-family: system-ui;
@@ -63,19 +63,19 @@
     margin-bottom: 15px;
 }
 
-.parte-1{
+.generalsa .parte-1{
     padding: 0;
     height: 50px;
     display: flex;
 }
 
-.logo{
+.generalsa .logo{
     background-image: url('../../components/img/UCVlogo.jpeg'); 
     background-size: cover;
     max-width: 300px;
 }
 
-.docente{
+.generalsa .docente{
     text-align: right;
     margin-top: -11px;
     color: #002854;
@@ -84,31 +84,31 @@
     justify-content: flex-end;
 }
 
-.icono{
+.generalsa .icono{
     size: 15px;
     margin-right: 10px;
 }
 
-.d-1{
+.generalsa .d-1{
     color: #002854;
     font-size: 20px;
     font-family: system-ui;
     font-weight: 550;
 }
 
-.parte-2{
+.generalsa .parte-2{
     width: 99%;
     border-bottom: 1px solid #002854;
 }
 
-.parte-3{
+.generalsa .parte-3{
     width: 99%;
     border-bottom: 1px solid #002854;
     display: flex;
     padding: 8px 15px;
 }
 
-.btn-1{
+.generalsa .btn-1{
     background-color: #002854;
     color: white;
     border-radius: 10px;
@@ -120,11 +120,11 @@
     margin-right: 10px;
 }
 
-.btn-1:hover, .btn-1:active{
+.generalsa .btn-1:hover, .btn-1:active{
     background-color: #335b8a;
 }
 
-.btn-2{
+.generalsa .btn-2{
     background-color: #DD0919;
     color: white;
     border-radius: 10px;
@@ -135,43 +135,43 @@
     padding: 10px;
 }
 
-.btn-2:hover, .btn-2:active{
+.generalsa .btn-2:hover, .btn-2:active{
     background-color: #f23e58;
 }
 
-.cont-btn{
+.generalsa .cont-btn{
     display: flex;
     justify-content: flex-end;
     padding: 0;
 }
 
-.parte-4{
+.generalsa .parte-4{
     margin-top: 10px;
     height: 570px;
     max-width: 99%;
     display: flex;
 }
 
-.contenido-desplazable {
+.generalsa .contenido-desplazable {
     max-height: calc(100vh - 200px);
     padding-right: 10px;
     overflow-y: scroll;
 }
 
-.contenido-desplazable::-webkit-scrollbar {
+.generalsa .contenido-desplazable::-webkit-scrollbar {
     width: 10px;
 }
 
-.contenido-desplazable::-webkit-scrollbar-thumb {
+.generalsa .contenido-desplazable::-webkit-scrollbar-thumb {
     background-color: #002854;
     border-radius: 5px;
 }
 
-.contenido-desplazable::-webkit-scrollbar-thumb:hover {
+.generalsa .contenido-desplazable::-webkit-scrollbar-thumb:hover {
     background-color: #335175;
 }
 
-.imagen-1{
+.generalsa .imagen-1{
     border: 1px solid black;
     padding: 20px 30px;
     margin: 10px;
@@ -179,7 +179,7 @@
     height: 900px;
 }
 
-.cont-img{
+.generalsa .cont-img{
     max-height: 810px;
     height: 810px;
 }

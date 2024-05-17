@@ -110,17 +110,17 @@
                 <tr>
                   <td class="c1">{{ index + 1 }}</td>
                   <td class="c2">{{ item.codigoE }}</td>
-                  <td class="c4">{{ item.nombresE }}</td>
-                  <td class="c4">{{ item.apellidosE }}</td>
+                  <td class="c3">{{ item.nombresE }}</td>
+                  <td class="c3">{{ item.apellidosE }}</td>
                   <td class="c4">{{ item.condicionNota }}</td>
-                  <td class="c4">{{ item.nota }}</td>
-                  <td class="c5">
+                  <td class="c5">{{ item.nota }}</td>
+                  <td class="c6">
                     <v-icon class="mdi mdi-list-status"></v-icon>
                   </td>
-                  <td class="c5">
-                    <v-icon class="mdi mdi-text-box-plus-outline"></v-icon>
+                  <td class="c6">
+                    <v-icon class="mdi mdi-text-box-plus-outline" @click="SubirArchivo()"></v-icon>
                   </td>
-                  <td class="c5">
+                  <td class="c6">
                     <v-icon class="mdi mdi-camera-enhance"></v-icon>
                   </td>
                 </tr>
@@ -149,7 +149,6 @@ export default {
       codigoE: "",
       selectedOptionCalif: null,
       selectedOptionUnidad: null,
-
       nombreE: "",
       apellidosE: "",
       profesor: "",
@@ -233,6 +232,9 @@ export default {
     },
     Regresar() {
       this.$router.push("/menuSecciones");
+    },
+    SubirArchivo() {
+      this.$router.push("/SubirArchivo");
     },
   },
   computed: {
