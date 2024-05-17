@@ -1,21 +1,24 @@
 <template>
   <v-container class="general">
         <v-container class="cont1-login">
+
           <v-col class="login-c1">
             <v-container class="logo"></v-container>
-            <v-text-field
-              label="Usuario"
-              prepend-icon="mdi mdi-account-tie mdi-48px"
-              variant="outlined"
-              v-model="username"
-            ></v-text-field>
-            <v-text-field
-              label="Contraseña"
-              prepend-icon="mdi mdi-lock mdi-36px"
-              variant="outlined"
-              v-model="password"
-              type="password"
-            ></v-text-field>
+
+              <v-text-field
+                label="Usuario"
+                prepend-icon="mdi mdi-account-tie mdi-48px"
+                variant="outlined"
+                v-model="username"
+              ></v-text-field>
+
+              <v-text-field
+                label="Contraseña"
+                prepend-icon="mdi mdi-lock mdi-36px"
+                variant="outlined"
+                v-model="password"
+                type="password"
+              ></v-text-field>
           </v-col>
           <v-btn variant="tonal" class="btn-inicio" type="button" @click="iniciarSesion">
             Iniciar Sesión
@@ -29,36 +32,43 @@
         </v-container>
         
   </v-container>
+
   <v-container class="raya-blanca"> </v-container>
   <v-container class="raya-roja">
-    <v-container class="pie">      
+  <v-container class="pie">      
     <p> © UCV - Docentes 2024 </p>
-    </v-container>
+  </v-container>
   </v-container>
   <v-container class="raya-blanca"> </v-container>
   <v-container class="raya-roja"></v-container>
+
     <v-dialog v-model="dialogError" :width="500">
-    <v-card color="#ec4a4a">
-      <v-card-title>
-        <span class="mx-auto">¡Verifique!</span>
-      </v-card-title>
-      <v-card-text>
-        <v-alert
-          v-if="mensaje !== ''"
-          color="white"
-          :type="typemsg"
-          outlined>
-          {{ mensaje }}
-        </v-alert>
-      </v-card-text>
+      <v-card color="#ec4a4a">
+
+        <v-card-title>
+          <span class="mx-auto">¡Verifique!</span>
+        </v-card-title>
+
+        <v-card-text>
+          <v-alert
+            v-if="mensaje !== ''"
+            color="white"
+            :type="typemsg"
+            outlined>
+            {{ mensaje }}
+          </v-alert>
+        </v-card-text>
+
       <v-card-actions class="prueba">
         <v-btn class="btnclose"
           @click="cerrar">
           Cerrar
         </v-btn>
       </v-card-actions>
-    </v-card>
-  </v-dialog>
+
+      </v-card>
+    </v-dialog>
+
 </template>
 <script>
 export default {

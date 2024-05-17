@@ -8,34 +8,34 @@
     height: 100%;
     background-size: cover;
 }
-.contenedor{
+.menuView{
     display: flex;
     margin-top: 60px;
     height: 710px;
 }
-.cont-logo{
+.menuView .cont-logo{
     height: 100px;
 }
-.logo{
+.menuView .logo{
     background-image: url('../../components/img/UCVlogo.png');
     background-size: cover;
     margin-top: 40px;
     max-width: 350px;
     height: 50px;
 }
-.icon1 {
+.menuView .icon1 {
     color: rgb(12, 12, 73); 
     font-size: 200px;
     left: 132px;;
     margin-top: 15px;
     }
-.usuario{
+.menuView .usuario{
     margin-top: -25px;
     text-align: center;
     font-size: 28px;
     color: #002854;
 }
-.cont-cod{
+.menuView .cont-cod{
     display: flex;
     margin-top: -38px;
     font-size: 16px;
@@ -43,26 +43,26 @@
     color: #002854;
     margin-left: 160px;
 }
-.cont-infoper{
+.menuView .cont-infoper{
     background-color: #ffffff;
     width: 700px;
     border-radius: 20px;
 }
-.cont-pag{
+.menuView .cont-pag{
     display: flex;
     margin-top: -35px;
     justify-content: center;
     align-items: center;
     width: 20%;
 }
-.calendario {
+.menuView .calendario {
     background-image: url('../../components/img/calendar.png');
     width: 25px;
     height: 25px;
     background-repeat: no-repeat;
     background-size: contain;
     }
-.gmail {
+.menuView .gmail {
     background-image: url('../../components/img/gmail.jpeg');
     width: 25px;
     height: 25px;
@@ -70,58 +70,73 @@
     background-repeat: no-repeat;
     background-size: contain;
     }
-.doc {
+.menuView .doc {
     background-image: url('../../components/img/logoGoogle-Docs.png');
     width: 25px;
     height: 25px;
     background-repeat: no-repeat;
     background-size: contain;
     }
-.drive {
+.menuView .drive {
     background-image: url('../../components/img/drive.jpeg');
     width: 25px;
     height: 25px;
     background-repeat: no-repeat;
     background-size: contain;
     }
-.keep {
+.menuView .keep {
     background-image: url('../../components/img/keep-5121.png');
     width: 25px;
     height: 25px;
     background-repeat: no-repeat;
     background-size: contain;
     }
-.v-btn--size-default {
+.menuView .v-btn--size-default {
     --v-btn-size: 0.875rem;
     --v-btn-height: 36px;
     font-size: var(--v-btn-size);
     min-width: 0px; 
     padding: 0px;
 }
-.dat{
+.menuView .dat{
     margin-top: -30px;
     font-weight: bold;
     color:#002854;
     margin-left: 40px;
 }
-.dat-sexo{
+.menuView .dat-sexo{
     display: flex;
 }
-.dat-estado{
+.menuView .sexo{
+    margin-left: 10px;
+    font-weight: normal;
+}
+.menuView .dat-estado{
     display: flex;
     margin-top: -20px;
 }
-.dat-gmail{
+.menuView .estado{
+    margin-left: 10px;
+    font-weight: normal;
+}
+.menuView .dat-gmail{
     display: flex;
     margin-top: -20px;
 }
-.btn-cerrar{
+.menuView .correo{
+    margin-left: 10px;
+    font-weight: normal;
+}
+.menuView .btn-cerrar{
     background-color: #DD0919;
     color: white;
     border-radius: 10px;
     width: 260px;
     margin-left: 100px;
     
+    }
+.menuView .btn-cerrar:hover{
+    background-color: #f23e58;
     }
 .cont-asignatura{
     background-color: rgb(255, 255, 255);

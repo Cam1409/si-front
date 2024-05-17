@@ -1,36 +1,107 @@
 <template>
     <v-container class="m-general">
     
-        <v-container class="contenedor">
+        <v-container class="seccionView">
+
             <v-container class="cont-infoper">
                 <v-container class="cont-logo">
                 <v-container class="logo"></v-container>
                 </v-container>
+
                 <v-icon class="mdi mdi-account-circle icono1"></v-icon>
+
+                <v-container>
                 <p class="usuario" id="txtNombreP"></p>
-                <v-container class="cont-ce">
-                    <btn class="btn-cerrar">
-                        <v-icon left>mdi mdi-logout</v-icon>
-                        Cerrar Sesión
-                    </btn>
                 </v-container>
+
+                <v-container class="cont-cod">
+                    Código:
+                    <p class="codigo" id="txtCodigoP"></p>
+                </v-container>
+
+                <v-container class="cont-pag">
+                    <v-col>
+                        <v-btn href="https://calendar.google.com/calendar/u/0/r?pli=1"
+                        height="30"
+                        target="-blank">            
+                        <v-icon class="calendario"></v-icon>
+                        </v-btn>
+                    </v-col>
+
+                    <v-col>
+                        <v-btn href="https://www.google.com/intl/es-419/gmail/about/"
+                        height="30"
+                        target="-blank">            
+                        <v-icon class="gmail"></v-icon>
+                        </v-btn>
+                    </v-col>
+
+                    <v-col>
+                        <v-btn href="https://docs.google.com/document/u/0/?tgif=d"
+                        height="30"
+                        target="-blank">            
+                        <v-icon class="doc"></v-icon>
+                        </v-btn>
+
+                    </v-col>
+
+                    <v-col>
+                        <v-btn href="https://drive.google.com/drive/my-drive?hl=es"
+                        height="30"
+                        target="-blank">            
+                        <v-icon class="drive"></v-icon>
+                        </v-btn>
+                    </v-col>
+
+                    <v-col>
+                        <v-btn href="https://keep.google.com/u/0/"
+                        height="30"
+                        target="-blank">            
+                        <v-icon class="keep"></v-icon>
+                        </v-btn>
+                    </v-col>
+
+                </v-container>
+
+                <v-container class="dat">
+                    <v-container class="dat-sexo">
+                        <v-icon class="mdi mdi-gender-male-female icon-s"></v-icon>
+                        Sexo:  <p  class="sexo" id="txtgenero"></p>
+                    </v-container>
+
+                    <v-container class="dat-estado">
+                        <v-icon class="mdi mdi-account-heart "></v-icon>
+                        Estado civil:  <p  class="estado" id="txtestado"></p>
+                    </v-container>
+
+                    <v-container class="dat-gmail">
+                        <v-icon class="mdi mdi-email-outline "></v-icon>
+                        Correo:  <p  class="correo" id="txtgmail"></p>
+                    </v-container>
+                </v-container>
+
+                <v-btn variant="tonal" class="btn-cerrar" @click="cerrarSesion()">
+                Cerrar Sesión
+                </v-btn> 
             </v-container>
 
             <v-container class="cont-asignatura">
                 <v-container class="cont-titulo">
                     <p class="t-1">Secciones</p>
                 </v-container>
+
                 <v-container class="cont-subtitulo">
                     <v-container class="A">
                         <p class="t-2" id="txtCurso"></p>
                     </v-container>
                     <v-container class="B">
-                        <btn class="btn-regresar">
+                        <btn class="btn-regresar" @click="regrezarMenu()">
                             <v-icon left>mdi mdi-home</v-icon>
                             Regresar
                         </btn>
                     </v-container> 
                 </v-container>
+
                 <v-container class="contenido-desplazable all">
                     <v-row>
                         <v-col v-for="(aula, index) in aulas" :key="index" cols="2">
@@ -52,22 +123,24 @@
                                 </v-card-text>
                             </v-card-text>
                             </v-card>
-
                         </v-col>
                     </v-row>
                 </v-container>
+
             </v-container>
-        </v-container>
-    
-    
-        </v-container>
+
+        </v-container>   
+    </v-container>
+
         <v-container class="m-raya-blanca"> </v-container>
         <v-container class="m-raya-roja">
         <v-container class="pie">      
         <p> © UCV - Docentes 2024 </p>
         </v-container>
         </v-container>
+
     </template>
+    
     <script>
     export default {
         name: 'MenuSeccionView',
@@ -99,11 +172,43 @@
                 this.$axios.get("/curso/by-id/"+this.idCurso).then((res)=>{this.curso=res.data;this.llenarDatosA()}).catch((error)=>e);
             },
             llenarDatosD(){
-                //Cargando datos de usuario
                 var nombre = document.getElementById('txtNombreP');
                 if (nombre) {
                     nombre.innerText = this.profesor.nombresD +" "+this.profesor.apellidosD;
                 }
+                var codigo = document.getElementById('txtCodigoP');
+                if(codigo){
+                    codigo.innerText = this.profesor.codigoD;
+                }
+                var genero = document.getElementById('txtgenero');
+                if(genero){
+                    if(this.profesor.idGenero === "F"){
+                        genero.innerText = "femenino";
+                    } else if(this.profesor.idGenero === "M"){
+                        genero.innerText = "masculino";
+                    } else {
+                        genero.innerText = this.profesor.idGenero;
+                    }
+                }
+                var estado = document.getElementById('txtestado');
+                    if(estado){
+                    if(this.profesor.idEstado === "S"){
+                        estado.innerText = "soltero";
+                    } else if(this.profesor.idEstado === "C"){
+                        estado.innerText = "casado";
+                    } else if(this.profesor.idEstado === "D"){
+                        estado.innerText = "divorsiado";
+                    } else if(this.profesor.idEstado === "V"){
+                        estado.innerText = "viudo";
+                    } else {
+                        estado.innerText = this.profesor.idEstado;
+                    }
+                    }
+                    var gmail = document.getElementById('txtgmail');
+                    if(gmail){
+                    gmail.innerText = this.profesor.correo;
+                    }
+                
             },
             llenarDatosA(){
                 var asig = document.getElementById('txtCurso');
@@ -118,6 +223,13 @@
             capturarAulas(){
                 this.$axios.get("/detallematricula/secciones/"+this.idCurso+"/"+this.codigoD).then((res)=>{this.aulas=res.data;console.log(this.aulas)}).catch((error)=>e);
             },
+            cerrarSesion(){
+                this.$router.push("/");
+            },
+            regrezarMenu(){
+                this.$router.push("/menu")
+            }
+
         }
     };
     

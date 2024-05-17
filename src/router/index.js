@@ -42,6 +42,11 @@ const routes = [
     path: '/Restablecer',
     name: 'RegistrarContraseñaView',
     component: () => import(/* webpackChunkName: "about" */ '../views/RestablecerContraseña/Restablecer.vue')
+  },
+  {
+    path: '/boletaNotas',
+    name:'BoletaNotasView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/BoletaNotas/BoletaNotaView.vue')
   }
 ]
 
