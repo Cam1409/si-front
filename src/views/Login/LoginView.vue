@@ -92,7 +92,7 @@ export default {
     },
     async iniciarSesion() {
       if (this.username === "" || this.password === "") {
-        this.mensaje = "Faltan completar datos";
+        this.mensaje = "Faltan completar los campos, por favor ingréselos ";
         this.typemsg = "error";
         this.dialogError = true;
         return; // Salir temprano si falta información

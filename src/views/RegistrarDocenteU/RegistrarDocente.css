@@ -32,6 +32,7 @@
     background-size: cover;
     height: 60px;
     width: 380px;
+    margin-left: 180px;
     margin-top: 10px;
   }
   .generalR .login-c1R{
@@ -48,15 +49,34 @@
     background-color: #DD0919;
     color: white;
     border-radius: 10px;
-    width: 260px;
-    left: 80px;
+    width: 300px;
     margin-left: 10px;
     font-family: Arial, Helvetica, sans-serif !important;
     text-transform: capitalize;
     font-size: 15px;
     margin-top: 20px;
-    
+    margin-right: 10px;
+    margin-left: 50px;
   }
+
+  .generalR .btn-inicioS{
+    background-color: #002854;
+    color: white;
+    border-radius: 10px;
+    width: 300px;
+    font-family: Arial, Helvetica, sans-serif !important;
+    text-transform: capitalize;
+    font-size: 15px;
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-right: 10px;
+  }
+  
+  .generalR .icono-btn {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
   .generalR .v-btn.v-btn--density-default {
     height: calc(var(--v-btn-height) + 10px);
   }
@@ -92,6 +112,12 @@
   .btnclose{
     background-color: #033076; 
     color: #ffffff;
+   align-items: center;
+  }
+
+  .btnclose1{
+    background-color: #ffffff; 
+    color: #033076;
    align-items: center;
   }
   
