@@ -261,6 +261,7 @@
 .generalle .tabla-estudiantes tr > th{
     background-color: #002854;
     color: #ffffff;
+    text-align-last: center;
 }
 
 .generalle .tabla-estudiantes td {
@@ -284,30 +285,34 @@
 }
 
 .generalle .c2{
-    width: 200px;
+    width: 100px;
     text-align: center;
     color: #002854;
 }
 
 .generalle .c3{
-    width: 100px;
-    text-align: center;
-    color: #f23e58;
-}
-
-.generalle .c4{
-    width: 200px;
+    width: 250px;
     text-align: center;
     color: #002854;
 }
+
+.generalle .c4{
+    width: 230px;
+    text-align: center;
+    color: #002854;
+}
+
 .generalle .c5{
+    width: 150px;
+    text-align: center;
+    color: #002854;
+    
+}
+
+.generalle .c6{
     width: 100px;
     text-align: center;
     color: #f23e58;
-}
-
-.generalle .c4{
-    color: #002854;
 }
 
 .generalle .v-card-text {
@@ -333,14 +338,18 @@
     min-height:37px;
 }
 
-.generalle .v-field__prepend-inner > .v-icon, .v-field__append-inner > .v-icon, .v-field__clearable > .v-icon {
+.generalle .v-field_prepend-inner > .v-icon, .v-fieldappend-inner > .v-icon, .v-field_clearable > .v-icon {
     margin-left: 8px;
 }
 
 .generalle .busc{
-    padding: 0;
+    padding: 0px;
 }
 
 .generalle .v-card--flat {
     width: 100%;
+}
+
+.generalle .v-text-field {
+    margin-top: 0px;
 }

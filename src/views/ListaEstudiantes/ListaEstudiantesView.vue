@@ -1,50 +1,50 @@
 <template>
     <v-container class="generalle">
-        <v-container class="contenedorle">
+      <v-container class="contenedorle">
         <v-container class="parte-1">
-            <v-container class="logole"></v-container>
-
-            <v-container class="docente">
+          <v-container class="logole"></v-container>
+  
+          <v-container class="docente">
             <v-icon class="icono mdi mdi-account-circle"></v-icon>
             <!-- AQUÍ SE COLOCA EL NOMBRE DEL DOCENTE -->
             <p class="d-1" id="nomb_Profesor"></p>
-            </v-container>
+          </v-container>
         </v-container>
-
+  
         <v-container class="parte-2">
-            <p class="t-1">Lista de Estudiantes</p>
+          <p class="t-1">Lista de Estudiantes</p>
         </v-container>
-
+  
         <v-container class="parte-3">
-            <!-- AQUÍ SE COLOCA LA ASIGNATURA Y LA SECCIÓN -->
-            <p class="t-2" id="txtCurso"></p>
-
-            <v-container class="cont-btn">
+          <!-- AQUÍ SE COLOCA LA ASIGNATURA Y LA SECCIÓN -->
+          <p class="t-2" id="txtCurso"></p>
+  
+          <v-container class="cont-btn">
             <button class="btn-1" @click="BoletaNotas()">
-                <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
-                Boleta de Notas
+              <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
+              Boleta de Notas
             </button>
             <button class="btn-1">
-                <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
-                Cargar Archivos
+              <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
+              Cargar Archivos
             </button>
             <button class="btn-2" @click="Regresar()">
-                <v-icon left>mdi mdi-home</v-icon>
-                Regresar
+              <v-icon left>mdi mdi-home</v-icon>
+              Regresar
             </button>
-            </v-container>
+          </v-container>
         </v-container>
-
+  
         <v-container class="parte-4 contenido-desplazable">
-            <v-container class="tabla">
+          <v-container class="tabla">
             <v-container class="parte-5">
-                <v-container class="p-1">
+              <v-container class="p-1">
                 <p class="t-2">Buscar Estudiante</p>
-
+  
                 <v-container class="busc">
-                    <v-card flat>
+                  <v-card flat>
                     <template v-slot:text>
-                        <v-text-field
+                      <v-text-field
                         v-model="search"
                         label="Buscar"
                         prepend-inner-icon="mdi-magnify"
@@ -52,219 +52,221 @@
                         hide-details
                         single-line></v-text-field>
                     </template>
-                    </v-card>
+                  </v-card>
                 </v-container>
-                </v-container>
-
-                <v-container class="p-2">
+              </v-container>
+  
+              <v-container class="p-2">
                 <v-container class="p-3">
-                    <p class="t-2">Estado de Examen</p>
-                    <select
+                  <p class="t-2">Estado de Examen</p>
+                  <select
                     ref="selectCalif"
                     v-model="selectedOptionCalif"
                     class="selec-1 seleccalif">
                     <option :value="null" disabled selected hidden></option>
                     <option value="calificado">Calificado</option>
                     <option value="nocalificado">No Calificado</option>
-                    </select>
+                  </select>
                 </v-container>
-
+  
                 <v-container class="p-4">
-                    <button class="btn-3" @click="selectFirstOption">
+                  <button class="btn-3" @click="selectFirstOption">
                     <v-icon left>mdi mdi-broom</v-icon>
-                    </button>
+                  </button>
                 </v-container>
-                </v-container>
-
-                <v-container class="p-5">
+              </v-container>
+  
+              <v-container class="p-5">
                 <p class="t-2">Unidad</p>
                 <select
-                    v-model="selectedOptionUnidad"
-                    class="selec-1"
-                    @change="handleSelectChange">
-                    <option value="U1">1</option>
-                    <option value="U2">2</option>
-                    <option value="U3">3</option>
+                  v-model="selectedOptionUnidad"
+                  class="selec-1"
+                  @change="handleSelectChange">
+                  <option value="U1">1</option>
+                  <option value="U2">2</option>
+                  <option value="U3">3</option>
                 </select>
-                </v-container>
+              </v-container>
             </v-container>
-
+  
             <v-table class="tabla-estudiantes">
-                <thead>
+              <thead>
                 <tr>
-                    <th>N°</th>
-                    <th>Código E</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Condición Nota</th>
-                    <th>Nota</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                  <th>N°</th>
+                  <th>Código E</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Condición Nota</th>
+                  <th>Nota</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
                 </tr>
-                </thead>
-                <tbody>
+              </thead>
+              <tbody>
                 <template
-                    v-for="(item, index) in filteredStudents"
-                    :key="item.codigoE">
-                    <tr>
+                  v-for="(item, index) in filteredStudents"
+                  :key="item.codigoE">
+                  <tr>
                     <td class="c1">{{ index + 1 }}</td>
                     <td class="c2">{{ item.codigoE }}</td>
-                    <td class="c4">{{ item.nombresE }}</td>
-                    <td class="c4">{{ item.apellidosE }}</td>
+                    <td class="c3">{{ item.nombresE }}</td>
+                    <td class="c3">{{ item.apellidosE }}</td>
                     <td class="c4">{{ item.condicionNota }}</td>
-                    <td class="c4">{{ item.nota }}</td>
-                    <td class="c5">
-                        <v-icon class="mdi mdi-list-status"></v-icon>
+                    <td class="c5">{{ item.nota }}</td>
+                    <td class="c6">
+                      <v-icon class="mdi mdi-list-status"></v-icon>
                     </td>
-                    <td class="c5">
-                        <v-icon class="mdi mdi-text-box-plus-outline"></v-icon>
+                    <td class="c6">
+                      <v-icon class="mdi mdi-text-box-plus-outline" @click="SubirArchivo()"></v-icon>
                     </td>
-                    <td class="c5">
-                        <v-icon class="mdi mdi-camera-enhance"></v-icon>
+                    <td class="c6">
+                      <v-icon class="mdi mdi-camera-enhance"></v-icon>
                     </td>
-                    </tr>
+                  </tr>
                 </template>
-                </tbody>
+              </tbody>
             </v-table>
-            </v-container>
+          </v-container>
         </v-container>
-        </v-container>
+      </v-container>
     </v-container>
-
+  
     <v-container class="raya-blanca"> </v-container>
-
+  
     <v-container class="raya-roja">
-        <v-container class="pie">
+      <v-container class="pie">
         <p>© UCV - Docentes 2024</p>
-        </v-container>
+      </v-container>
     </v-container>
-    </template>
-
-    <script>
-    export default {
+  </template>
+  
+  <script>
+  export default {
     data() {
-        return {
+      return {
         search: "",
         codigoE: "",
         selectedOptionCalif: null,
         selectedOptionUnidad: null,
-
         nombreE: "",
         apellidosE: "",
         profesor: "",
         idUnidad: "U1",
         idCurso: "",
         estudiantes: [],
-        };
+      };
     },
     created() {
-        this.capturarLista();
+      this.capturarLista();
     },
     mounted() {
-        this.capturarDatos();
-        this.selectedOptionUnidad = "U1";
+      this.capturarDatos();
+      this.selectedOptionUnidad = "U1";
     },
     methods: {
-        selectFirstOption() {
+      selectFirstOption() {
         if (this.$refs.selectCalif && this.$refs.selectCalif.options.length > 0) {
-            this.selectedOptionCalif = this.$refs.selectCalif.options[0].value;
+          this.selectedOptionCalif = this.$refs.selectCalif.options[0].value;
         }
-        },
-        capturarLista() {
+      },
+      capturarLista() {
         this.codigoD = localStorage.getItem("codigoD");
         this.idCurso = localStorage.getItem("idCurso");
         this.aula = localStorage.getItem("aula");
         this.$axios
-            .get("/curso/by-id/" + this.idCurso)
-            .then((res) => {
+          .get("/curso/by-id/" + this.idCurso)
+          .then((res) => {
             this.curso = res.data;
             this.llenarDatosCurso();
-            })
-            .catch((error) => e);
+          })
+          .catch((error) => e);
         this.$axios
-            .get(
+          .get(
             "/matricula/condicion-nota/" +
-                this.codigoD +
-                "/" +
-                this.idCurso +
-                "/" +
-                this.aula +
-                "/" +
-                this.idUnidad
-            )
-            .then((res) => {
+              this.codigoD +
+              "/" +
+              this.idCurso +
+              "/" +
+              this.aula +
+              "/" +
+              this.idUnidad
+          )
+          .then((res) => {
             this.estudiantes = res.data;
             console.log(this.estudiantes);
-            })
-            .catch((error) => {
+          })
+          .catch((error) => {
             console.error(error);
-            });
-        },
-        llenarDatosCurso() {
+          });
+      },
+      llenarDatosCurso() {
         var asig = document.getElementById("txtCurso");
         if (asig) {
-            asig.innerText = this.curso.NombreCurso + " " + this.aula;
+          asig.innerText = this.curso.NombreCurso + " " + this.aula;
         }
-        },
-        capturarDatos() {
+      },
+      capturarDatos() {
         this.profesor = localStorage.getItem("nombreDocente");
         var nombreP = document.getElementById("nomb_Profesor");
         this.idCurso = localStorage.getItem("idCurso");
         if (this.profesor !== null && this.profesor !== undefined) {
-            if (nombreP) {
+          if (nombreP) {
             nombreP.innerText = this.profesor;
-            } else {
+          } else {
             console.log("Elemento con id 'nomb_Profesor' no encontrado.");
-            }
+          }
         } else {
-            console.log("El nombre del profesor es nulo o no está definido.");
+          console.log("El nombre del profesor es nulo o no está definido.");
         }
-        },
-        handleSelectChange(event) {
+      },
+      handleSelectChange(event) {
         const selectedValue = event.target.value;
         console.log("Selected value:", selectedValue);
         this.idUnidad = selectedValue;
         console.log(this.idUnidad);
         this.capturarLista();
-        },
-        BoletaNotas() {
+      },
+      BoletaNotas() {
         this.$router.push("/boletaNotas");
-        },
-        Regresar() {
+      },
+      Regresar() {
         this.$router.push("/menuSecciones");
-        },
+      },
+      SubirArchivo() {
+        this.$router.push("/SubirArchivo");
+      },
     },
     computed: {
-        filteredStudents() {
+      filteredStudents() {
         let filteredList = this.estudiantes;
         // Filtrar por término de búsqueda
         if (this.search) {
-            const searchTerm = this.search.trim().toLowerCase();
-            filteredList = filteredList.filter(
+          const searchTerm = this.search.trim().toLowerCase();
+          filteredList = filteredList.filter(
             (estudiante) =>
-                estudiante.nombresE.toLowerCase().includes(searchTerm) ||
-                estudiante.apellidosE.toLowerCase().includes(searchTerm)
-            );
+              estudiante.nombresE.toLowerCase().includes(searchTerm) ||
+              estudiante.apellidosE.toLowerCase().includes(searchTerm)
+          );
         }
         // Filtrar por condición de calificación
         if (this.selectedOptionCalif === "calificado") {
-            console.log("Filtrando por calificado");
-            filteredList = filteredList.filter(
+          console.log("Filtrando por calificado");
+          filteredList = filteredList.filter(
             (estudiante) => estudiante.condicionNota === "Calificado"
-            );
+          );
         } else if (this.selectedOptionCalif === "nocalificado") {
-            console.log("Filtrando por no calificado");
-            filteredList = filteredList.filter(
+          console.log("Filtrando por no calificado");
+          filteredList = filteredList.filter(
             (estudiante) => estudiante.condicionNota !== "Calificado"
-            );
+          );
         } else {
-            console.log("Mostrando todos los estudiantes");
+          console.log("Mostrando todos los estudiantes");
         }
         return filteredList;
-        },
+      },
     },
-    };
-</script>
-
-<style src="../../views/ListaEstudiantes/listaEstudiantes.css"></style>
+  };
+  </script>
+  
+  <style src="../../views/ListaEstudiantes/listaEstudiantes.css"></style>
