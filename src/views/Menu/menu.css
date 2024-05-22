@@ -138,25 +138,27 @@
 .menuView .btn-cerrar:hover{
     background-color: #f23e58;
     }
-.cont-asignatura{
+.menuView .cont-asignatura{
     background-color: rgb(255, 255, 255);
     margin-left: 40px;
     border-radius: 20px;
 }
-.cont-titulo{
+.menuView .cont-titulo{
     color: #DD0919;
     font-family: system-ui;
-    font-size: 26px;
     border-bottom: 1px solid #002854;
     width: 99%;
+    font-size: 20px;
+    font-weight: 550;
 }
-.all{
+.menuView .all{
     height: 520px;
     max-width: 99%;
     display: flex;
     flex-direction: column;
 }
-.contenido-desplazable {
+
+.menuView .contenido-desplazable {
     margin-top: 15px;
     max-height: calc(100vh - 200px);
     padding-right: 10px;
@@ -164,102 +166,110 @@
     overflow-x: hidden;
 }
 
-.contenido-desplazable::-webkit-scrollbar {
+.menuView .contenido-desplazable::-webkit-scrollbar {
     width: 10px;
 }
 
-.contenido-desplazable::-webkit-scrollbar-thumb {
+.menuView .contenido-desplazable::-webkit-scrollbar-thumb {
     background-color: #002854;
     border-radius: 5px;
 }
 
-.contenido-desplazable::-webkit-scrollbar-thumb:hover {
+.menuView .contenido-desplazable::-webkit-scrollbar-thumb:hover {
     background-color: #335175;
 }
-.fila1{
+
+.menuView .fila1{
     display: flex;
     margin-top: -30px;
 }
-.asig1{
+.menuView .asig1{
     background-color: #e0dfdf;
     height: 200px;
     border-radius: 20px;
     max-width: 32%;
     display: flex;
 }
-.asig2{
+.menuView .asig2{
     background-color: #e0dfdf;
     height: 200px;
     border-radius: 20px;
     max-width: 32%;
     display: flex;
 }
-.asig3{
+.menuView .asig3{
     background-color: #e0dfdf;
     height: 200px;
     border-radius: 20px;
     max-width: 32%;
     display: flex;
 }
-.fila2{
+.menuView .fila2{
     display: flex;
     
 }
-.asig4{
+
+.menuView .asig4{
     background-color: #e0dfdf;
     height: 200px;
     border-radius: 20px;
     max-width: 32%;
     display: flex;
 }
-.asig5{
+
+.menuView .asig5{
     background-color: #e0dfdf;
     height: 200px;
     border-radius: 20px;
     max-width: 32%;
     display: flex;
 }
-.asig6{
+
+.menuView .asig6{
     background-color: #e0dfdf;
     height: 200px;
     border-radius: 20px;
     max-width: 32%;
     display: flex;
 }
-.fila3{
+
+.menuView .fila3{
     display: flex;
     
 }
-.asig7{
+
+.menuView .asig7{
     background-color: #e0dfdf;
     height: 200px;
     border-radius: 20px;
     max-width: 32%;
     display: flex;
 }
-.asig8{
+
+.menuView .asig8{
     background-color: #e0dfdf;
     height: 200px;
     border-radius: 20px;
     max-width: 32%;
     display: flex;
 }
-.asig9{
+
+.menuView .asig9{
     background-color: #e0dfdf;
     height: 200px;
     border-radius: 20px;
     max-width: 32%;
     display: flex;
 }
-.cont-icon2{
+.menuView .cont-icon2{
     margin-left: 30px;
 }
-.icon2 {
+.menuView .icon2 {
     color: #002854;
     font-size: 80px;
     
 }
-.name{
+.menuView .name{
     font-size: 25px;
     color: #002854;
     align-content: center;
