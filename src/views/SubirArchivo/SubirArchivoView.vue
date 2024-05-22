@@ -2,11 +2,11 @@
     <v-container class="generalsa">
       <v-container class="contenedor">
         <v-container class="parte-1">
-          <v-container class="logo"></v-container>
+          <v-container class="logosub"></v-container>
   
           <v-container class="docente">
             <v-icon class="icono mdi mdi-account-circle"></v-icon>
-            <p class="d-1" id="nomb_Profe"></p>
+            <p class="d-1" id="nomb_Profesor"></p>
           </v-container>
         </v-container>
   
@@ -15,7 +15,7 @@
         </v-container>
   
         <v-container class="parte-3">
-          <p class="t-2">Visualización Individual</p>
+          <p class="t-2" id="txtEst"></p>
   
           <v-container class="cont-btn">
             <button class="btn-1">
@@ -69,33 +69,42 @@
         return {
             profesor: '',
             pdfSrc: null,
+            estudiante: '',
             pages: [],
+            aula: '',
+            curso: '',
         };
     },
-
     created() {
-        this.capturarDatos();
-        this.loadFileFromRoute();
+      this.loadFileFromRoute();
     },
-
+    mounted(){
+      this.capturarDatos();
+    },
     methods: {
         capturarDatos() {
-            this.profesor = localStorage.getItem('nombreDocente');
-            const nombreP = document.getElementById('nomb_Profe');
-            if (this.profesor !== null && this.profesor !== undefined) {
-                if (nombreP) {
-                nombreP.innerText = this.profesor;
-                } else {
-                console.log("Elemento con id 'nomb_Profe' no encontrado.");
-                }
+          this.profesor = localStorage.getItem("nombreDocente");
+          var nombreP = document.getElementById("nomb_Profesor");
+          this.idCurso = localStorage.getItem("idCurso");
+          this.estudiante = localStorage.getItem("nombreEst");
+          var nombreE = document.getElementById("txtEst");
+          this.curso = localStorage.getItem("nombreCurso");
+          this.aula = localStorage.getItem("aula");
+          if (this.profesor !== null && this.profesor !== undefined && this.estudiante !== null) {
+            if (nombreP && nombreE) {
+              nombreP.innerText = this.profesor;
+              nombreE.innerText = this.estudiante + " | " + this.aula + " | " + this.curso;
             } else {
-                console.log('El nombre del profesor es nulo o no está definido.');
+              console.log("Elemento con id 'nomb_Profesor' no encontrado.");
             }
+          } else {
+            console.log("El nombre del profesor es nulo o no está definido.");
+          }
         },
 
         ListaEstudiantes() {
             this.$router.push('/ListaEstudiantes');
-            localStorage.removeItemItem('fileToUpload');
+            localStorage.removeItem('fileToUpload');
         },
 
         async loadPDF(pdfData) {

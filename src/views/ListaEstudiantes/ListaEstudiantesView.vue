@@ -119,7 +119,7 @@
                     </td>
                     <td class="c6">
                       <v-icon class="mdi mdi-text-box-plus-outline" @click="openFileInput(index)"></v-icon>
-                      <input type="file" :ref="'fileInput' + index" @change="handleFileChange($event, index)" accept=".pdf" style="display: none;" />
+                      <input type="file" :ref="'fileInput' + index" @change="handleFileChange($event, index, (item.nombresE + ' ' + item.apellidosE))" accept=".pdf" style="display: none;" />
                     </td>
                     <td class="c6">
                       <v-icon class="mdi mdi-camera-enhance"></v-icon>
@@ -205,6 +205,7 @@
         var asig = document.getElementById("txtCurso");
         if (asig) {
           asig.innerText = this.curso.NombreCurso + " " + this.aula;
+          localStorage.setItem('nombreCurso',this.curso.NombreCurso);
         }
       },
       capturarDatos() {
@@ -242,7 +243,9 @@
         this.$refs['fileInput' + index][0].click();
       },
 
-      handleFileChange(event, index) {
+      handleFileChange(event, index, nombreEstudiante) {
+        localStorage.setItem('nombreEst',nombreEstudiante);
+        console.log(nombreEstudiante);
         const file = event.target.files[0];
         if (file && file.type === 'application/pdf') {
           // Guardar el archivo en localStorage

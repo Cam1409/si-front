@@ -31,59 +31,57 @@ import { Axios } from 'axios';
             </v-container>
 
             <v-container class="par4 contenido-desplazable">
-  <v-container v-for="(estudiante, index) in estudiantes" :key="index">
+    <v-container v-for="(estudiante, index) in estudiantes" :key="index">
     <v-row>
-      <v-col>
+        <v-col>
         <v-card class="cont-card">
-          <v-card-text class="card1">Estudiante:</v-card-text>
-          <v-card-title class="card2">{{ estudiante.nombresE }} {{ estudiante.apellidosE }}
+            <v-card-text class="card1">Estudiante:</v-card-text>
+            <v-card-title class="card2">{{ estudiante.nombresE }} {{ estudiante.apellidosE }}
             <v-chip class="ma-2">
             Promedio: {{ calcularPromedio(estudiante.evaluaciones) }}
             </v-chip>
-          </v-card-title>
-          <v-divider thick></v-divider> 
-          <v-card-text class="card3">NOTAS | SISTEMAS INTELIGENTES A20 | HEDE101</v-card-text>
-          <div>
+            </v-card-title>
+            <v-divider thick></v-divider> 
+            <v-card-text class="card3">NOTAS | SISTEMAS INTELIGENTES A20 | HEDE101</v-card-text>
+            <div>
             <table class="table">
-              <thead>
+                <thead>
                 <tr>
-                 
-                  <th colspan="3">UNIDAD 1</th>
-                  <th colspan="3">UNIDAD 2</th>
-                  <th colspan="3">UNIDAD 3</th>
+                    <th colspan="3">UNIDAD 1</th>
+                    <th colspan="3">UNIDAD 2</th>
+                    <th colspan="3">UNIDAD 3</th>
                 </tr>
                 <tr>
-                  
-                  <th>EP</th>
-                  <th>IF</th>
-                  <th>PC</th>
-                  <th>EP</th>
-                  <th>IF</th>
-                  <th>PC</th>
-                  <th>EP</th>
-                  <th>IF</th>
-                  <th>PC</th>
+                    <th>EP</th>
+                    <th>IF</th>
+                    <th>PC</th>
+                    <th>EP</th>
+                    <th>IF</th>
+                    <th>PC</th>
+                    <th>EP</th>
+                    <th>IF</th>
+                    <th>PC</th>
                 </tr>
-              </thead>
-              <tbody>
+                </thead>
+                <tbody>
                 <tr>
-                  <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad1, 'EP'))">{{ getNota(estudiante.evaluaciones.unidad1, 'EP') }}</td>
-                  <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad1, 'IF'))">{{ getNota(estudiante.evaluaciones.unidad1, 'IF') }}</td>
-                  <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad1, 'PC'))">{{ getNota(estudiante.evaluaciones.unidad1, 'PC') }}</td>
-                  <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad2, 'EP'))">{{ getNota(estudiante.evaluaciones.unidad2, 'EP') }}</td>
-                  <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad2, 'IF'))">{{ getNota(estudiante.evaluaciones.unidad2, 'IF') }}</td>
-                  <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad2, 'PC'))">{{ getNota(estudiante.evaluaciones.unidad2, 'PC') }}</td>
-                  <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad3, 'EF'))">{{ getNota(estudiante.evaluaciones.unidad3, 'EF') }}</td>
-                  <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad3, 'IF'))">{{ getNota(estudiante.evaluaciones.unidad3, 'IF') }}</td>
-                  <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad3, 'PC'))">{{ getNota(estudiante.evaluaciones.unidad3, 'PC') }}</td>
+                    <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad1, 'EP'))">{{ getNota(estudiante.evaluaciones.unidad1, 'EP') }}</td>
+                    <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad1, 'IF'))">{{ getNota(estudiante.evaluaciones.unidad1, 'IF') }}</td>
+                    <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad1, 'PC'))">{{ getNota(estudiante.evaluaciones.unidad1, 'PC') }}</td>
+                    <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad2, 'EP'))">{{ getNota(estudiante.evaluaciones.unidad2, 'EP') }}</td>
+                    <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad2, 'IF'))">{{ getNota(estudiante.evaluaciones.unidad2, 'IF') }}</td>
+                    <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad2, 'PC'))">{{ getNota(estudiante.evaluaciones.unidad2, 'PC') }}</td>
+                    <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad3, 'EF'))">{{ getNota(estudiante.evaluaciones.unidad3, 'EF') }}</td>
+                    <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad3, 'IF'))">{{ getNota(estudiante.evaluaciones.unidad3, 'IF') }}</td>
+                    <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad3, 'PC'))">{{ getNota(estudiante.evaluaciones.unidad3, 'PC') }}</td>
                 </tr>
-              </tbody>
+                </tbody>
             </table>
-          </div>
+            </div>
         </v-card>
-      </v-col>
+        </v-col>
     </v-row>
-  </v-container>
+    </v-container>
 </v-container>
             
 
@@ -208,11 +206,11 @@ export default {
         },
         
         calcularPromedio(evaluaciones){
-              const Unidad1= this.getNota(evaluaciones.unidad1, 'EP')*0.3+ this.getNota(evaluaciones.unidad1, 'IF')*0.4+this.getNota(evaluaciones.unidad1, 'PC')*0.3
-              const Unidad2= this.getNota(evaluaciones.unidad2, 'EP')*0.3+this.getNota(evaluaciones.unidad2, 'PC')*0.3+ this.getNota(evaluaciones.unidad2, 'IF')*0.4;
-              const Unidad3=this.getNota(evaluaciones.unidad3, 'EF')*0.3+this.getNota(evaluaciones.unidad3, 'PC')*0.3+this.getNota(evaluaciones.unidad3, 'IF')+0.4;
-              const Promedio= Unidad1*0.3+Unidad2*0.3+Unidad3*0.4;
-              return Promedio;
+            const Unidad1= this.getNota(evaluaciones.unidad1, 'EP')*0.3+ this.getNota(evaluaciones.unidad1, 'IF')*0.4+this.getNota(evaluaciones.unidad1, 'PC')*0.3;
+            const Unidad2= this.getNota(evaluaciones.unidad2, 'EP')*0.3+this.getNota(evaluaciones.unidad2, 'PC')*0.3+ this.getNota(evaluaciones.unidad2, 'IF')*0.4;
+            const Unidad3=this.getNota(evaluaciones.unidad3, 'EF')*0.3+this.getNota(evaluaciones.unidad3, 'PC')*0.3+this.getNota(evaluaciones.unidad3, 'IF')*0.4;
+            const Promedio= Unidad1*0.3+Unidad2*0.3+Unidad3*0.4;
+            return Promedio.toFixed(2);
         },
     }
 };
