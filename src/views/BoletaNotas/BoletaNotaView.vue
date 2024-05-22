@@ -36,7 +36,11 @@ import { Axios } from 'axios';
       <v-col>
         <v-card class="cont-card">
           <v-card-text class="card1">Estudiante:</v-card-text>
-          <v-card-title class="card2">{{ estudiante.nombresE }} {{ estudiante.apellidosE }}</v-card-title>
+          <v-card-title class="card2">{{ estudiante.nombresE }} {{ estudiante.apellidosE }}
+            <v-chip class="ma-2">
+            Promedio: {{ calcularPromedio(estudiante.evaluaciones) }}
+            </v-chip>
+          </v-card-title>
           <v-divider thick></v-divider> 
           <v-card-text class="card3">NOTAS | SISTEMAS INTELIGENTES A20 | HEDE101</v-card-text>
           <div>
@@ -63,7 +67,6 @@ import { Axios } from 'axios';
               </thead>
               <tbody>
                 <tr>
-                  
                   <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad1, 'EP'))">{{ getNota(estudiante.evaluaciones.unidad1, 'EP') }}</td>
                   <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad1, 'IF'))">{{ getNota(estudiante.evaluaciones.unidad1, 'IF') }}</td>
                   <td :class="getColorClass(getNota(estudiante.evaluaciones.unidad1, 'PC'))">{{ getNota(estudiante.evaluaciones.unidad1, 'PC') }}</td>
@@ -85,8 +88,6 @@ import { Axios } from 'axios';
             
 
         </v-container>
-    
-    
     
     </v-container>
 
@@ -204,7 +205,15 @@ export default {
 
         ListaEstudiante() {
             this.$router.push("ListaEstudiantes");
-        }
+        },
+        
+        calcularPromedio(evaluaciones){
+              const Unidad1= this.getNota(evaluaciones.unidad1, 'EP')*0.3+ this.getNota(evaluaciones.unidad1, 'IF')*0.4+this.getNota(evaluaciones.unidad1, 'PC')*0.3
+              const Unidad2= this.getNota(evaluaciones.unidad2, 'EP')*0.3+this.getNota(evaluaciones.unidad2, 'PC')*0.3+ this.getNota(evaluaciones.unidad2, 'IF')*0.4;
+              const Unidad3=this.getNota(evaluaciones.unidad3, 'EF')*0.3+this.getNota(evaluaciones.unidad3, 'PC')*0.3+this.getNota(evaluaciones.unidad3, 'IF')+0.4;
+              const Promedio= Unidad1*0.3+Unidad2*0.3+Unidad3*0.4;
+              return Promedio;
+        },
     }
 };
 </script>

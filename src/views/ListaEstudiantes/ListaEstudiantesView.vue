@@ -118,7 +118,8 @@
                       <v-icon class="mdi mdi-list-status"></v-icon>
                     </td>
                     <td class="c6">
-                      <v-icon class="mdi mdi-text-box-plus-outline" @click="SubirArchivo()"></v-icon>
+                      <v-icon class="mdi mdi-text-box-plus-outline" @click="openFileInput(index)"></v-icon>
+                      <input type="file" :ref="'fileInput' + index" @change="handleFileChange($event, index)" accept=".pdf" style="display: none;" />
                     </td>
                     <td class="c6">
                       <v-icon class="mdi mdi-camera-enhance"></v-icon>
@@ -220,6 +221,7 @@
           console.log("El nombre del profesor es nulo o no está definido.");
         }
       },
+      
       handleSelectChange(event) {
         const selectedValue = event.target.value;
         console.log("Selected value:", selectedValue);
@@ -227,16 +229,36 @@
         console.log(this.idUnidad);
         this.capturarLista();
       },
+
       BoletaNotas() {
         this.$router.push("/boletaNotas");
       },
+
       Regresar() {
         this.$router.push("/menuSecciones");
       },
-      SubirArchivo() {
-        this.$router.push("/SubirArchivo");
+
+      openFileInput(index) {
+        this.$refs['fileInput' + index][0].click();
+      },
+
+      handleFileChange(event, index) {
+        const file = event.target.files[0];
+        if (file && file.type === 'application/pdf') {
+          // Guardar el archivo en localStorage
+          const reader = new FileReader();
+          reader.onload = () => {
+            localStorage.setItem('fileToUpload', reader.result);
+            // Redirigir a la página "Subir Archivo"
+            this.$router.push({ path: '/SubirArchivo' });
+          };
+          reader.readAsDataURL(file);
+        } else {
+          alert('Por favor, seleccione un archivo PDF válido.');
+        }
       },
     },
+
     computed: {
       filteredStudents() {
         let filteredList = this.estudiantes;
