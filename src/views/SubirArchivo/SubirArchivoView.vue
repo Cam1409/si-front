@@ -18,7 +18,7 @@
           <p class="t-2" id="txtEst"></p>
   
           <v-container class="cont-btn">
-            <button class="btn-1">
+            <button class="btn-1" @click="irExamenDigitalizados()">
               <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
               Revisar
             </button>
@@ -123,6 +123,10 @@
                 console.error('No se encontró el archivo PDF en localStorage');
             }
         },
+        irExamenDigitalizados(){
+          this.$router.push({ path: '/ExamenDigitalizadoNotas' });
+        }
+
     },
 };
 
