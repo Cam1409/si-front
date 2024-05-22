@@ -5,7 +5,7 @@
 
             <v-container class="parte-1">
 
-                <v-container class="logo"></v-container>
+                <v-container class="logosub"></v-container>
 
                 <v-container class="docente">
                     <v-icon class="icono mdi mdi-account-circle"></v-icon>
@@ -20,10 +20,10 @@
             </v-container>
 
             <v-container class="parte-3">
-                <p class="t-2">Visualización Individual</p>
+                <p class="t-2">Estusiante: </p>
 
                 <v-container class="cont-btn">
-                    <button class="btn-1">
+                    <button class="btn-1" @click="ExamenNotas()">
                         <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
                         Revisar</button>
                     <button class="btn-2" @click="ListaEstudiantes()">
@@ -77,10 +77,13 @@ import { ref } from 'vue';
 import { createLoadingTask } from 'vue3-pdfjs/esm';
 import { VuePdf } from 'vue3-pdfjs/esm';
 export default {
+    name: 'SubirArchivoView',
+
     data() {
         return {
-        profesor: "",
-        pdfSrc: null,
+            profesor: "",
+            pdfSrc: null,
+            estudiante: "",
         };
     },
     components:{
@@ -123,6 +126,9 @@ export default {
                 this.pdfSrc = fileReader.result;
             };
             fileReader.readAsDataURL(file);
+        },
+        ExamenNotas(){
+            this.$router.push("/ExamenDigitalizadoNotas");
         },
         computed:{
 

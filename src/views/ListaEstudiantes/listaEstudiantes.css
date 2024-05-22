@@ -353,3 +353,7 @@
 .generalle .v-text-field {
     margin-top: 0px;
 }
+
+.generalle .v-field--center-affix .v-field__append-inner, .v-field--center-affix .v-field__clearable, .v-field--center-affix .v-field__prepend-inner {
+    margin-left: 5px;
+}

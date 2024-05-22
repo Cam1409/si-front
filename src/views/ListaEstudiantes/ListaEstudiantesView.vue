@@ -24,7 +24,7 @@
               <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
               Boleta de Notas
             </button>
-            <button class="btn-1">
+            <button class="btn-1" @click="SubirArchivo()">
               <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
               Cargar Archivos
             </button>
