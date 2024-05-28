@@ -51,7 +51,7 @@
     font-size: 20px;
     font-family: system-ui;
     font-weight: 550;
-    width: 50%;
+    width: 100%;
     align-content: center;
 }
 
@@ -182,4 +182,13 @@
 .generalsa .cont-img{
     max-height: 810px;
     height: 810px;
+}
+
+.prueba{
+    display: flex; 
+    justify-content: center;
+}
+.mx-auto{
+    color: white;
+    justify-content: center;
 }

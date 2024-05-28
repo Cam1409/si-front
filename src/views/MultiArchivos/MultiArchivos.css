@@ -1,0 +1,122 @@
+.multi {
+    font-family: system-ui;
+    background-image: url('../../components/img/fondo.jpg'); 
+    background-color: #002854; 
+    background-blend-mode: multiply;
+    max-width: 100%;
+    height: 100%;
+    background-size: cover;
+    }    
+.multi-raya-blanca{
+        border-top: 3px solid #ffffff;
+        margin-top: -70px;
+        max-width: 100%
+    }
+    
+.multi-raya-roja{
+        border-top: 45px solid #c41212;
+        margin-top: -10px;
+        max-width: 100%;
+        padding: 0;
+    }
+.mu-pie{
+    font-family: system-ui;
+    color: rgb(255, 255, 255);
+    margin-top: -35px;
+    padding: 0;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100%;
+    }
+
+.multi .cont-archi{
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 10px;
+    height: 800px;
+}
+.multi .cont1{
+    padding: 0;
+    height: 50px;
+    display: flex;
+}
+.multi .logoUCV{
+    background-image: url(http://localhost:3004/img/UCVlogo.858b2b5e.jpeg);
+    background-size: cover;
+    max-width: 300px;
+}
+.multi .docente{
+    text-align: right;
+    margin-top: -11px;
+    color: #002854;
+    font-size: 25px;
+    display: flex;
+    justify-content: flex-end;
+}
+.multi .icono{
+    size: 15px;
+    margin-right: 10px;
+}
+
+.multi .d-1{
+    color: #002854;
+    font-size: 20px;
+    font-family: system-ui;
+    font-weight: 550;
+}
+.multi .t-1{
+    color: #DD0919;
+    font-size: 20px;
+    font-family: system-ui;
+    font-weight: 550;
+}
+
+.multi .cont2{
+    width: 99%;
+    border-bottom: 1px solid #002854;
+}
+.multi .t-2{
+    color: #002854;
+    font-size: 20px;
+    font-family: system-ui;
+    font-weight: 550;
+    width: 50%;
+    align-content: center;
+}
+
+.multi .cont3{
+    width: 99%;
+    border-bottom: 1px solid #002854;
+    display: flex;
+    padding: 8px 15px;
+}
+    
+.multi .btn-2{
+    background-color: #DD0919;
+    color: white;
+    border-radius: 10px;
+    width: 200px;
+    font-family: system-ui;
+    font-weight: 550;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.multi .btn-2:hover, .btn-2:active{
+    background-color: #f23e58;
+}
+
+.multi .cont-btn{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+}
+
+.multi .multi-archivos {
+    margin: 20px;
+  }
+  
+.multi .archivo-item {
+    margin-bottom: 10px;
+  }

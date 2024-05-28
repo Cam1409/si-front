@@ -18,12 +18,12 @@
 
             <v-container class="parte-2">
                 <!-- AQUÍ SE COLOCA EL NOMBRE DE LA ASIGNATURA -->
-                <p class="t-1" id="txtCurso">Examen</p>
+                <p class="t-1" id="txtCurso"></p>
             </v-container>
 
             <v-container class="parte-3">
                 <!-- AQUÍ SE COLOCA LA SECCIÓN Y EL NOMBRE DEL ESTUDIANTE -->
-                <p class="t-2">A1T1 - Alcedo Javier, Carlos Jose</p>
+                <p class="t-2" id="txtAlumno"></p>
 
                 <v-container class="cont-btn">
                     <v-container class="notafin" :class="notafinClass">
@@ -71,7 +71,7 @@
         <p> © UCV - Docentes 2024 </p>
     </v-container>
 
-    </v-container>
+        </v-container>
 
 </template>
 
@@ -84,6 +84,9 @@ export default {
         return {
             profesor: "",
             idCurso: "",
+            curso: '',
+            aula: '',
+            estudiante: '',
             preguntas: [
                 {
                 nota: 2,
@@ -144,9 +147,16 @@ export default {
             this.profesor = localStorage.getItem("nombreDocente");
             var nombreP = document.getElementById("nomb_Profe");
             this.idCurso = localStorage.getItem("idCurso");
+            var cursoE = document.getElementById("txtCurso");
+            this.curso = localStorage.getItem("nombreCurso");
+            this.aula = localStorage.getItem("aula");
+            this.estudiante = localStorage.getItem("nombreEst");
+            var estcod = document.getElementById("txtAlumno");
             if (this.profesor !== null && this.profesor !== undefined) {
                 if (nombreP) {
-                nombreP.innerText = this.profesor;
+                    nombreP.innerText = this.profesor;
+                    cursoE.innerText = "EXAMEN DE " + this.curso;
+                    estcod.innerText = this.estudiante + " | " + this.aula;
                 } else {
                 console.log("Elemento con id 'nomb_Profesor' no encontrado.");
                 }
@@ -166,7 +176,8 @@ export default {
         preguntaClass(pregunta) {
             const aprobatoria = pregunta.nota / pregunta.notaMax >= 0.6;
             return aprobatoria ? 'pregunta-aprobatoria' : 'pregunta-desaprobatoria';
-        }
+        },
+        
     },
 };
 

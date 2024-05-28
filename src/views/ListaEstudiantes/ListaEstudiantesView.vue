@@ -24,10 +24,17 @@
               <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
               Boleta de Notas
             </button>
-            <button class="btn-1" @click="SubirArchivo()">
-              <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
-              Cargar Archivos
-            </button>
+            <button class="btn-1" @click="openMultipleFileInput">
+            <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
+            Cargar Archivos
+          </button>
+          <input
+            type="file"
+            ref="multipleFileInput"
+            @change="handleMultipleFileChange"
+            accept=".pdf"
+            multiple
+            style="display: none;" />
             <button class="btn-2" @click="Regresar()">
               <v-icon left>mdi mdi-home</v-icon>
               Regresar
@@ -260,7 +267,34 @@
           alert('Por favor, seleccione un archivo PDF válido.');
         }
       },
+      openMultipleFileInput() {
+      this.$refs.multipleFileInput.click();
     },
+
+    handleMultipleFileChange(event) {
+      const files = event.target.files;
+      const validFiles = Array.from(files).filter(file => file.type === 'application/pdf');
+
+      if (validFiles.length !== files.length) {
+        alert('Algunos archivos no son PDF y serán ignorados.');
+      }
+
+      if (validFiles.length > 0) {
+        const fileReaders = [];
+        validFiles.forEach((file, index) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            localStorage.setItem(`fileToUpload${index}`, reader.result);
+            if (index === validFiles.length - 1) {
+              this.$router.push({ path: '/multiArchivos' });
+            }
+          };
+          reader.readAsDataURL(file);
+          fileReaders.push(reader);
+        });
+      }
+    },
+  },
 
     computed: {
       filteredStudents() {

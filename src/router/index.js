@@ -47,6 +47,11 @@ const routes = [
     path: '/boletaNotas',
     name:'BoletaNotasView',
     component: () => import(/* webpackChunkName: "about" */ '../views/BoletaNotas/BoletaNotaView.vue')
+  },
+  {
+    path: '/multiArchivos',
+    name:'MultiArchivosView',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MultiArchivos/MultiArchivos.vue')
   }
 ]
 

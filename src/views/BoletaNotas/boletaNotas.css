@@ -186,3 +186,21 @@
     .boleta .contenido-desplazable::-webkit-scrollbar-thumb:hover {
             background-color: #335175;
     }
+
+    .boleta .justify-end {
+        justify-content: flex-end;
+        margin-top: -50px;
+        }
+
+        .verde {
+            background-color: green !important;
+            color: white !important;
+          }
+          .naranja {
+            background-color: orange !important;
+            color: white !important;
+          }
+          .rojo {
+            background-color: red !important;
+            color: white !important;
+          }

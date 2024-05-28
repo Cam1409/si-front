@@ -18,7 +18,7 @@
           <p class="t-2" id="txtEst"></p>
   
           <v-container class="cont-btn">
-            <button class="btn-1" @click="irExamenDigitalizados()">
+            <button class="btn-1" @click="Confirmacion()">
               <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
               Revisar
             </button>
@@ -54,6 +54,33 @@
         <p>© UCV - Docentes 2024</p>
       </v-container>
     </v-container>
+
+    <v-dialog v-model="dialogValidar" :width="500">
+        <v-card color="#002854">
+            <v-card-title>
+            <span class="mx-auto">Confirmación</span>
+            </v-card-title>
+            <v-card-text>
+                <v-alert
+                    v-if="mensaje !== ''"
+                    color="white"
+                    :type="typemsg"
+                    outlined>
+                    {{ mensaje }}
+                </v-alert>
+            </v-card-text>
+            <v-card-actions class="prueba">
+                <v-btn class="btnclose1"
+                    @click="aceptar">
+                    Aceptar
+                </v-btn>
+                <v-btn class="btnclose1"
+                    @click="cancelar">
+                    Cancelar
+                </v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
   </template>
   
   <script>
@@ -73,6 +100,11 @@
             pages: [],
             aula: '',
             curso: '',
+            dialogError: false,
+            dialogExit: false,
+            mensaje: '',
+            typemsg: "error",
+            dialogValidar:false,
         };
     },
     created() {
@@ -101,7 +133,11 @@
             console.log("El nombre del profesor es nulo o no está definido.");
           }
         },
-
+        Confirmacion(){
+          this.mensaje = "¿Está seguro que quiere continuar?";
+          this.typemsg = "success";
+          this.dialogValidar = true;
+        },
         ListaEstudiantes() {
             this.$router.push('/ListaEstudiantes');
             localStorage.removeItem('fileToUpload');
@@ -125,8 +161,22 @@
         },
         irExamenDigitalizados(){
           this.$router.push({ path: '/ExamenDigitalizadoNotas' });
-        }
+        },
+        cancelar(){
+            this.dialogValidar = false;
+            this.mensaje= " ";
+            this.ListaEstudiantes();
+        },
 
+        async aceptar(){
+            this.dialogValidar=false;
+            try {
+                this.irExamenDigitalizados();
+            } catch (error) {
+                this.mensaje = "Hubo un error.";
+                this.dialogError = true;
+            }
+        },
     },
 };
 

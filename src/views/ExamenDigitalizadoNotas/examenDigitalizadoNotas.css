@@ -51,7 +51,7 @@
     font-size: 20px;
     font-family: system-ui;
     font-weight: 550;
-    width: 50%;
+    width: 100%;
     align-content: center;
 }
 
@@ -104,7 +104,7 @@
     background-color: #002854;
     color: white;
     border-radius: 10px;
-    width: 270px;
+    width: 230px;
     font-family: system-ui;
     font-weight: 550;
     font-size: 20px;
@@ -192,7 +192,6 @@
 }
 
 .generaldig .notafin {
-    border: 1.5px solid #002854;
     border-radius: 10px;
     width: 75px;
     margin-right: 10px;
@@ -230,7 +229,6 @@
 
 .generaldig .cont_c{
     padding: 0px;
-    border: 1.5px solid #002854;
     border-radius: 10px;
     width: 75px;
     margin-right: 10px;

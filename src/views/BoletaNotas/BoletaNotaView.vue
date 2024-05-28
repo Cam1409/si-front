@@ -20,7 +20,7 @@ import { Axios } from 'axios';
             </v-container>
 
             <v-container class="cont3">
-                <p class="t-2">Sistemas Inteligentes A20</p>
+                <p class="t-2" id="txtCurso"></p>
 
                 <v-container class="cont-btn">
                     <button class="btn-2" @click="ListaEstudiante()">
@@ -37,12 +37,14 @@ import { Axios } from 'axios';
         <v-card class="cont-card">
             <v-card-text class="card1">Estudiante:</v-card-text>
             <v-card-title class="card2">{{ estudiante.nombresE }} {{ estudiante.apellidosE }}
-            <v-chip class="ma-2">
-            Promedio: {{ calcularPromedio(estudiante.evaluaciones) }}
-            </v-chip>
+                <div class="d-flex justify-end">
+                    <v-chip :class="getPromedioColorClass(calcularPromedio(estudiante.evaluaciones))" class="ma-2">
+                    Promedio: {{ calcularPromedio(estudiante.evaluaciones) }}
+                    </v-chip>
+                </div>
             </v-card-title>
             <v-divider thick></v-divider> 
-            <v-card-text class="card3">NOTAS | SISTEMAS INTELIGENTES A20 | HEDE101</v-card-text>
+            <v-card-text class="card3">NOTAS | {{ llenarDatosGeneralC() }} </v-card-text>
             <div>
             <table class="table">
                 <thead>
@@ -112,13 +114,21 @@ export default {
             estudiantes: [],  
             idCurso: '',
             aula: '',
-            codigoD: ''  
+            codigoD: '' ,
+            profesor: '',
+            curso: {
+                NombreCurso:''
+            },
         };
     },
 
     created() {
         this.cargarDatos();
         this.capturarAlumnos();
+    },
+    mounted() {
+        this.capturarDatos();
+        this.selectedOptionUnidad = "U1";
     },
 
     methods: {
@@ -142,6 +152,39 @@ export default {
                 console.error("No se encontró el código del profesor en el localStorage");
                 this.mensaje = "No se encontró el código del profesor";
                 this.dialogError = true;
+            }
+        },
+        llenarDatosCurso() {
+            var asig = document.getElementById("txtCurso");
+            if (asig) {
+            asig.innerText = this.curso.NombreCurso + " " + this.aula;
+            localStorage.setItem('nombreCurso',this.curso.NombreCurso);
+            }
+        },
+
+        llenarDatosGeneralC(){
+            return this.curso.NombreCurso + " | " + this.idCurso;
+        },
+
+        capturarDatos() {
+            this.profesor = localStorage.getItem("nombreDocente");
+            var nombreP = document.getElementById("txtNombreP");
+            this.idCurso = localStorage.getItem("idCurso");
+            this.$axios
+            .get("/curso/by-id/" + this.idCurso)
+            .then((res) => {
+                this.curso = res.data;
+                this.llenarDatosCurso();
+            })
+            .catch((error) => e);
+            if (this.profesor !== null && this.profesor !== undefined) {
+            if (nombreP) {
+                nombreP.innerText = this.profesor;
+            } else {
+                console.log("Elemento con id 'nomb_Profesor' no encontrado.");
+            }
+            } else {
+            console.log("El nombre del profesor es nulo o no está definido.");
             }
         },
 
@@ -212,6 +255,17 @@ export default {
             const Promedio= Unidad1*0.3+Unidad2*0.3+Unidad3*0.4;
             return Promedio.toFixed(2);
         },
+        getPromedioColorClass(promedio) {
+            if (promedio >= 14) {
+                return 'verde';
+            } else if (promedio >= 12) {
+                return 'naranja';
+            } else {
+                return 'rojo';
+            }
+        }
+
+    
     }
 };
 </script>
