@@ -115,8 +115,46 @@
 
 .multi .multi-archivos {
     margin: 20px;
-  }
-  
+    }
+    
 .multi .archivo-item {
     margin-bottom: 10px;
+    }
+
+.multi .cont-pdf {
+    max-height: calc(100vh - 399px);
+    padding-right: 10px;
+    overflow-y: scroll;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.multi .cont-pdf::-webkit-scrollbar {
+    width: 10px;
+}
+
+.multi .cont-pdf::-webkit-scrollbar-thumb {
+    background-color: #002854;
+    border-radius: 5px;
+}
+
+.multi .cont-pdf::-webkit-scrollbar-thumb:hover {
+    background-color: #335175;
+}
+
+#pdfContainer {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .pdf-item {
+    flex: 0 1 40%; /* Ajusta este valor según tus necesidades */
+    margin: 10px;
+  }
+  
+  .multi .cajapdf {
+    padding: 0px;
+    width: 100%;
   }

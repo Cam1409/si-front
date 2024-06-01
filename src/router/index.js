@@ -52,6 +52,11 @@ const routes = [
     path: '/multiArchivos',
     name:'MultiArchivosView',
     component: () => import(/* webpackChunkName: "about" */ '../views/MultiArchivos/MultiArchivos.vue')
+  },
+  {
+    path: '/adminLogin=admin',
+    name:'LoginAdmin',
+    component: () => import(/* webpackChunkName: "about" */ '../views/LoginAdmin/LoginAdminView.vue')
   }
 ]
 
