@@ -338,12 +338,6 @@
                                 <v-icon right>mdi-star-outline</v-icon>
                             </v-container>
                         </v-container>
-                        <v-container class="izqarriba">
-                                        <v-container class="caja1izq">
-                                            <p class="l1">Deserciones Totales</p>
-                                            <p class="l2">Por Nivel Educativo</p>
-                                        </v-container>
-                                    </v-container>
                                         <v-container class="cont_a">
                                             <v-container class="cont_2 y">
                                                 <p>158</p>
@@ -359,19 +353,19 @@
                                             <v-progress-linear
                                             v-model="porcentaje20"
                                             color="#002854"
-                                            height="42"
+                                            height="80"
                                             class="vertical-progress5"
                                             ></v-progress-linear>
                                             <v-progress-linear
                                             v-model="porcentaje21"
                                             color="#7e7e7e"
-                                            height="42"
+                                            height="80"
                                             class="vertical-progress6"
                                             ></v-progress-linear>
                                             <v-progress-linear
                                             v-model="porcentaje22"
                                             color="#DD0919"
-                                            height="42"
+                                            height="80"
                                             class="vertical-progress6"
                                             ></v-progress-linear>
                                         </v-container>
@@ -414,6 +408,9 @@
                 porcentaje15: 64,
                 porcentaje16: 24,
                 porcentaje17: 74,
+                porcentaje20: 64,
+                porcentaje21: 24,
+                porcentaje22: 74,
             }
         }
     }
