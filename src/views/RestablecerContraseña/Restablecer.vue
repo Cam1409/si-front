@@ -3,17 +3,14 @@
         <v-container class="cont1-login">
           <v-col class="login-c1">
             <v-container class="logo"></v-container>
+            <p class="bientext">Restablecer contraseña</p>
+            <p class="texto">Ingresa la nueva contraseña que deseas asignar a tu usuario, recuerda que debe ser una contraseña segura.</p>
+                    
             <v-text-field
               label="Codigo Docente"
               prepend-icon="mdi mdi-code-not-equal-variant mdi-48px"
               variant="outlined"
               v-model="usuario.codigoD"
-            ></v-text-field>
-            <v-text-field
-              label="Usuario"
-              prepend-icon="mdi mdi-account-tie mdi-48px"
-              variant="outlined"
-              v-model="usuario.username"
             ></v-text-field>
             <v-text-field
               label="Contraseña"
@@ -139,7 +136,7 @@ export default {
      }
   },
   created(){
-
+    this.llenarCampos();
   },
 
   methods:{
@@ -147,9 +144,12 @@ export default {
       this.dialogExit=false;
       this.$router.push("/");
     },
+    llenarCampos(){
+      this.usuario.codigoD = localStorage.getItem('codigoD')
+    },
 
     restablecer(){
-        if (!this.usuario.codigoD || !this.usuario.username || !this.usuario.password || !this.confirmpassword) {
+        if (!this.usuario.codigoD || !this.usuario.password || !this.confirmpassword) {
           this.mensaje = "Todos los campos deben ser completados.";
           this.dialogError = true;
           return;
@@ -168,7 +168,8 @@ export default {
          //Consultando existencia de usuario por su código
         this.$axios.get("/usuario/" + this.usuario.codigoD).then((res) => {
             this.usuarioencontrado = res.data;
-            if(this.usuarioencontrado && this.usuarioencontrado.username) {
+            if(this.usuarioencontrado) {
+              this.usuario.username= this.usuarioencontrado.username;
               this.mensaje = "¿Esta seguro que desea cambiar la contraseña de su cuenta?";
               this.typemsg = "success";
               this.dialogValidar = true;

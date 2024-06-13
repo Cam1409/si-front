@@ -123,7 +123,7 @@ export default {
       this.dialogError = false;
     },
     restablecer(){
-      this.$router.push("/Restablecer");
+      this.$router.push("/remitirCodigo");
     },
     registrar(){
       this.$router.push("/RegistrarDocente")

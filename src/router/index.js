@@ -67,6 +67,16 @@ const routes = [
     path: '/dashBoardAdmin$$',
     name:'DashAdmin',
     component: () => import(/* webpackChunkName: "about" */ '../views/DashboardAdmin/dashboarAdminView.vue')
+  },
+  {
+    path: '/remitirCodigo',
+    name:'RemitirCodigo',
+    component: () => import(/* webpackChunkName: "about" */ '../views/RemitirCodigo/remitirCodigoView.vue')
+  },
+  {
+    path: '/validarCodigo',
+    name:'ValidarCodigo',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ValidarCodigo/validarCodigoView.vue')
   }
 ]
 
