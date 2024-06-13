@@ -59,12 +59,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/LoginAdmin/LoginAdminView.vue')
   },
   {
-    path: '/menuAdmin=$ma',
-    name:'MenuAdmin',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MenuAdmin/menuAdminView.vue')
+    path: '/administracionUsuarios',
+    name:'Administracion',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AdministracionUsuarios/administracionUsuariosView.vue')
   },
   {
-    path: '/dashBoardAdmin$$',
+    path: '/dashBoardAdmin',
     name:'DashAdmin',
     component: () => import(/* webpackChunkName: "about" */ '../views/DashboardAdmin/dashboarAdminView.vue')
   },
