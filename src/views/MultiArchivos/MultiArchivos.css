@@ -42,7 +42,7 @@
     display: flex;
 }
 .multi .logoUCV{
-    background-image: url(http://localhost:3004/img/UCVlogo.858b2b5e.jpeg);
+    background-image: url("../../components/img/UCVlogo.jpeg");
     background-size: cover;
     max-width: 300px;
 }
@@ -121,40 +121,62 @@
     margin-bottom: 10px;
     }
 
-.multi .cont-pdf {
-    max-height: calc(100vh - 399px);
-    padding-right: 10px;
-    overflow-y: scroll;
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.multi .cont-pdf::-webkit-scrollbar {
-    width: 10px;
-}
-
-.multi .cont-pdf::-webkit-scrollbar-thumb {
-    background-color: #002854;
-    border-radius: 5px;
-}
-
-.multi .cont-pdf::-webkit-scrollbar-thumb:hover {
-    background-color: #335175;
-}
-
-#pdfContainer {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .pdf-item {
-    flex: 0 1 40%; /* Ajusta este valor según tus necesidades */
+    .multi .cont-pdf {
+        max-height: calc(100vh - 399px);
+        padding-right: 10px;
+        overflow-y: scroll;
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    .multi .cont-pdf::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    .multi .cont-pdf::-webkit-scrollbar-thumb {
+        background-color: #002854;
+        border-radius: 5px;
+    }
+    
+    .multi .cont-pdf::-webkit-scrollbar-thumb:hover {
+        background-color: #335175;
+    }
+    
+    #pdfContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start; /* Alinea los elementos al inicio */
+        width: 100%;
+    }
+    
+    .pdf-item {
+        flex: 0 1 calc(25% - 20px); /* Ajusta el ancho de los elementos para que quepan 4 por fila */
     margin: 10px;
-  }
-  
-  .multi .cajapdf {
-    padding: 0px;
-    width: 100%;
-  }
+    }
+    
+    .multi .cajapdf {
+        padding: 0px;
+        width: 100%;
+    }
+
+    embed {
+        width: 552px;
+        margin-right: 25px;
+        margin-bottom: 18px;
+        height: 380px;
+    }
+
+    .multi .btn-eliminar {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        margin-top: 10px;
+        }
+        
+    .multi .btn-eliminar:hover {
+        background-color: darkred;
+        }

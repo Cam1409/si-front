@@ -28,8 +28,9 @@
         <v-container class="cajapdf">
           <div id="pdfContainer">
             <div class="pdf-item" v-for="(pdf, index) in pdfs" :key="index">
-              <!-- Aquí va tu lógica para renderizar cada PDF -->
+              <p>{{ pdf.name }}</p>
               <embed :src="pdf.src" type="application/pdf" width="100%" height="200px" />
+              <button @click="eliminarArchivo(index)" class="btn-eliminar">Eliminar</button>
             </div>
           </div>
         </v-container>
@@ -137,36 +138,19 @@ export default {
       this.$router.push("/ListaEstudiantes");
     },
     obtenerbase64() {
-      const pdfContainer = document.getElementById("pdfContainer");
-      // Recuperar la cadena JSON del localStorage
       const serializedFiles = JSON.parse(localStorage.getItem("pdfFiles"));
-
-      // Verificar si se han almacenado archivos
       if (serializedFiles) {
-        // Iterar sobre los archivos y acceder a su contenido base64
-        serializedFiles.forEach((file, index) => {
-          const embedElement = document.createElement("embed");
-
-          // Establecer los atributos del elemento <embed>
-          embedElement.setAttribute(
-            "src",
-            `data:${file.type};base64,${file.fileToUpload}`
-          );
-          embedElement.setAttribute("width", "100%");
-          embedElement.setAttribute("height", "500px"); // Puedes ajustar la altura según sea necesario
-
-          // Agregar el elemento <embed> al contenedor
-          pdfContainer.appendChild(embedElement);
-          console.log(`Archivo ${index + 1}:`);
-          console.log("Nombre:", file.name);
-          console.log("Tipo:", file.type);
-          console.log("Tamaño:", file.size);
-          console.log("Contenido base64:", file.fileToUpload);
-          console.log("--------------------------");
-        });
+        this.pdfs = serializedFiles.map(file => ({
+          name: file.name,
+          src: `data:${file.type};base64,${file.fileToUpload}`
+        }));
       } else {
         console.log("No se encontraron archivos en el localStorage.");
       }
+    },
+    eliminarArchivo(index) {
+      this.pdfs.splice(index, 1);
+      localStorage.setItem("pdfFiles", JSON.stringify(this.pdfs));
     },
   },
 };

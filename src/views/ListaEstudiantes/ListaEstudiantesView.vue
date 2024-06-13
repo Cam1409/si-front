@@ -290,8 +290,6 @@ export default {
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-
-        // Verificar si el archivo es de tipo PDF antes de convertirlo a base64
         if (
           file.type === "application/pdf" ||
           file.type === "application/x-pdf" ||
@@ -299,36 +297,25 @@ export default {
           file.type === "application/x-gzpdf"
         ) {
           const reader = new FileReader();
-
           reader.onload = () => {
-            const fileContent = reader.result.split(";base64,")[1]; // Obtener solo la parte de datos base64
+            const fileContent = reader.result.split(";base64,")[1];
             const serializedFile = {
               name: file.name,
               type: file.type,
               size: file.size,
-              fileToUpload: fileContent, // Guardar el contenido del archivo como base64
+              fileToUpload: fileContent,
             };
-
             serializedFiles.push(serializedFile);
-            console.log("Archivo serializado:", serializedFile); // Impresión para verificar el archivo serializado
-
             if (serializedFiles.length === files.length) {
-              // Convertir el array de archivos serializados a una cadena JSON y guardarla en localStorage
               localStorage.setItem("pdfFiles", JSON.stringify(serializedFiles));
-              console.log(
-                "Archivos guardados en localStorage:",
-                serializedFiles
-              ); // Impresión para verificar que los archivos se han guardado en localStorage
+              this.$router.push("/multiArchivos");
             }
           };
-
           reader.readAsDataURL(file);
-          
         } else {
           console.log(`El archivo ${file.name} no es un archivo PDF válido.`);
         }
       }
-      this.$router.push("/multiArchivos");
     },
   },
 

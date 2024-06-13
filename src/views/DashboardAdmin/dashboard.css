@@ -1,0 +1,34 @@
+.dash {
+    background-image: url('../../components/img/fondo.jpg'); 
+    background-color: #002854; /* Color de fondo azul con transparencia */
+    background-blend-mode: multiply;
+    max-width: 100%;
+    height: 100%;
+    background-size: cover;
+    }
+
+    
+
+    .d-raya-blanca{
+        border-top: 3px solid #ffffff;
+        margin-top: -70px;
+        max-width: 100%
+    }
+    
+    .d-raya-roja{
+        border-top: 45px solid #c41212;
+        margin-top: -10px;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .d-pie{
+    font-family: system-ui;
+    color: rgb(255, 255, 255);
+    margin-top: -35px;
+    padding: 0;
+    display: flex; /* Utilizamos flexbox para centrar */
+    justify-content: center; /* Centramos horizontalmente */
+    align-items: center; /* Centramos verticalmente */
+    height: 100%
+    }

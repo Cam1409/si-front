@@ -57,6 +57,16 @@ const routes = [
     path: '/adminLogin=admin',
     name:'LoginAdmin',
     component: () => import(/* webpackChunkName: "about" */ '../views/LoginAdmin/LoginAdminView.vue')
+  },
+  {
+    path: '/menuAdmin=$ma',
+    name:'MenuAdmin',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MenuAdmin/menuAdminView.vue')
+  },
+  {
+    path: '/dashBoardAdmin$$',
+    name:'DashAdmin',
+    component: () => import(/* webpackChunkName: "about" */ '../views/DashboardAdmin/dashboarAdminView.vue')
   }
 ]
 

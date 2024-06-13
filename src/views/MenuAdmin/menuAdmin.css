@@ -1,0 +1,133 @@
+.MenuAdmin {
+    font-family: system-ui;
+    background-image: url('../../components/img/fondo.jpg'); 
+    background-color: #002854; 
+    background-blend-mode: multiply;
+    max-width: 100%;
+    height: 100%;
+    background-size: cover;
+    }
+
+.menu-raya-blanca{
+    border-top: 3px solid #ffffff;
+    margin-top: -68px;
+    max-width: 100%;
+}
+
+.menu-raya-roja{
+    border-top: 45px solid #c41212;
+    margin-top: 20px;
+    max-width: 100%;
+    padding: 0;
+}
+
+.menu-pie{
+font-family: system-ui;
+color: rgb(255, 255, 255);
+margin-top: -35px;
+padding: 0;
+display: flex;
+justify-content: center; 
+align-items: center; 
+height:100%
+    }
+
+.fondoMitad{
+    background-image: url('../../components/img/ucvFondo3.jpg');
+    max-width: 30%;
+    height: 93%;
+    background-size: cover;
+    background-color: #66748385;
+    background-blend-mode: multiply;
+}
+
+.v-container {
+    width: 100%;
+    padding: 0px; 
+    margin-right: auto;
+    margin-left: 0px;
+}
+
+.MenuAdmin .cont2{
+    background-color: #ffffff;
+    border-radius: 10px;
+    height: 790px;
+    width: 1270px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: -70px;
+    right: 0;
+    bottom: 0;
+    left: 570px;
+    margin: auto;
+}
+
+.MenuAdmin .logo{
+    background-image: url('../../components/img/UCVlogo.jpeg');
+    background-size: cover;
+    height: 50px;
+    margin-top: 40px;
+    max-width: 300px;
+    margin-left: 750px;
+    }
+
+.MenuAdmin .contenedorP{
+    width: 90%;
+    margin-top: 0px;
+    margin-left: 60px
+    }
+.MenuAdmin .conten{
+    margin-top: 10px;
+    }
+.MenuAdmin .titu{
+    font-size: 25px;
+    color: #002854;    
+    margin-top: -40px;
+}
+.MenuAdmin .divi{
+    margin-top: 15px;
+}
+
+.MenuAdmin .contB{
+    margin-left: 660px;
+    margin-top: -90px;
+}
+
+.MenuAdmin .contB .mdi{
+    color: #ffffff;
+}
+
+.MenuAdmin .contB .v-btn{
+    background-color: #c41212;
+    color: #ffffff;
+    width: 170px;
+    height: 50px;
+}
+
+.MenuAdmin .tabla-docentes {
+    width: 92%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 20px;
+    margin-left: 40px;
+}
+
+.MenuAdmin .tabla-docentes tr > th{
+    background-color: #002854;
+    color: #ffffff;
+    text-align-last: center;
+}
+
+.MenuAdmin .tabla-docentes td {
+    border: 1px solid #002854;
+    padding: 8px;
+}
+
+.generalle .tabla{
+    font-family: system-ui;
+    font-weight: 550;
+    max-width: 100%;
+    padding: 0;
+    padding-right: 25px;
+    margin-top: 5px;
+}
