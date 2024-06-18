@@ -41,7 +41,7 @@
         display: flex;
     }
     .boleta .logoUCV{
-        background-image: url(http://localhost:3004/img/UCVlogo.858b2b5e.jpeg);
+        background-image: url("../../components/img/UCVlogo.png");
         background-size: cover;
         max-width: 300px;
     }

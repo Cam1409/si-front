@@ -95,7 +95,7 @@ export default {
         this.mensaje = "Faltan completar los campos, por favor ingréselos ";
         this.typemsg = "error";
         this.dialogError = true;
-        return; // Salir temprano si falta información
+        return; 
       }
         try {
         const response = await this.$axios.post("/usuario/validar", {

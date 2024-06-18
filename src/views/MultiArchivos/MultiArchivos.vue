@@ -1,4 +1,6 @@
 <template>
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+
   <v-container class="multi">
     <v-container class="cont-archi">
       <v-container v-container class="cont1">
@@ -17,6 +19,10 @@
         <p class="t-2" id="txtCurso"></p>
 
         <v-container class="cont-btn">
+          <button class="btn-1">
+              <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
+              Revisar
+            </button>
           <button class="btn-2" @click="Regresar()">
             <v-icon left>mdi mdi-home</v-icon>
             Regresar
@@ -27,10 +33,13 @@
       <v-container class="cont-pdf">
         <v-container class="cajapdf">
           <div id="pdfContainer">
-            <div class="pdf-item" v-for="(pdf, index) in pdfs" :key="index">
-              <p>{{ pdf.name }}</p>
+            <div v-for="(pdf, index) in pdfs" :key="index" class="pdf-item">
+              <p class="tituPDF">
+                <i class="mdi mdi-file-document-arrow-right"></i>
+                {{ pdf.name }}
+                <button @click="eliminarArchivo(index)" class="btn-eliminar mdi mdi-file-document-remove-outline"></button>
+              </p>
               <embed :src="pdf.src" type="application/pdf" width="100%" height="200px" />
-              <button @click="eliminarArchivo(index)" class="btn-eliminar">Eliminar</button>
             </div>
           </div>
         </v-container>

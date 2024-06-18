@@ -107,6 +107,23 @@
     background-color: #f23e58;
 }
 
+.multi .btn-1{
+    background-color: #002854;
+    color: white;
+    border-radius: 10px;
+    width: 270px;
+    font-family: system-ui;
+    font-weight: 550;
+    font-size: 20px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.multi .btn-1:hover, .btn-1:active{
+    background-color: #335b8a;
+}
+
+
 .multi .cont-btn{
     display: flex;
     justify-content: flex-end;
@@ -147,13 +164,17 @@
     #pdfContainer {
         display: flex;
         flex-wrap: wrap;
-        justify-content: flex-start; /* Alinea los elementos al inicio */
+        justify-content: flex-start; 
         width: 100%;
     }
     
     .pdf-item {
-        flex: 0 1 calc(25% - 20px); /* Ajusta el ancho de los elementos para que quepan 4 por fila */
-    margin: 10px;
+        flex: 0 1 calc(20% - 40px);
+        border: 3px solid #323639;
+        border-radius: 10px;
+        margin: 15px;
+        box-sizing: border-box;
+        background: #323639;
     }
     
     .multi .cajapdf {
@@ -162,21 +183,36 @@
     }
 
     embed {
-        width: 552px;
-        margin-right: 25px;
-        margin-bottom: 18px;
+        width: 532px;
         height: 380px;
+        margin-right: auto;
+        margin-bottom: auto; 
+        margin-bottom: 18px;
     }
 
     .multi .btn-eliminar {
-        background-color: red;
-        color: white;
+        color: rgb(253, 0, 0);
+        font-size: 35px;
         border: none;
         padding: 10px;
         cursor: pointer;
-        margin-top: 10px;
+        margin-left: 360px;
         }
         
     .multi .btn-eliminar:hover {
         background-color: darkred;
         }
+
+    .multi .tituPDF{
+        color: #ffffff;
+        font-size: 25PX;
+        margin-left: 20px;
+        display: flex; 
+        align-items: center; 
+        margin-bottom: 10px; 
+        border-bottom: 1px solid #ffffff;
+    }
+
+    .tituPDF .mdi {
+  margin-right: 10px; 
+}

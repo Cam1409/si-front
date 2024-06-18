@@ -155,17 +155,14 @@ export default {
           return;
         }
 
-        // Verificación de que las contraseñas coinciden
         if (this.usuario.password !== this.confirmpassword) {
           this.mensaje = "Verifique la contraseña y su confirmación";
           this.dialogError = true;
-          // Limpiando los campos de contraseña
           this.usuario.password = '';
           this.confirmpassword = '';
           return;
         }
 
-         //Consultando existencia de usuario por su código
         this.$axios.get("/usuario/" + this.usuario.codigoD).then((res) => {
             this.usuarioencontrado = res.data;
             if(this.usuarioencontrado && this.usuarioencontrado.username) {
@@ -178,7 +175,7 @@ export default {
             }
           })
           .catch((error) => {
-            console.error(error);  // Aquí debes manejar el error adecuadamente
+            console.error(error);  
             this.mensaje = "Error al buscar datos del docente";
             this.dialogError = true;
           });

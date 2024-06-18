@@ -166,9 +166,7 @@
                 this.codigoD = localStorage.getItem("codigoD");
                 this.idCurso = localStorage.getItem("idCurso");
 
-                // Capturando datos del docente
                 this.$axios.get("/profesor/"+this.codigoD).then((res)=>{this.profesor=res.data;this.llenarDatosD()}).catch((error)=>e);
-                // Capturando datos de la asignatura
                 this.$axios.get("/curso/by-id/"+this.idCurso).then((res)=>{this.curso=res.data;this.llenarDatosA()}).catch((error)=>e);
             },
             llenarDatosD(){
