@@ -10,11 +10,11 @@
                 <v-icon class="mdi mdi-account-circle iconouser"></v-icon>
 
                 <v-container>
-                    <p class="usuario" id="">Carlos Alcedo Javier</p>
+                    <p class="usuario" id="">{{ nombresCompletos }}</p>
                 </v-container>
 
                 <v-container class="cont-cod">
-                    Código:<p id="">32423456</p>
+                    Código:<p id="">{{ codigoBuscado }}</p>
                 </v-container>
 
                 <v-container class="cont-pag">
@@ -61,13 +61,13 @@
                 </v-container>
 
                 <v-container class="menubtn">
-                    <v-btn class="btnmenu1 text-none">
+                    <v-btn class="btnmenu1 text-none" @click="irUsuarios">
                         Gestión de Usuarios
                     </v-btn>
-                    <v-btn class="btnmenu1 text-none">
+                    <v-btn class="btnmenu1 text-none" @click="irReporte">
                         Reporte
                     </v-btn>
-                    <v-btn class="btnmenu1 text-none">
+                    <v-btn class="btnmenu1 text-none" @click="cerrarSesion">
                         Cerrar Sesión
                     </v-btn>
                 </v-container>
@@ -95,42 +95,42 @@
                         <v-container class="infoizq4">
                             <v-container class="izq-4"></v-container>
                             <v-container class="der-4">
-                                <p class="p10">9790</p>
-                                <p class="p11">Estudiantes Totales</p>
+                                <p class="p10">{{totalProfesor.total}}</p>
+                                <p class="p11">Profesores Totales</p>
                             </v-container>
                         </v-container>
                         <v-container class="infoizq4">
                             <v-container class="izquierda-4">
                                 <v-progress-circular
-                                :model-value="porcentaje1"
+                                :model-value="femenino.porcentaje"
                                 :rotate="360"
                                 :size="110"
                                 :width="14"
                                 color="#DD0919">
-                                <p class="porc">{{ porcentaje1 }}%</p>
+                                <p class="porc">{{ femenino.porcentaje }}%</p>
                                 </v-progress-circular>
                             </v-container>
                             <v-container class="derecha-4">
-                                <p class="p12">Tasa de Deserción</p>
-                                <p class="p13">Empleados Retirados</p>
-                                <p class="p14">3484</p>
+                                <p class="p12">Fuerza femenina</p>
+                                <p class="p13">Cantidad de profesoras</p>
+                                <p class="p14">{{ femenino.cantidad }}</p>
                             </v-container>
                         </v-container>
                         <v-container class="infoizq4">
                             <v-container class="izquierda-4">
                                 <v-progress-circular
-                                :model-value="porcentaje2"
+                                :model-value="masculino.porcentaje"
                                 :rotate="360"
                                 :size="110"
                                 :width="14"
                                 color="#002854">
-                                <p class="porc">{{ porcentaje2 }}%</p>
+                                <p class="porc">{{ masculino.porcentaje }}%</p>
                             </v-progress-circular>
                             </v-container>
                             <v-container class="derecha-4">
-                                <p class="p12">Fuerza Activa</p>
-                                <p class="p13">Número de Empleados</p>
-                                <p class="p14">6306</p>
+                                <p class="p12">Fuerza masculina</p>
+                                <p class="p13">Cantidad de profesores</p>
+                                <p class="p14">{{ masculino.cantidad }}</p>
                             </v-container>
                         </v-container>
                     </v-container>
@@ -149,8 +149,8 @@
                     <v-container class="caja1_1">
                         <v-container class="izqarriba">
                             <v-container class="caja1izq">
-                                <p class="l1">Nivel de Deserción</p>
-                                <p class="l2">Por Distancia al Trabajo</p>
+                                <p class="l1">Nivel de distribución</p>
+                                <p class="l2">Estudiantes por Categoria</p>
                             </v-container>
                             <v-container class="caja1der">
                                 <v-icon right>mdi-check</v-icon>
@@ -159,19 +159,15 @@
                         <v-container class="cont_1">
                             <v-container class="cont_2">
                                 <v-container class="c2_1">
-                                    <p class="l8">510</p>
-                                    <p class="l9">828</p>
-                                    <p class="l10">2146</p>
+                                    <p  v-for="(categoria, index) in categorias" :key="index" :class="'l' + (8 + index)">{{categoria.cantidad}}</p>
                                 </v-container>
                                 <v-container class="c2_2">
-                                    <p class="l11">Lejos</p>
-                                    <p class="l11">Muy Lejos</p>
-                                    <p class="l11">Cerca</p>
+                                    <p v-for="(categoria, index) in categorias" :key="index" class="l11">{{categoria.descripcionCE}}</p>
                                 </v-container>
                             </v-container>
                             <v-container class="grafica3">
                                 <v-progress-circular
-                                :model-value="porcentaje5"
+                                :model-value="porcentajeA"
                                 :rotate="180"
                                 :size="127"
                                 :width="16"
@@ -179,7 +175,7 @@
                                 class="gc1"
                                 >
                                     <v-progress-circular
-                                    :model-value="porcentaje6"
+                                    :model-value="porcentajeB"
                                     :rotate="180"
                                     :size="89"
                                     :width="16"
@@ -187,7 +183,7 @@
                                     class="gc2"
                                     >
                                         <v-progress-circular
-                                        :model-value="porcentaje7"
+                                        :model-value="porcentajeC"
                                         :rotate="180"
                                         :size="51"
                                         :width="16"
@@ -203,8 +199,8 @@
                     <v-container class="caja1_2">
                         <v-container class="izqarriba">
                             <v-container class="caja1izq">
-                                <p class="l1">Deserciones Totales</p>
-                                <p class="l2">Por Nivel Educativo</p>
+                                <p class="l1">Cantidad de Estudiantes</p>
+                                <p class="l2">Matriculados por Curso</p>
                             </v-container>
                             <v-container class="caja1der">
                                 <v-icon right>mdi-check</v-icon>
@@ -212,81 +208,27 @@
                         </v-container>
                         <v-container class="cont_2">
                             <v-container class="espacio">
-                                <p class="m1">Doctorado</p>
-                                <p class="m1">Bachiller</p>
-                                <p class="m1">Maestría</p>
-                                <p class="m1">Especialización</p>
-                                <p class="m1">Profesional</p>
-                                <p class="m1">Técnico</p>
-                                <p class="m1">Tecnólogo</p>
+                                <p v-for="(curso, index) in cursos" :key="index" class="m1">{{ curso }}</p>
                             </v-container>
                             <v-container class="p0">
-                                <v-container class="barra3">
+                                <v-container v-for="(detalle,index) in detalles" :key="index" class="barra2">
                                     <v-progress-linear
-                                        v-model="porcentaje11"
+                                        v-model="detalle.porcentaje"
                                         color="#DD0919"
                                         height="10">
                                     </v-progress-linear>
-                                    <p class="c2">108</p>
+                                    <p class="c2">{{detalle.cantidad}}</p>
                                 </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje12"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">352</p>
-                                            </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje13"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">405</p>
-                                            </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje14"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">471</p>
-                                            </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje15"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">662</p>
-                                            </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje16"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">742</p>
-                                            </v-container>
-                                            <v-container class="barra2">
-                                                <v-progress-linear
-                                                    v-model="porcentaje17"
-                                                    color="#DD0919"
-                                                    height="10">
-                                                </v-progress-linear>
-                                                <p class="c2">744</p>
-                                            </v-container>
-                                        </v-container>
-                                    </v-container>
+                           </v-container>
+                        </v-container>
                     </v-container>
                 </v-container>
                 <v-container class="columna2">
                     <v-container class="caja2">
                         <v-container class="izqarriba">
                             <v-container class="caja1izq">
-                                <p class="l1">Deserciones Totales</p>
-                                <p class="l2">Por Tipo de Cargo del Empleado</p>
+                                <p class="l1">Distribución de profesores</p>
+                                <p class="l2">Por lugar de residencia</p>
                             </v-container>
                             <v-container class="caja1der">
                                 <v-icon right>mdi-check</v-icon>
@@ -294,35 +236,19 @@
                         </v-container>
                         <v-container class="caja1abajo">
                             <v-container class="casa1abiz">
-                                <p class="l3">Bajo rendimiento</p>
-                                <p class="l3">Cambio de ciudad</p>
-                                <p class="l3">Enfermedad</p>
-                                <p class="l3">Nuevo trabajo</p>
-                                <p class="l3">Bajo rendimiento</p>
-                                <p class="l3">Cambio de ciudad</p>
-                                <p class="l3">Enfermedad</p>
-                                <p class="l3">Nuevo trabajo</p>
-                                <p class="l3">Enfermedad</p>
+                                <p v-for="(distrito, index) in distritosProfesor" :key="index" class="l3">{{ distrito.distrito_Nombre_Di }}</p>
                             </v-container>
                             <v-container class="casa1abder">
-                                <p class="l4">328</p>
-                                <p class="l4">970</p>
-                                <p class="l4">33</p>
-                                <p class="l4">2153</p>
-                                <p class="l4">328</p>
-                                <p class="l4">970</p>
-                                <p class="l4">33</p>
-                                <p class="l4">2153</p>
-                                <p class="l4">33</p>
+                                <p  v-for="(distrito, index) in distritosProfesor" :key="index" class="l4">{{ distrito.cantidad }}</p>
                             </v-container>
                         </v-container>
                         <v-container class="caja1abajo1">
                             <v-container class="abajo1izq">
-                                <p class="l5">Prom Deserciones</p>
-                                <p class="l6">Por Cargo del Empleado</p>
+                                <p class="l5">Prom Profesores</p>
+                                <p class="l6">Que residen en Cono Norte</p>
                             </v-container>
                             <v-container class="abajo1der">
-                                <p class="l7">155</p>
+                                <p class="l7">{{profesorTD.cantidad}}</p>
                             </v-container>
                         </v-container>
                     </v-container>
@@ -331,48 +257,40 @@
                     <v-container class="caja3">
                         <v-container class="izqarriba">
                             <v-container class="caja1izq">
-                                <p class="l1">Número de Deserciones</p>
-                                <p class="l2">Por Género</p>
+                                <p class="l1">Cantidad de notas registradas</p>
+                                <p class="l2">Por tipología</p>
                             </v-container>
                             <v-container class="caja1der">
                                 <v-icon right>mdi-star-outline</v-icon>
                             </v-container>
                         </v-container>
                                         <v-container class="cont_a">
-                                            <v-container class="cont_2 y">
-                                                <p>158</p>
-                                            </v-container>
-                                            <v-container class="cont_2 j">
-                                                <p>254</p>
-                                            </v-container>
-                                            <v-container class="cont_2 w">
-                                                <p>341</p>
+                                            <v-container v-for="(tipo, index) in tipos " :key="index" :class="'cont_2 y' + (1 + index)">
+                                                <p>{{ tipo.cantidad}}</p>
                                             </v-container>
                                         </v-container>
                                         <v-container class="cont_z">
                                             <v-progress-linear
-                                            v-model="porcentaje20"
+                                            v-model="porcentajeEP"
                                             color="#002854"
                                             height="80"
                                             class="vertical-progress5"
                                             ></v-progress-linear>
                                             <v-progress-linear
-                                            v-model="porcentaje21"
+                                            v-model="porcentajeIF"
                                             color="#7e7e7e"
                                             height="80"
                                             class="vertical-progress6"
                                             ></v-progress-linear>
                                             <v-progress-linear
-                                            v-model="porcentaje22"
+                                            v-model="porcentajePC"
                                             color="#DD0919"
                                             height="80"
                                             class="vertical-progress6"
                                             ></v-progress-linear>
                                         </v-container>
                                     <v-container class="caja1_abc">
-                                        <p class="genA x">Billetera</p>
-                                        <p class="genB x">Efectivo</p>
-                                        <p class="genC x">Cartera</p>
+                                        <p v-for="(tipo, index) in tipos " :key="index" :class="'gen' + (12 + index)+' x'">{{ tipo.Tipo }}</p>
                                     </v-container>
                     </v-container>
                 </v-container>
@@ -391,29 +309,171 @@
 
 </template>
 
-<script>
+    <script>
+    import jsPDF from 'jspdf';
+    import html2canvas from 'html2canvas';
     export default {
         name: 'DashAdmin',
         data(){
             return{
-                porcentaje1: 45,
-                porcentaje2: 84,
-                porcentaje5: 39,
-                porcentaje6: 64,
-                porcentaje7: 24,
-                porcentaje11: 65,
-                porcentaje12: 45,
-                porcentaje13: 84,
-                porcentaje14: 39,
-                porcentaje15: 64,
-                porcentaje16: 24,
-                porcentaje17: 74,
-                porcentaje20: 64,
-                porcentaje21: 24,
-                porcentaje22: 74,
+                nombresCompletos:'',
+                codigoBuscado:'',
+                profesorBuscado:'',
+                detalles:[],
+                categorias: [],
+                profesorGeneros: [],
+                distritosProfesor: [],
+                totalProfesor:'',
+                cursos:['C. Comunicativa','F. Programación','I. Sistemas','Matemática I','P. Lógico','Tutoría I'],
+                profesorTD: '',
+                porcentajeA:'',
+                porcentajeB:'',
+                porcentajeC:'',
+                tipos:[],
+                totalEstudiante:'',
+                porcentajeEP:'',
+                porcentajeIF:'',
+                porcentajePC:'',
+                logoImage:'',
             }
+        },
+        created(){
+            this.buscarNombresDocente();
+            this.capturarDatos();
+        },
+        computed: {
+            femenino() {
+            return this.profesorGeneros.find(p => p.idGenero === 'F') || { cantidad: 0, porcentaje: 0 };
+            },
+            masculino() {
+            return this.profesorGeneros.find(p => p.idGenero === 'M') || { cantidad: 0, porcentaje: 0 };
+            },
+        },
+        methods: {
+            cerrarSesion(){
+                localStorage.removeItem('codigoD');
+                this.$router.push("/adminLogin=admin");
+            },
+            irReporte(){
+                this.$router.push("/dashBoardAdmin");
+            },
+            irUsuarios(){
+                this.$router.push("/administracionUsuarios");
+            },
+            buscarNombresDocente(){
+                const codigoProfesor= localStorage.getItem('codigoD');
+                this.codigoBuscado= codigoProfesor;
+                this.$axios.get('/profesor/'+this.codigoBuscado).then((res)=>{this.profesorBuscado=res.data;this.nombresCompletos= this.profesorBuscado.nombresD + " "+this.profesorBuscado.apellidosD;}).catch((error)=>error)
+            },
+            async capturarDatos(){
+                try {
+                    const response = await this.$axios.get('/estudiante/categoria');
+                    this.categorias = response.data;
+                    this.obtenerPorcentaje();
+                    
+                    const responseGenero=  await this.$axios.get('/profesor/genero');
+                    this.profesorGeneros=responseGenero.data;
+
+                    const responseProfesor= await this.$axios.get('/profesor/total');
+                    this.totalProfesor= responseProfesor.data;
+
+                    const responseEstudiante= await this.$axios.get('/estudiante/total');
+                    this.totalEstudiante= responseEstudiante.data;
+
+                    const responseDistrito= await this.$axios.get('/profesor/distrito');
+                    this.distritosProfesor= responseDistrito.data;
+
+                    const responseProfeDistrito= await this.$axios.get('/profesor/distritosTotal');
+                    this.profesorTD= responseProfeDistrito.data;
+
+                    const responseDetalle= await this.$axios.get('/detallematricula/cantidadCurso');
+                    this.detalles= responseDetalle.data;
+
+                    const responseTipo= await this.$axios.get('/detallenota/tipoNota');
+                    this.tipos= responseTipo.data;
+                    this.calcularPorcentajeTipo();
+
+                } catch (error) {
+                    console.error('Error data:', error);
+                }
+            },
+            obtenerPorcentaje(){
+                this.porcentajeA = (this.categorias.find(categoria => categoria.descripcionCE === 'Alumnos Especiales') || { porcentaje: 0 }).porcentaje;
+                this.porcentajeB = (this.categorias.find(categoria => categoria.descripcionCE  === 'Normal') || { porcentaje: 0 }).porcentaje;
+                this.porcentajeC = (this.categorias.find(categoria => categoria.descripcionCE  === 'Primeros puestos') || { porcentaje: 0 }).porcentaje;
+            },
+            calcularPorcentajeTipo(){
+                const cantidadEP= (this.tipos.find(tipo=> tipo.Tipo==='Exámenes')||{cantidad:0}).cantidad;
+                const cantidadIF= (this.tipos.find(tipo=> tipo.Tipo==='Investigación Formativa')||{cantidad:0}).cantidad;
+                const cantidadPC= (this.tipos.find(tipo=> tipo.Tipo==='Practica Calificada')||{cantidad:0}).cantidad;
+                const totalNotas= parseInt(this.totalEstudiante.total,10) * 18;
+                this.porcentajeEP= ((cantidadEP/totalNotas)*100).toFixed(2);
+                this.porcentajeIF= ((cantidadIF/totalNotas)*100).toFixed(2);
+                this.porcentajePC= ((cantidadPC/totalNotas)*100).toFixed(2);
+
+                console.log(''+this.porcentajeEP+' '+this.porcentajeIF+' '+this.porcentajePC )
+            },
+            descargarPDF() {
+                const filename = 'dashboardInformativo.pdf';
+                const element = document.querySelector('.cont-blancoder');
+                const options = {
+                scale: 3,
+                useCORS: true,
+                logging: true,
+                };
+
+                const pdf = new jsPDF('l', 'px', [element.offsetWidth, element.offsetHeight]);
+            // Título en mayúsculas y negrita
+            pdf.setFont('helvetica', 'bold');
+                    pdf.setFontSize(56);
+                    pdf.text('REPORTE GENERAL', pdf.internal.pageSize.getWidth() / 2, 230, {
+                    align: 'center'
+                    });
+
+                    // Restablecemos la fuente a normal para el resto del texto
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.setFontSize(30);
+
+                    // Fecha y hora actual
+                    const fechaHora = new Date().toLocaleString();
+                    pdf.text(`Fecha y hora: ${fechaHora}`, pdf.internal.pageSize.getWidth() / 2, 270, {
+                    align: 'center'
+                    });
+
+                    // Usuario
+                    pdf.text(`Generado por: ${this.nombresCompletos}`, pdf.internal.pageSize.getWidth() / 2, 300, {
+                    align: 'center'
+                    });
+
+                    // Código de docente
+                    pdf.text(`Código de docente - ${this.codigoBuscado}`, pdf.internal.pageSize.getWidth() / 2, 330, {
+                    align: 'center'
+                    });
+
+                    
+
+                    
+                    
+
+                    // Añadir nueva página para el contenido capturado
+                    pdf.addPage();
+
+                    // Capturar el contenido y agregarlo al PDF
+                    html2canvas(element, options).then((canvas) => {
+                        const imgData = canvas.toDataURL('image/png', 1.0);
+
+                        const ratio = pdf.internal.pageSize.getHeight() / canvas.height;
+                        const imgWidth = canvas.width * ratio;
+                        const imgHeight = pdf.internal.pageSize.getHeight();
+
+                        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+
+                        pdf.save(filename);
+                    });
+                },
         }
-    }
+        
+    }  
 </script>
 
 <style src="../../views/DashboardAdmin/dashboard.css"></style>

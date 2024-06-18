@@ -80,7 +80,7 @@ export default {
       password: "",
       mensaje: "",
       typemsg: "error",
-      dialogError: false
+      dialogError: false,
     }
   },
   created(){
@@ -123,6 +123,8 @@ export default {
       this.dialogError = false;
     },
     restablecer(){
+      localStorage.removeItem('tipoUsuario');
+      localStorage.setItem('tipoUsuario',2);
       this.$router.push("/remitirCodigo");
     },
     registrar(){

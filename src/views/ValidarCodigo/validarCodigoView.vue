@@ -128,6 +128,7 @@ export default{
         typemsg: "error", 
         dialogError: false,
         dialogCorrect: false,
+        tipousuario:'',
       }
     },
     methods:{
@@ -136,7 +137,13 @@ export default{
       },
 
       irlogin() {
-            this.$router.push("/");
+        this.tipousuario=localStorage.getItem('tipoUsuario');
+          this.tipousuario=parseInt(this.tipousuario,10);
+          if(this.tipousuario===1){
+              this.$router.push("/adminLogin=admin");
+          }else if(this.tipousuario===2){
+              this.$router.push("/");
+          }
       },
 
       moveToNext(index) {

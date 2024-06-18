@@ -20,7 +20,7 @@
 }
 
 .dash .cont-blancoder{
-    background-color: white;
+    background-color: #002854;
     border-radius: 15px;
     margin-top: 20px;
     height: 777px;
@@ -339,7 +339,7 @@
 }
 
 .dash .p15 {
-    color: #002854;
+    color: #ffffff;
     font-weight: bold;
     font-size: 19px;
     margin-top: 7px;
@@ -468,6 +468,7 @@
 }
 
 .dash .p0{
+    margin-top: 20px;
     padding: 0px;
 }
 
@@ -647,19 +648,19 @@
     text-align: -webkit-center;
 }
 
-.dash .y{
+.dash .y1{
     width: 80px;
     justify-content: center;
     margin-left: 73px;
 }
 
-.dash .j{
+.dash .y2{
     width: 80px;
     justify-content: center;
     margin-left: 0px;
 }
 
-.dash .w{
+.dash .y3{
     width: 80px;
     justify-content: center;
     margin-left: 0px;
@@ -680,14 +681,14 @@
     margin-left: -79px;
 }
 
-.dash .genA{
+.dash .gen12{
     color: #002854;
-    width: 224px;
+    width: 284px;
     margin-right: 12px;
     font-weight: 500;
 }
 
-.dash .genA::before {
+.dash .gen12::before {
     content: "";
     display: inline-block;
     width: 10px;
@@ -698,14 +699,14 @@
     vertical-align: middle;
 }
 
-.dash .genB{
+.dash .gen13{
     color: #002854;
-    width: 224px;
+    width: 284px;
     margin-right: 12px;
     font-weight: 500;
 }
 
-.dash .genB::before {
+.dash .gen13::before {
     content: "";
     display: inline-block;
     width: 10px;
@@ -716,14 +717,14 @@
     vertical-align: middle;
 }
 
-.dash .genC{
+.dash .gen14{
     color: #002854;
-    width: 224px;
+    width: 284px;
     margin-right: 12px;
     font-weight: 500;
 }
 
-.dash .genC::before {
+.dash .gen14::before {
     content: "";
     display: inline-block;
     width: 10px;
@@ -737,7 +738,7 @@
 .dash .x{
     font-size: 16px;
     margin-right: 0px;
-    width: 100px;
+    width: 220px;
     margin-bottom: 13px;
 }
 

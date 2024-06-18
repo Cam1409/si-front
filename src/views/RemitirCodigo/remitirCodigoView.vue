@@ -94,6 +94,7 @@ export default {
         typemsg: "error", 
         dialogError: false,
         dialogCorrect: false,
+        tipousuario:'',
       }
     },
     created(){
@@ -109,11 +110,14 @@ export default {
         this.password = '';
         this.dialogError = false;
       },
-      restablecer(){
-        this.$router.push("/Restablecer");
-      },
       cancelar(){
-        this.$router.push("/")
+          this.tipousuario=localStorage.getItem('tipoUsuario');
+          this.tipousuario=parseInt(this.tipousuario,10);
+          if(this.tipousuario===1){
+              this.$router.push("/adminLogin=admin");
+          }else if(this.tipousuario===2){
+              this.$router.push("/");
+          }
       },
       
       async enviarCodigo() {

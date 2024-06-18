@@ -133,6 +133,7 @@ export default {
       dialogExit: false,
       mensaje: '',
       typemsg: "error",
+      tipousuario:'',
      }
   },
   created(){
@@ -142,7 +143,14 @@ export default {
   methods:{
     volver(){
       this.dialogExit=false;
-      this.$router.push("/");
+      this.tipousuario=localStorage.getItem('tipoUsuario');
+      this.tipousuario=localStorage.getItem('tipoUsuario');
+          this.tipousuario=parseInt(this.tipousuario,10);
+          if(this.tipousuario===1){
+              this.$router.push("/adminLogin=admin");
+          }else if(this.tipousuario===2){
+              this.$router.push("/");
+          }
     },
     llenarCampos(){
       this.usuario.codigoD = localStorage.getItem('codigoD')
@@ -213,7 +221,6 @@ export default {
     },
 
     limpiar(){
-      this.usuario.codigoD='';
       this.usuario.username='';
       this.usuario.password='';
       this.confirmpassword='';
