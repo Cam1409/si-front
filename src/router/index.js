@@ -8,9 +8,6 @@ const routes = [
   {
     path: '/menu',
     name: 'MenuView',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Menu/MenuView.vue')
   },
   {
@@ -59,14 +56,24 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/LoginAdmin/LoginAdminView.vue')
   },
   {
-    path: '/menuAdmin=$ma',
-    name:'MenuAdmin',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MenuAdmin/menuAdminView.vue')
+    path: '/administracionUsuarios',
+    name:'Administracion',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AdministracionUsuarios/administracionUsuariosView.vue')
   },
   {
-    path: '/dashBoardAdmin$$',
+    path: '/dashBoardAdmin',
     name:'DashAdmin',
     component: () => import(/* webpackChunkName: "about" */ '../views/DashboardAdmin/dashboarAdminView.vue')
+  },
+  {
+    path: '/remitirCodigo',
+    name:'RemitirCodigo',
+    component: () => import(/* webpackChunkName: "about" */ '../views/RemitirCodigo/remitirCodigoView.vue')
+  },
+  {
+    path: '/validarCodigo',
+    name:'ValidarCodigo',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ValidarCodigo/validarCodigoView.vue')
   }
 ]
 
