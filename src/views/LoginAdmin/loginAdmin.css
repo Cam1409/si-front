@@ -86,7 +86,7 @@
     left: 80px;
     margin-top: 20px;
     }
-    .btn-contra:hover,
+    .loginAdmin .btn-contra:hover,
     .btn-contra:active {
     color: rgb(52, 184, 245); 
     }

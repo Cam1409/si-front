@@ -1,5 +1,5 @@
 <template >
-    <v-container class="administracion">   
+    <v-container class="adminU">   
         
         <v-container class="cont2">
             <v-container class="logo"></v-container>
@@ -141,19 +141,18 @@
                         required
                     ></v-text-field>
                     </v-col>
-                    <v-col cols="12" md="3" class="mt-n6">
+                    <v-container class="cont-b">                        
                         <v-btn prepend-icon="mdi mdi-account-plus-outline" @click="registrar"  :disabled="docenteSeleccionado" class="btn-registrar">
                             Registrar
-                        </v-btn>
-                    </v-col>
-                    <v-col cols="12" md="3" class="mt-n6">
+                        </v-btn>                  
                         <v-btn prepend-icon="mdi mdi-human-edit"  :disabled="!docenteSeleccionado" @click="modificar" class="btn-modificar">
                             Actualizar
                         </v-btn>
                         <v-btn prepend-icon="mdi mdi-restore"  @click="limpiar" class="btn-limpiar">
                             Limpiar
                         </v-btn>
-                    </v-col>
+                    </v-container>
+                    
                 </v-row>
 
             </v-container>
@@ -195,8 +194,13 @@
         </v-container>        
     
         <v-container class="fondoMitad">
+
+                
             <v-container class="contenedorUser">
-             <v-container class="contenedorInfo"> 
+                <v-container class="cont-logoUCV">
+                    <v-container class="logoPRIN"></v-container>
+                </v-container>
+                <v-container class="contenedorInfo"> 
                 <v-icon class="mdi mdi-account-circle iconousuario"></v-icon>
 
                 <v-container>
@@ -267,82 +271,82 @@
         </v-container>
         </v-container>
     </v-container>
-        <v-container class="menu-raya-blanca"> </v-container>
-        <v-container class="menu-raya-roja">
-        <v-container class="menu-pie">      
+        <v-container class="aU-raya-blanca"> </v-container>
+        <v-container class="aU-raya-roja">
+        <v-container class="aU-pie">      
         <p> © UCV - Docentes 2024 </p>
         </v-container>
     </v-container>
     <v-dialog v-model="dialogError" :width="500">
-        <v-card color="#ec4a4a">
-          <v-card-title>
-            <span class="mx-auto">¡Verifique!</span>
-          </v-card-title>
-          <v-card-text>
-            <v-alert
-              v-if="mensaje !== ''"
-              color="white"
-              :type="typemsg"
-              outlined>
-              {{ mensaje }}
-            </v-alert>
-          </v-card-text>
-          <v-card-actions class="prueba">
-            <v-btn class="btncerrar"
-              @click="cancelar">
-              Cerrar
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-     </v-dialog>
-     <v-dialog v-model="dialogExit" :width="500">
-        <v-card color="#002854">
-          <v-card-title>
-            <span class="mx-auto">Operación exitosa</span>
-          </v-card-title>
-          <v-card-text>
-            <v-alert
-              v-if="mensaje !== ''"
-              color="white"
-              :type="typemsg"
-              outlined>
-              {{ mensaje }}
-            </v-alert>
-          </v-card-text>
-          <v-card-actions class="prueba">
-            <v-btn class="btncerrar"
-              @click="cancelar">
-              Aceptar
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-     </v-dialog>
-     <v-dialog v-model="dialogValidar" :width="500">
-        <v-card color="#002854">
-          <v-card-title>
-            <span class="mx-auto">Confirmación</span>
-          </v-card-title>
-          <v-card-text>
-            <v-alert
-              v-if="mensaje !== ''"
-              color="white"
-              :type="typemsg"
-              outlined>
-              {{ mensaje }}
-            </v-alert>
-          </v-card-text>
-          <v-card-actions class="prueba">
-            <v-btn class="btnclose1"
-              @click="deleteProfesor">
-              Aceptar
-            </v-btn>
-            <v-btn class="btnclose1"
-              @click="cancelar">
-              Cancelar
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-     </v-dialog>
+            <v-card color="#ec4a4a">
+            <v-card-title>
+                <span class="mx-auto">¡Verifique!</span>
+            </v-card-title>
+            <v-card-text>
+                <v-alert
+                v-if="mensaje !== ''"
+                color="white"
+                :type="typemsg"
+                outlined>
+                {{ mensaje }}
+                </v-alert>
+            </v-card-text>
+            <v-card-actions class="prueba">
+                <v-btn class="btncerrar"
+                @click="cancelar">
+                Cerrar
+                </v-btn>
+            </v-card-actions>
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="dialogExit" :width="500">
+            <v-card color="#002854">
+            <v-card-title>
+                <span class="mx-auto">Operación exitosa</span>
+            </v-card-title>
+            <v-card-text>
+                <v-alert
+                v-if="mensaje !== ''"
+                color="white"
+                :type="typemsg"
+                outlined>
+                {{ mensaje }}
+                </v-alert>
+            </v-card-text>
+            <v-card-actions class="prueba">
+                <v-btn class="btncerrar"
+                @click="cancelar">
+                Aceptar
+                </v-btn>
+            </v-card-actions>
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="dialogValidar" :width="500">
+            <v-card color="#002854">
+            <v-card-title>
+                <span class="mx-auto">Confirmación</span>
+            </v-card-title>
+            <v-card-text>
+                <v-alert
+                v-if="mensaje !== ''"
+                color="white"
+                :type="typemsg"
+                outlined>
+                {{ mensaje }}
+                </v-alert>
+            </v-card-text>
+            <v-card-actions class="prueba">
+                <v-btn class="btnclose1"
+                @click="deleteProfesor">
+                Aceptar
+                </v-btn>
+                <v-btn class="btnclose1"
+                @click="cancelar">
+                Cancelar
+                </v-btn>
+            </v-card-actions>
+            </v-card>
+        </v-dialog>
 </template>
 
 <script>
@@ -696,5 +700,4 @@
         }
     }
 </script>
-
-<style src="../../views/AdministracionUsuarios/administracionUsuarios.css"></style>
+<style src="../AdministracionUsuarios/adminU.css"></style>

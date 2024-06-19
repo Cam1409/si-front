@@ -39,30 +39,30 @@
         </v-container>
     </v-container>
     <v-dialog v-model="dialogError" :width="500">
-      <v-card color="#ec4a4a">
+        <v-card color="#ec4a4a">
 
         <v-card-title>
-          <span class="mx-auto">¡Verifique!</span>
+            <span class="mx-auto">¡Verifique!</span>
         </v-card-title>
 
         <v-card-text>
-          <v-alert
+            <v-alert
             v-if="mensaje !== ''"
             color="white"
             :type="typemsg"
             outlined>
             {{ mensaje }}
-          </v-alert>
+            </v-alert>
         </v-card-text>
 
-      <v-card-actions class="prueba">
-        <v-btn class="btnclose"
-          @click="cerrar">
-          Cerrar
-        </v-btn>
-      </v-card-actions>
+        <v-card-actions class="prueba">
+            <v-btn class="btnclose"
+            @click="cerrar">
+            Cerrar
+            </v-btn>
+        </v-card-actions>
 
-      </v-card>
+        </v-card>
     </v-dialog>
 </template>
 
@@ -94,8 +94,8 @@ export default {
                 try{
 
                     const response= await this.$axios.post("/usuario/validar",{
-                       username: this.username,
-                       password: this.password,
+                        username: this.username,
+                        password: this.password,
                     });
                     if(response.data.message==='Autenticación exitosa'){
                         const usuarioE= this.usuarios.find(usuario=>usuario.username===this.username && usuario.password===this.password);
