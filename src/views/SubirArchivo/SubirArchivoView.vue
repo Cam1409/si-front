@@ -41,7 +41,26 @@
   
           <v-container class="imagen-1">
             <p class="t-3">Archivo digitalizado</p>
-            <v-container class="cont-img"></v-container>
+            <v-container class="cont-img contenido-desplazable">
+              <v-container class="pdftitulo">
+                <p class="pdtit">EXAMEN DE {{ CursoPdf }}</p>
+              </v-container>
+              <v-container class="cont-alum">
+                <p class="txtan"><strong>Apellidos:</strong> {{ ApellidoAlumno }}</p>
+                <p class="txtan"><strong>Nombres:</strong> {{ NombreAlumno }}</p>
+              </v-container>
+              <v-container class="cont-preg">
+                <v-container v-for="(pregunta, index) in preguntas" :key="index" class="cont-ppr">
+                  <v-container class="cont-pp">
+                    <v-container class="izq"><p>{{ index + 1 }}. {{ pregunta }}</p></v-container>
+                    <p>({{ puntos[index] }} pts.)</p>
+                  </v-container>
+                  <v-container class="cont-r">
+                    <p>- {{ respuestas[index] }}</p>
+                  </v-container>
+                </v-container>
+              </v-container>
+            </v-container>
           </v-container>
         </v-container>
       </v-container>
@@ -108,6 +127,44 @@
             typemsg: "error",
             dialogValidar:false,
             pdfResults:[],
+            CursoPdf: 'COMPETENCIA COMUNICATIVA',
+            ApellidoAlumno: 'Alcedo Javier',
+            NombreAlumno: 'Carlos Jose',
+            preguntas: [
+              '¿Cuál es la capital de Francia?',
+              '¿Quién escribió Don Quijote de la Mancha?',
+              '¿Qué año comenzó la Primera Guerra Mundial?',
+              '¿Cuál es el elemento más abundante en la corteza terrestre?',
+              '¿Quién pintó La Mona Lisa?',
+              '¿Cuál es el río más largo del mundo?',
+              '¿Quién fue el primer presidente de Estados Unidos?',
+              '¿Qué gas es necesario para la fotosíntesis?',
+              '¿Cuál es la montaña más alta del mundo?',
+              '¿En qué año llegó el hombre a la Luna?',
+              '¿Cuál es el planeta más grande del sistema solar?',
+              '¿Quién descubrió la penicilina?',
+              '¿Cuántos elementos químicos hay en la tabla periódica?',
+              '¿Cuál es el océano más grande del mundo?',
+              '¿Quién fue el primer ser humano en el espacio?',
+            ],
+            puntos: [5, 10, 7, 3, 8, 4, 6, 2, 9, 5, 10, 3, 4, 8, 6],
+            respuestas: [
+              'París',
+              'Miguel de Cervantes',
+              '1914',
+              'Oxígeno',
+              'Leonardo da Vinci',
+              'Amazonas',
+              'George Washington',
+              'Dióxido de carbono',
+              'Monte Everest',
+              '1969',
+              'Júpiter',
+              'Alexander Fleming',
+              '118',
+              'Pacífico',
+              'Yuri Gagarin',
+            ],
         };
     },
     created() {

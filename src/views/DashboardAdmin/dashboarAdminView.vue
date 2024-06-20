@@ -450,11 +450,6 @@
                     align: 'center'
                     });
 
-                    
-
-                    
-                    
-
                     // Añadir nueva página para el contenido capturado
                     pdf.addPage();
 

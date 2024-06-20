@@ -5,6 +5,7 @@
     max-width: 100%;
     height: 100%;
     background-size: cover;
+    font-family: system-ui;
     }
 
 .raya-blanca{
@@ -29,7 +30,6 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    font-family: system-ui;
 }
 
 .generalsa .contenedor{
@@ -191,4 +191,55 @@
 .mx-auto{
     color: white;
     justify-content: center;
+}
+
+.generalsa .pdftitulo{
+    padding: 1px;
+    text-align-last: center;
+}
+
+.generalsa .pdtit{
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.generalsa .cont-alum{
+    padding-left: 34px;
+    padding-top: 22px;
+    padding-bottom: 7px;
+}
+
+.generalsa .txtan{
+    font-size: 18px;
+}
+
+.generalsa .cont-preg{
+    padding: 0px;
+}
+
+.generalsa .cont-ppr{
+    padding-left: 0px;
+    padding-bottom: 5px;
+    font-size: 18px;
+}
+
+.generalsa .cont-pp{
+    display: flex;
+    padding: 0px;
+    justify-content: left;
+}
+
+.generalsa .izq{
+    padding: 0px;
+    width: 658px;
+    margin: 0px;
+    text-align: justify;
+    padding-right: 15px;
+}
+
+.generalsa .cont-r{
+    padding: 0px;
+    text-align: justify;
+    padding-top: 20px;
 }
