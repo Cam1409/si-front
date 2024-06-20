@@ -164,8 +164,6 @@
 
 <script>
 
-import axios from 'axios';
-
 export default {
   data() {
     return {
@@ -277,7 +275,6 @@ export default {
         reader.onload = () => {
           localStorage.setItem("fileToUpload", reader.result);
           // Redirigir a la página "Subir Archivo"
-          this.sendFileToBackend()
           this.$router.push({ path: "/SubirArchivo" });
         };
         reader.readAsDataURL(file);
@@ -285,24 +282,6 @@ export default {
         alert("Por favor, seleccione un archivo PDF válido.");
       }
     },
-    sendFileToBackend() {
-    const pdfBase64 = localStorage.getItem("fileToUpload");
-
-    if (!pdfBase64) {
-      alert("Por favor, cargue un archivo PDF primero.");
-      return;
-    }
-
-    axios.post('http://localhost:5000/process_pdfs', { pdf_base64: pdfBase64 })
-      .then(response => {
-        console.log("Archivo enviado exitosamente:", response.data);
-        // Limpiar localStorage después de enviar el archivo
-        localStorage.removeItem("fileToUpload");
-      })
-      .catch(error => {
-        console.error("Error al enviar el archivo:", error);
-      });
-  },
     openFileInput2() {
       this.$refs.fileInput.click();
     },

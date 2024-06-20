@@ -84,6 +84,8 @@
   </template>
   
   <script>
+  import axios from 'axios';
+
   import { createLoadingTask } from 'vue3-pdfjs/esm';
   import { VuePdf } from 'vue3-pdfjs/esm';
 
@@ -105,10 +107,12 @@
             mensaje: '',
             typemsg: "error",
             dialogValidar:false,
+            pdfResults:[],
         };
     },
     created() {
       this.loadFileFromRoute();
+      this.conectarIA();
     },
     mounted(){
       this.capturarDatos();
@@ -177,6 +181,28 @@
                 this.dialogError = true;
             }
         },
+
+        async conectarIA(){
+          let pdfBase64 = localStorage.getItem("fileToUpload");
+          if (pdfBase64) {
+              // Remover 'data:application/pdf;base64,' de la cadena
+              pdfBase64 = pdfBase64.replace('data:application/pdf;base64,', '');
+              try {
+                  const response = await axios.post('http://localhost:5000/process_pdfs', { pdf_base64: [pdfBase64] });
+                  console.log("Archivo enviado exitosamente:");
+                  this.handleResponse(response.data);
+              } catch (error) {
+                  console.error("Error al enviar el archivo:", error);
+              }
+          } else {
+              console.error("No se encontró ningún archivo para cargar en localStorage.");
+          }
+       },
+       handleResponse(data) {
+        
+        this.pdfResults = data.map(item => item.json_content);
+        console.log(this.pdfResults)
+      }
     },
 };
 
