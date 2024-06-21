@@ -127,44 +127,12 @@
             typemsg: "error",
             dialogValidar:false,
             pdfResults:[],
-            CursoPdf: 'COMPETENCIA COMUNICATIVA',
-            ApellidoAlumno: 'Alcedo Javier',
-            NombreAlumno: 'Carlos Jose',
-            preguntas: [
-              '¿Cuál es la capital de Francia?',
-              '¿Quién escribió Don Quijote de la Mancha?',
-              '¿Qué año comenzó la Primera Guerra Mundial?',
-              '¿Cuál es el elemento más abundante en la corteza terrestre?',
-              '¿Quién pintó La Mona Lisa?',
-              '¿Cuál es el río más largo del mundo?',
-              '¿Quién fue el primer presidente de Estados Unidos?',
-              '¿Qué gas es necesario para la fotosíntesis?',
-              '¿Cuál es la montaña más alta del mundo?',
-              '¿En qué año llegó el hombre a la Luna?',
-              '¿Cuál es el planeta más grande del sistema solar?',
-              '¿Quién descubrió la penicilina?',
-              '¿Cuántos elementos químicos hay en la tabla periódica?',
-              '¿Cuál es el océano más grande del mundo?',
-              '¿Quién fue el primer ser humano en el espacio?',
-            ],
+            CursoPdf: '',
+            ApellidoAlumno: '',
+            NombreAlumno: '',
+            preguntas: [],
             puntos: [5, 10, 7, 3, 8, 4, 6, 2, 9, 5, 10, 3, 4, 8, 6],
-            respuestas: [
-              'París',
-              'Miguel de Cervantes',
-              '1914',
-              'Oxígeno',
-              'Leonardo da Vinci',
-              'Amazonas',
-              'George Washington',
-              'Dióxido de carbono',
-              'Monte Everest',
-              '1969',
-              'Júpiter',
-              'Alexander Fleming',
-              '118',
-              'Pacífico',
-              'Yuri Gagarin',
-            ],
+            respuestas: [],
         };
     },
     created() {
@@ -182,6 +150,7 @@
           this.estudiante = localStorage.getItem("nombreEst");
           var nombreE = document.getElementById("txtEst");
           this.curso = localStorage.getItem("nombreCurso");
+          this.CursoPdf= this.curso;
           this.aula = localStorage.getItem("aula");
           if (this.profesor !== null && this.profesor !== undefined && this.estudiante !== null) {
             if (nombreP && nombreE) {
@@ -256,9 +225,14 @@
           }
        },
        handleResponse(data) {
-        
         this.pdfResults = data.map(item => item.json_content);
-        console.log(this.pdfResults)
+         if (this.pdfResults.length > 0) {
+           this.preguntas = this.pdfResults[0].Preguntas.map(pregunta => pregunta.replace(/^\d+\.\s/, ''));
+           this.respuestas = this.pdfResults[0].Respuestas.map(respuesta => respuesta.replace(/^\d+\.\s/, ''));
+           this.puntos= this.pdfResults[0].Puntos.map(puntos=>puntos.replace(/^\d+\.\s/, ''));
+           this.ApellidoAlumno= this.pdfResults[0].Nombres[0][0];
+           this.NombreAlumno= this.pdfResults[0].Apellidos[0][0];
+         }
       }
     },
 };
