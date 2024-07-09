@@ -107,7 +107,6 @@
                 <th>Nota</th>
                 <th></th>
                 <th></th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -122,7 +121,8 @@
                   <td class="c4">{{ item.condicionNota }}</td>
                   <td class="c5">{{ item.nota }}</td>
                   <td class="c6">
-                    <v-icon class="mdi mdi-list-status"></v-icon>
+                    <v-icon class="mdi mdi-list-status"
+                    @click="direccionar"></v-icon>
                   </td>
                   <td class="c6">
                     <v-icon
@@ -135,14 +135,13 @@
                         handleFileChange(
                           $event,
                           index,
-                          item.nombresE + ' ' + item.apellidosE
+                          item.nombresE + ' ' + item.apellidosE,
+                          item.codigoE,
+                          item.nota
                         )
                       " 
                       accept=".pdf"
                       style="display: none" />
-                  </td>
-                  <td class="c6">
-                    <v-icon class="mdi mdi-camera-enhance"></v-icon>
                   </td>
                 </tr>
               </template>
@@ -160,6 +159,28 @@
       <p>© UCV - Docentes 2024</p>
     </v-container>
   </v-container>
+ <v-dialog v-model="dialogError" :width="500">
+        <v-card color="#ec4a4a">
+          <v-card-title>
+            <span class="mx-auto">¡Verifique!</span>
+          </v-card-title>
+          <v-card-text>
+            <v-alert
+              v-if="mensaje !== ''"
+              color="white"
+              :type="typemsg"
+              outlined>
+              {{ mensaje }}
+            </v-alert>
+          </v-card-text>
+          <v-card-actions class="prueba">
+            <v-btn class="btncerrar"
+              @click="cerrar">
+              Cerrar
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+     </v-dialog>
 </template>
 
 <script>
@@ -178,6 +199,9 @@ export default {
       idCurso: "",
       estudiantes: [],
       archivos: [],
+      dialogError:false,
+      mensaje:'',
+      typemsg:'error'
     };
   },
   created() {
@@ -217,7 +241,6 @@ export default {
         )
         .then((res) => {
           this.estudiantes = res.data;
-          console.log(this.estudiantes);
         })
         .catch((error) => {
           console.error(error);
@@ -249,7 +272,6 @@ export default {
       const selectedValue = event.target.value;
       console.log("Selected value:", selectedValue);
       this.idUnidad = selectedValue;
-      console.log(this.idUnidad);
       this.capturarLista();
     },
 
@@ -265,26 +287,33 @@ export default {
       this.$refs["fileInput" + index][0].click();
     },
 
-    handleFileChange(event, index, nombreEstudiante) {
-      localStorage.setItem("nombreEst", nombreEstudiante);
-      console.log(nombreEstudiante);
-      const file = event.target.files[0];
-      if (file && file.type === "application/pdf") {
-        // Guardar el archivo en localStorage
-        const reader = new FileReader();
-        reader.onload = () => {
-          localStorage.setItem("fileToUpload", reader.result);
-          // Redirigir a la página "Subir Archivo"
-          this.$router.push({ path: "/SubirArchivo" });
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("Por favor, seleccione un archivo PDF válido.");
+    handleFileChange(event, index, nombreEstudiante,codigoE,nota) {
+      if(nota===0){
+          localStorage.setItem("nombreEst", nombreEstudiante);
+        const file = event.target.files[0];
+        if (file && file.type === "application/pdf") {
+          const reader = new FileReader();
+          reader.onload = () => {
+            localStorage.setItem("fileToUpload", reader.result);
+            localStorage.setItem('unidad', this.idUnidad)
+            localStorage.setItem('codigoEstudiante',codigoE);
+            this.$router.push({ path: "/SubirArchivo" });
+          };
+          reader.readAsDataURL(file);
+        } else {
+          alert("Por favor, seleccione un archivo PDF válido.");
+        }
+      }else{
+          this.mensaje= "No puede continuar con el proceso,ya que el estudiante seleccionado posee una nota registrada, por favor verificar "
+          this.dialogError=true;
       }
+      
     },
+
     openFileInput2() {
       this.$refs.fileInput.click();
     },
+
     abrirArchivos(event) {
       const files = event.target.files;
       const serializedFiles = [];
@@ -318,12 +347,20 @@ export default {
         }
       }
     },
+
+    
+    cerrar() {
+            this.dialogError = false;
+            this.mensaje= " ";
+        },
+    direccionar(){
+      this.$router.push("/boletaNotas");
+    }
   },
 
   computed: {
     filteredStudents() {
       let filteredList = this.estudiantes;
-      // Filtrar por término de búsqueda
       if (this.search) {
         const searchTerm = this.search.trim().toLowerCase();
         filteredList = filteredList.filter(
@@ -332,7 +369,6 @@ export default {
             estudiante.apellidosE.toLowerCase().includes(searchTerm)
         );
       }
-      // Filtrar por condición de calificación
       if (this.selectedOptionCalif === "calificado") {
         console.log("Filtrando por calificado");
         filteredList = filteredList.filter(

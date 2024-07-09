@@ -29,7 +29,7 @@
                     <v-container class="notafin" :class="notafinClass">
                         <p>{{ totalNota }}/{{ totalNotaMax }}</p>
                     </v-container>
-                    <button class="btn-1">
+                    <button class="btn-1" @click="CargarNota()">
                         <v-icon left>mdi mdi-text-box-multiple-outline</v-icon>
                         Cargar Nota</button>
                     <button class="btn-2" @click="SubirArchivo()">
@@ -70,7 +70,50 @@
     <v-container class="pie">      
         <p> © UCV - Docentes 2024 </p>
     </v-container>
-
+        <v-dialog v-model="dialogExit" :width="500">
+            <v-card color="#002854">
+            <v-card-title>
+                <span class="mx-auto">Operación exitosa</span>
+            </v-card-title>
+            <v-card-text>
+                <v-alert
+                v-if="mensaje !== ''"
+                color="white"
+                :type="typemsg"
+                outlined>
+                {{ mensaje }}
+                </v-alert>
+            </v-card-text>
+            <v-card-actions class="prueba">
+                <v-btn class="btncerrar"
+                @click="aceptar">
+                Aceptar
+                </v-btn>
+            </v-card-actions>
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="dialogError" :width="500">
+            <v-card color="#ec4a4a">
+            <v-card-title>
+                <span class="mx-auto">¡Verifique!</span>
+            </v-card-title>
+            <v-card-text>
+                <v-alert
+                v-if="mensaje !== ''"
+                color="white"
+                :type="typemsg"
+                outlined>
+                {{ mensaje }}
+                </v-alert>
+            </v-card-text>
+            <v-card-actions class="prueba">
+                <v-btn class="btncerrar"
+                @click="cerrar">
+                Cerrar
+                </v-btn>
+            </v-card-actions>
+            </v-card>
+        </v-dialog>
         </v-container>
 
 </template>
@@ -84,51 +127,48 @@ export default {
         return {
             profesor: "",
             idCurso: "",
+            codigoE:'',
             curso: '',
             aula: '',
             estudiante: '',
-            preguntas: [
-                {
-                nota: 2,
-                notaMax: 4,
-                textoPregunta: "Describa el proceso de fotosíntesis.",
-                textoRespuesta: "La fotosíntesis es un proceso utilizado por las plantas y otros organismos para convertir la energía de la luz en energía química."
-                },
-                {
-                nota: 1,
-                notaMax: 3,
-                textoPregunta: "Explique la teoría de la evolución de Darwin.",
-                textoRespuesta: "La teoría de la evolución de Darwin postula que las especies cambian con el tiempo a través de la selección natural."
-                },
-                {
-                nota: 3,
-                notaMax: 5,
-                textoPregunta: "¿Qué es el teorema de Pitágoras?",
-                textoRespuesta: "El teorema de Pitágoras establece que en un triángulo rectángulo, el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos."
-                },
-                {
-                nota: 3,
-                notaMax: 4,
-                textoPregunta: "Defina el término 'ecosistema'.",
-                textoRespuesta: "Un ecosistema es una comunidad de seres vivos que interactúan entre sí y con su entorno físico."
-                },
-                {
-                nota: 3,
-                notaMax: 4,
-                textoPregunta: "¿Cuál es la capital de Francia?",
-                textoRespuesta: "La capital de Francia es París."
-                }
-            ],
+            matriculas:[],
+            preguntasR: [],
+            respuestas: [],
+            puntos:[],
+            puntajesPorPregunta: [],
+            puntaje: '',
+            dialogError: false,
+            dialogExit: false,
+            mensaje: '',
+            typemsg: "error",
+            preguntas: [],
+            notasConsolidado:[],
+            nota: {
+                idDetalleMC:'',
+                idCurso:'',
+                idMatricula:'',
+                promedioPonderado:'0',
+                estado:'desaprobado',
+            },
+            detallenota:{
+                idDetalleMC:'',
+                idTipo:'EP',
+                idUnidad:'',
+                nota:'',
+            },
+            notas:[],
         };
     },
     components:{
 
     },
     created(){
+        this.CargarDatosProcesados();
 
     },
     computed: {
         totalNota() {
+        this.detallenota.nota=this.preguntas.reduce((total, pregunta) => total + pregunta.nota, 0);
         return this.preguntas.reduce((total, pregunta) => total + pregunta.nota, 0);
         },
         totalNotaMax() {
@@ -143,7 +183,10 @@ export default {
         this.capturarDatos();
     },
     methods:{
-        capturarDatos() {
+        capturarDatos() {            
+            this.$axios.get("/matricula").then((res)=>{this.matriculas=res.data;console.log(this.matricula);}).catch((error)=>error);
+            
+            this.codigoE= localStorage.getItem('codigoEstudiante');
             this.profesor = localStorage.getItem("nombreDocente");
             var nombreP = document.getElementById("nomb_Profe");
             this.idCurso = localStorage.getItem("idCurso");
@@ -177,7 +220,81 @@ export default {
             const aprobatoria = pregunta.nota / pregunta.notaMax >= 0.6;
             return aprobatoria ? 'pregunta-aprobatoria' : 'pregunta-desaprobatoria';
         },
-        
+        CargarDatosProcesados(){
+            this.preguntasR = JSON.parse(localStorage.getItem('preguntas'));
+            this.respuestas = JSON.parse(localStorage.getItem('respuestas'));
+            this.puntos = JSON.parse(localStorage.getItem('puntos'));
+            this.puntajesPorPregunta = JSON.parse(localStorage.getItem('puntajesPorPregunta'));
+            this.puntaje = JSON.parse(localStorage.getItem('puntaje'));
+            if (this.preguntasR) {
+                for (let i = 0; i < this.preguntasR.length; i++) {
+                    this.preguntas.push({
+                        nota: parseFloat(this.puntajesPorPregunta[i].toFixed(1)),
+                        notaMax:  parseFloat(this.puntos[i]),
+                        textoPregunta: this.preguntasR[i],
+                        textoRespuesta: this.respuestas[i]
+                    });
+                }
+            } else {
+                this.mensaje="Los arreglos proporcionados no tienen la misma longitud.";
+                this.dialogError=true;
+            } 
+        },
+
+        aceptar(){
+            this.dialogExit = false;
+            this.mensaje= " ";
+            this.$router.push("/ListaEstudiantes");
+        },
+        cerrar() {
+            this.dialogError = false;
+        },
+        async CargarNota(){
+            try{
+                const matriculaE = this.matriculas.find(matricula => {
+                    console.log("Comparando:", matricula.codigoE, this.codigoE); 
+                    return matricula.codigoE == this.codigoE; 
+                });
+                console.log(matriculaE);
+                
+                if(matriculaE){
+                    this.nota.idMatricula=matriculaE.idMatricula;
+                    this.detallenota.idUnidad = localStorage.getItem('unidad');
+                    this.nota.idCurso = this.idCurso;
+                    await this.$axios.get('/notas').then((res)=>{this.notas=res.data;console.log(this.notas);});
+
+                    const notaE= this.notas.find(nota=>nota.idMatricula===this.nota.idMatricula && nota.idCurso===this.nota.idCurso)
+                    
+                    console.log(this.notas);
+                    let ultID = 0;
+                    if (this.notas.length > 0) {
+                        ultID = parseInt(this.notas.sort((a, b) => b.idDetalleMC - a.idDetalleMC)[0].idDetalleMC);
+                        console.log("Hola"+ultID)
+                    }
+                    console.log("Ultimo id: ", ultID);
+                if(!notaE){
+                    this.nota.idDetalleMC = (ultID + 1).toString(); 
+                    this.detallenota.idDetalleMC = (ultID + 1).toString();
+                    const saveResponse = await this.$axios.post("/notas", this.nota);
+                    const saveResponse1 = await this.$axios.post("/detallenota", this.detallenota);
+                
+                }else{
+                    this.detallenota.idDetalleMC= notaE.idDetalleMC;
+                    const saveResponse1 = await this.$axios.post("/detallenota", this.detallenota);
+                
+                }
+                    this.mensaje= "La nota del estudiate "+this.estudiante+" ha sido registrada satisfactoriamente";
+                this.dialogExit= true;
+                }else{
+                    this.mensaje="Error al entregar datos";
+                    dialogError= true;
+                }                
+            }catch(error){
+                this.mensaje= "La nota del estudiate "+this.estudiante+" no ha podido ser registrada";
+                this.dialogError= true;
+             }
+        }
+    
     },
 };
 

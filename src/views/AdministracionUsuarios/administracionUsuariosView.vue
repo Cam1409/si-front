@@ -484,22 +484,22 @@
                 this.profesor.celular= profesorSeleccionado.p_celular;
                 this.usuario.username= profesorSeleccionado.username;
                 this.usuario.password= profesorSeleccionado.password;
-                //Llenando distrito 
+
                 const distritoE= this.distritosBus.find(d => d.IDDistrito === profesorSeleccionado.p_idDistrito);
                 if(distritoE){
                     this.selectedDistrito= distritoE.Nombre_Di;
                 }
-                //Llenando genero
+            
                 const generoE= this.generosBus.find(g=>g.idGenero === profesorSeleccionado.p_idGenero);
                 if(generoE){
                     this.selectedGenero= generoE.descripcion;
                 }
-                //Llenando estado 
+            
                 const estadoE= this.estadosBus.find(e=>e.idEstado=== profesorSeleccionado.p_idEstado);
                 if(estadoE){
                     this.selectedEstado= estadoE.descripcionE;
                 }
-                //Llenado de tipo de usuario
+                
                 if(profesorSeleccionado.issuperuser===1){
                     this.selectedTipo='Administrativo'
                 }else{
@@ -559,7 +559,6 @@
                         this.dialogError=true;
                     }else{
                         try{    
-                            //Actualizando datos del docente
                             this.profesor.idGenero= this.selectedGenero.charAt(0);
                             this.profesor.idEstado= this.selectedEstado.charAt(0);
                             const distritoSeleccionado = this.distritosBus.find(d => d.Nombre_Di === this.selectedDistrito);
@@ -582,7 +581,6 @@
 
                             const responseP= await this.$axios.patch(`/profesor/${this.profesor.codigoD}`,profesorActualizado)
 
-                            // Actualizando usuario
                             const usuarioEn= await this.$axios.get('/usuario/'+this.profesor.codigoD);
                             this.usuario.codigoD= this.profesor.codigoD;
                             if(this.selectedTipo==='Docente'){
@@ -640,12 +638,10 @@
                             } else {
                                 console.log('No encontrado');
                             }   
-                            //Creando docente 
                             const response = await this.$axios.post('/profesor', this.profesor);
                             await this.capturarLista();
                             this.currentPage = Math.ceil(this.profesores.length / this.itemsPerPage);
 
-                            //Creando usuario
                             this.usuario.codigoD= this.profesor.codigoD;
                             this.usuario.id= this.profesor.codigoD;
                             if(this.selectedTipo==='Docente'){

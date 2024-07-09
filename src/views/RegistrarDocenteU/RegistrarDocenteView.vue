@@ -142,6 +142,7 @@ export default {
 				codigoD: "",
 				username: "",
         password: "",
+        issuperuser: false,
 			},
         nombresD: "",
         apellidosD: "",
@@ -188,6 +189,7 @@ export default {
   },
   cerrar() {
       this.dialogError = false;
+      this.dialogExit = false;
       this.mensaje= " ";
   },
   volver(){
@@ -210,37 +212,39 @@ export default {
 
     try {
       const response = await this.$axios.get("/usuario/" + this.usuario.codigoD);
-      if (response.data) {
+      if (response.message==='User not found') {
         this.mensaje = "El docente con Código: " + this.usuario.codigoD + " ya está registrado, no podemos asignarle otro usuario.";
         this.dialogError = true;
         this.limpiar();
         return;
+      }else{
+            try {
+          const usersResponse = await this.$axios.get('/usuario');
+          const usuarios = usersResponse.data;
+          let ultimoID = 0;
+          if (usuarios.length > 0) {
+            ultimoID = usuarios.sort((a, b) => b.id - a.id)[0].id;
+          }
+          console.log("Último ID de usuario:", ultimoID);
+
+          this.usuario.id = ultimoID + 1;
+
+          const saveResponse = await this.$axios.post("/usuario", this.usuario);
+          console.log(saveResponse);
+          this.mensaje = "El registro ha sido completado con éxito";
+          this.dialogExit = true;
+          this.limpiar();
+        } catch (error) {
+          console.error("Error al obtener los usuarios o al guardar el nuevo usuario:", error);
+          this.mensaje = "Error durante el registro del usuario.";
+          this.dialogError = true;
+        }
       }
     } catch (error) {
       console.error("Error al verificar la existencia del usuario:", error);
     }
 
-    try {
-      const usersResponse = await this.$axios.get('/usuario');
-      const usuarios = usersResponse.data;
-      let ultimoID = 0;
-      if (usuarios.length > 0) {
-        ultimoID = usuarios.sort((a, b) => b.id - a.id)[0].id;
-      }
-      console.log("Último ID de usuario:", ultimoID);
 
-      this.usuario.id = ultimoID + 1;
-
-      const saveResponse = await this.$axios.post("/usuario", this.usuario);
-      console.log(saveResponse);
-      this.mensaje = "El registro ha sido completado con éxito";
-      this.dialogExit = true;
-      this.limpiar();
-    } catch (error) {
-      console.error("Error al obtener los usuarios o al guardar el nuevo usuario:", error);
-      this.mensaje = "Error durante el registro del usuario.";
-      this.dialogError = true;
-    }
 },
 
 limpiar(){

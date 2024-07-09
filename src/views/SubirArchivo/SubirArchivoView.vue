@@ -46,8 +46,8 @@
                 <p class="pdtit">EXAMEN DE {{ CursoPdf }}</p>
               </v-container>
               <v-container class="cont-alum">
-                <p class="txtan"><strong>Apellidos:</strong> {{ ApellidoAlumno }}</p>
-                <p class="txtan"><strong>Nombres:</strong> {{ NombreAlumno }}</p>
+                <p class="txtan"><strong>Apellidos:</strong> {{ nombres[1] }}</p>
+                <p class="txtan"><strong>Nombres:</strong> {{ nombres[0] }}</p>
               </v-container>
               <v-container class="cont-preg">
                 <v-container v-for="(pregunta, index) in preguntas" :key="index" class="cont-ppr">
@@ -100,6 +100,28 @@
             </v-card-actions>
         </v-card>
     </v-dialog>
+    <v-dialog v-model="dialogError" :width="500">
+        <v-card color="#ec4a4a">
+          <v-card-title>
+            <span class="mx-auto">¡Verifique!</span>
+          </v-card-title>
+          <v-card-text>
+            <v-alert
+              v-if="mensaje !== ''"
+              color="white"
+              :type="typemsg"
+              outlined>
+              {{ mensaje }}
+            </v-alert>
+          </v-card-text>
+          <v-card-actions class="prueba">
+            <v-btn class="btncerrar"
+              @click="cancelar">
+              Cerrar
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+     </v-dialog>
   </template>
   
   <script>
@@ -118,6 +140,7 @@
             profesor: '',
             pdfSrc: null,
             estudiante: '',
+            estudiantes:'',
             pages: [],
             aula: '',
             curso: '',
@@ -128,11 +151,11 @@
             dialogValidar:false,
             pdfResults:[],
             CursoPdf: '',
-            ApellidoAlumno: '',
-            NombreAlumno: '',
             preguntas: [],
-            puntos: [5, 10, 7, 3, 8, 4, 6, 2, 9, 5, 10, 3, 4, 8, 6],
+            puntos: [],
             respuestas: [],
+            nombres:[],
+            puntaje:""
         };
     },
     created() {
@@ -180,7 +203,6 @@
             this.pages = Array.from({ length: pdf.numPages }, (_, i) => i + 1);
         },
 
-        // Captura PDF y llama a metodo de lectura
         loadFileFromRoute() {
             const fileData = localStorage.getItem('fileToUpload');
             if (fileData) {
@@ -199,22 +221,30 @@
         },
 
         async aceptar(){
-            this.dialogValidar=false;
+          const nombreCompleto =this.nombres[0][0]+ ' '+this.nombres[1][0];
+          console.log(nombreCompleto)
+          console.log(this.estudiante);
+          if(nombreCompleto === this.estudiante){
             try {
                 this.irExamenDigitalizados();
             } catch (error) {
                 this.mensaje = "Hubo un error.";
                 this.dialogError = true;
             }
+          }else{
+          this.dialogValidar=false;
+          this.mensaje = "El nombre del estudiante registrado en el examen no coincide con el estudiante seleccionado, por favor verifique";
+          this.dialogError= true;
+          }
+          
         },
 
         async conectarIA(){
           let pdfBase64 = localStorage.getItem("fileToUpload");
           if (pdfBase64) {
-              // Remover 'data:application/pdf;base64,' de la cadena
               pdfBase64 = pdfBase64.replace('data:application/pdf;base64,', '');
               try {
-                  const response = await axios.post('http://localhost:5000/process_pdfs', { pdf_base64: [pdfBase64] });
+                  const response = await axios.post('http://localhost:5000/evaluar', { pdf_base64: [pdfBase64] });
                   console.log("Archivo enviado exitosamente:");
                   this.handleResponse(response.data);
               } catch (error) {
@@ -223,16 +253,20 @@
           } else {
               console.error("No se encontró ningún archivo para cargar en localStorage.");
           }
-       },
-       handleResponse(data) {
-        this.pdfResults = data.map(item => item.json_content);
-         if (this.pdfResults.length > 0) {
-           this.preguntas = this.pdfResults[0].Preguntas.map(pregunta => pregunta.replace(/^\d+\.\s/, ''));
-           this.respuestas = this.pdfResults[0].Respuestas.map(respuesta => respuesta.replace(/^\d+\.\s/, ''));
-           this.puntos= this.pdfResults[0].Puntos.map(puntos=>puntos.replace(/^\d+\.\s/, ''));
-           this.ApellidoAlumno= this.pdfResults[0].Nombres[0][0];
-           this.NombreAlumno= this.pdfResults[0].Apellidos[0][0];
-         }
+        },
+        handleResponse(data) {
+          this.preguntas = data.resultados_pdf[0].json_content.Preguntas;
+          this.nombres = data.resultados_pdf[0].json_content.Nombres;
+          this.respuestas = data.resultados_pdf[0].json_content.Respuestas;
+          this.puntos = data.resultados_pdf[0].json_content.Puntos;
+          this.puntajesPorPregunta = data.resultados_pdf[0].json_content.PuntajesPorPregunta;
+          this.puntaje = data.resultados_pdf[0].json_content.PuntajeTotal;
+          localStorage.setItem('preguntas',JSON.stringify(this.preguntas));
+          localStorage.setItem('nombres',JSON.stringify(this.nombres));
+          localStorage.setItem('respuestas',JSON.stringify(this.respuestas));
+          localStorage.setItem('puntos',JSON.stringify(this.puntos));
+          localStorage.setItem('puntajesPorPregunta',JSON.stringify(this.puntajesPorPregunta));
+          localStorage.setItem('puntaje',JSON.stringify(this.puntaje));
       }
     },
 };

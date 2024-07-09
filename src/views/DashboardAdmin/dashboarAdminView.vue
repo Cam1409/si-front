@@ -219,7 +219,7 @@
                                     </v-progress-linear>
                                     <p class="c2">{{detalle.cantidad}}</p>
                                 </v-container>
-                           </v-container>
+                            </v-container>
                         </v-container>
                     </v-container>
                 </v-container>
@@ -423,37 +423,30 @@
                 };
 
                 const pdf = new jsPDF('l', 'px', [element.offsetWidth, element.offsetHeight]);
-            // Título en mayúsculas y negrita
-            pdf.setFont('helvetica', 'bold');
+                pdf.setFont('helvetica', 'bold');
                     pdf.setFontSize(56);
                     pdf.text('REPORTE GENERAL', pdf.internal.pageSize.getWidth() / 2, 230, {
                     align: 'center'
                     });
 
-                    // Restablecemos la fuente a normal para el resto del texto
                     pdf.setFont('helvetica', 'normal');
                     pdf.setFontSize(30);
 
-                    // Fecha y hora actual
                     const fechaHora = new Date().toLocaleString();
                     pdf.text(`Fecha y hora: ${fechaHora}`, pdf.internal.pageSize.getWidth() / 2, 270, {
                     align: 'center'
                     });
 
-                    // Usuario
                     pdf.text(`Generado por: ${this.nombresCompletos}`, pdf.internal.pageSize.getWidth() / 2, 300, {
                     align: 'center'
                     });
 
-                    // Código de docente
                     pdf.text(`Código de docente - ${this.codigoBuscado}`, pdf.internal.pageSize.getWidth() / 2, 330, {
                     align: 'center'
                     });
 
-                    // Añadir nueva página para el contenido capturado
                     pdf.addPage();
 
-                    // Capturar el contenido y agregarlo al PDF
                     html2canvas(element, options).then((canvas) => {
                         const imgData = canvas.toDataURL('image/png', 1.0);
 
